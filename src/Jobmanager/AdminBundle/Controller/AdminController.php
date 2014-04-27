@@ -13,8 +13,20 @@ class AdminController extends Controller
 {
     public function indexAction()
     {
+        // call entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // retrieve last jobs
+        $jobs = $em->getRepository('JobmanagerAdminBundle:Job')
+                   ->findAll();
+
+        print "<pre>"; \Doctrine\Common\Util\Debug::dump($jobs); print "</pre>";
+        die('uQ');
+
         // send view
-        return $this->render('JobmanagerAdminBundle:Admin:index.html.twig');
+        return $this->render('JobmanagerAdminBundle:Admin:index.html.twig', array(
+            'jobs' => $jobs
+        ));
     }
 
     public function updateDbAction()
