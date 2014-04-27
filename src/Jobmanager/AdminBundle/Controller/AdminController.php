@@ -37,7 +37,7 @@ class AdminController extends Controller
 
             // set Contact and Company
             $em->getRepository('JobmanagerAdminBundle:Job')
-                ->setCompanyToJob($em, $job_import, $job);
+               ->setCompanyToJob($em, $job_import, $job);
             $em->persist($job);
             $em->flush();
 
