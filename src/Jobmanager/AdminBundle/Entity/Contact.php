@@ -188,4 +188,27 @@ class Contact
     {
         return $this->gender;
     }
+
+    /**
+     * Set company
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Company $company
+     * @return Contact
+     */
+    public function setCompany(\Jobmanager\AdminBundle\Entity\Company $company = null)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \Jobmanager\AdminBundle\Entity\Company 
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
 }

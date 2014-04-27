@@ -264,4 +264,37 @@ class Company
     {
         return $this->jobs;
     }
+
+    /**
+     * Add contacts
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Contact $contacts
+     * @return Company
+     */
+    public function addContact(\Jobmanager\AdminBundle\Entity\Contact $contacts)
+    {
+        $this->contacts[] = $contacts;
+
+        return $this;
+    }
+
+    /**
+     * Remove contacts
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Contact $contacts
+     */
+    public function removeContact(\Jobmanager\AdminBundle\Entity\Contact $contacts)
+    {
+        $this->contacts->removeElement($contacts);
+    }
+
+    /**
+     * Get contacts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
 }
