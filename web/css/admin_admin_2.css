@@ -1,0 +1,13 @@
+/*
+ * Base structure
+ */
+.global
+{
+    width: 960px;
+    margin: 0 auto;
+}
+.top-nav
+{
+    height: 150px;
+    background-color: #000000;
+}
