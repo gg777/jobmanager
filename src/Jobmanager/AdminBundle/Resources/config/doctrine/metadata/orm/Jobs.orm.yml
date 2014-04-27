@@ -1,0 +1,122 @@
+Jobs:
+    type: entity
+    table: jobs
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        date:
+            type: datetime
+            nullable: false
+            comment: ''
+        company:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        position:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+        city:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+        zip:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        email:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+        tel:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+        interest:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        urlCompany:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: url_company
+        urlJob:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: url_job
+        check:
+            type: boolean
+            nullable: true
+            comment: ''
+        contactFirstname:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: contact_firstname
+        contactLastname:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: contact_lastname
+        contactGenre:
+            type: string
+            nullable: true
+            length: 3
+            fixed: false
+            comment: ''
+            column: contact_genre
+        checkWebsite:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: check_website
+        dateMeeting1:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: date_meeting_1
+        out:
+            type: boolean
+            nullable: true
+            comment: ''
+        source:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+        recall:
+            type: boolean
+            nullable: true
+            comment: ''
+    lifecycleCallbacks: {  }

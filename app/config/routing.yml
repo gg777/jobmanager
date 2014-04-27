@@ -1,0 +1,4 @@
+jobmanager_admin:
+    resource: "@JobmanagerAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
