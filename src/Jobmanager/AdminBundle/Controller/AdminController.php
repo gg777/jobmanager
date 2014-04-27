@@ -13,6 +13,12 @@ class AdminController extends Controller
 {
     public function indexAction()
     {
+        // send view
+        return $this->render('JobmanagerAdminBundle:Admin:index.html.twig');
+    }
+
+    public function updateDbAction()
+    {
         // call entity manager
         $em = $this->getDoctrine()->getManager();
 
@@ -31,7 +37,7 @@ class AdminController extends Controller
 
             // set Contact and Company
             $em->getRepository('JobmanagerAdminBundle:Job')
-               ->setCompanyToJob($em, $job_import, $job);
+                ->setCompanyToJob($em, $job_import, $job);
             $em->persist($job);
             $em->flush();
 
