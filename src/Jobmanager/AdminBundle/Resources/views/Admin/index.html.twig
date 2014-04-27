@@ -29,6 +29,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Date</th>
                                         <th>Job title</th>
                                         <th>Company</th>
                                         <th>City</th>
@@ -41,8 +42,13 @@
                                     {% for job in jobs %}
                                         <tr>
                                             <td>{{ job.id }}</td>
+                                            <td>{{ job.createdDate|date('d/m/Y') }}</td>
                                             <td>{{ job.name }}</td>
-                                            <td>{{ job.company_obj }}</td>
+                                            <td>{{ job.company.name }}</td>
+                                            <td>{{ job.company.city }}</td>
+                                            <td>{% for contact in job.company.contacts %}{{ contact.gender }}{% endfor %}</td>
+                                            <td>{% for contact in job.company.contacts %}{{ contact.firstname }}{% endfor %}</td>
+                                            <td>{% for contact in job.company.contacts %}{{ contact.lastname }}{% endfor %}</td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

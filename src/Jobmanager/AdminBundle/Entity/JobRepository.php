@@ -15,7 +15,18 @@ class JobRepository extends EntityRepository
 
     public function getJobs()
     {
-        return true;
+        $qb = $this->createQueryBuilder('j');
+
+        $qb
+            ->join('j.company', 'c')
+            ->addSelect('c')
+            ->join('c.contacts', 'co')
+            ->addSelect('co')
+            ->orderBy('j.createdDate', 'DESC')
+
+        ;
+
+        return $qb->getQuery()->getResult();
     }
     /**
      * import db v1
