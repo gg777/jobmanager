@@ -4,6 +4,7 @@
 namespace Jobmanager\AdminBundle\Controller;
 
 use Jobmanager\AdminBundle\Entity\Company;
+use Jobmanager\AdminBundle\Entity\Contact;
 use Jobmanager\AdminBundle\Entity\Job;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Jobmanager\AdminBundle\Entity\Jobs;
@@ -29,8 +30,8 @@ class AdminController extends Controller
             $job->setUrlJob($job_import->getUrlJob());
 
 
-            // for the new job created create a company if not exist
-            // attach the company to the job
+            // ** for the new job created create a company if not exist
+            // ** attach the company to the job
 
             // retrieve company name from company entity
             $company_import = $job_import->getCompany();
@@ -51,6 +52,27 @@ class AdminController extends Controller
                 // attache to job
                 $job->setCompany($company);
 
+                // ** for the new job created create a contact if not exist
+                // ** attach the contact to the company
+
+                // retrieve contact name from company entity
+                $contact_import = $job_import->getContactFirstName();
+
+                $contact = $em->getRepository('JobmangerAdminBundle:Contact')
+                              ->findByFirstName($contact_import);
+
+                // check if contact exists
+                if (empty($contact)) {
+                    // if not exist create a new one
+                    $contact = new Contact();
+                    $contact->setGender($job_import->getContactGenre());
+                    $contact->setFirstName($job_import->getContactFirstname());
+                    $contact->setLastName($job_import->getContactLastname());
+                    $contact->setTel($job_import->getTel());
+                    $contact->setEmail($job_import->getEmail());
+                }
+
+                // persist
                 $em->persist($company);
                 $em->persist($job);
                 $em->flush();
@@ -63,6 +85,8 @@ class AdminController extends Controller
                 $em->flush();
 
             }
+
+
 
         }
 

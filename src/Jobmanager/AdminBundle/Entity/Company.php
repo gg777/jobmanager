@@ -71,6 +71,13 @@ class Company
     private $jobs;
 
     /**
+     * @var
+     *
+     * @ORM\OneToMany(targetEntity="Jobmanager\AdminBundle\Entity\Contact", mappedBy="company", cascade={"remove", "persist"})
+     */
+    private $contacts;
+
+    /**
      * Get id
      *
      * @return integer 
