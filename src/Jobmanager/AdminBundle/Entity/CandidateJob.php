@@ -49,4 +49,165 @@ class CandidateJob
      * @ORM\Column(name="is_rejected", type="boolean")
      */
     private $isRejected;
-} 
+
+    /**
+     * Set createdDate
+     *
+     * @param \DateTime $createdDate
+     * @return CandidateJob
+     */
+    public function setCreatedDate($createdDate)
+    {
+        $this->createdDate = $createdDate;
+
+        return $this;
+    }
+
+    /**
+     * Get createdDate
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedDate()
+    {
+        return $this->createdDate;
+    }
+
+    /**
+     * Set interest
+     *
+     * @param string $interest
+     * @return CandidateJob
+     */
+    public function setInterest($interest)
+    {
+        $this->interest = $interest;
+
+        return $this;
+    }
+
+    /**
+     * Get interest
+     *
+     * @return string 
+     */
+    public function getInterest()
+    {
+        return $this->interest;
+    }
+
+    /**
+     * Set isApplied
+     *
+     * @param boolean $isApplied
+     * @return CandidateJob
+     */
+    public function setIsApplied($isApplied)
+    {
+        $this->isApplied = $isApplied;
+
+        return $this;
+    }
+
+    /**
+     * Get isApplied
+     *
+     * @return boolean 
+     */
+    public function getIsApplied()
+    {
+        return $this->isApplied;
+    }
+
+    /**
+     * Set dateMeeting
+     *
+     * @param \DateTime $dateMeeting
+     * @return CandidateJob
+     */
+    public function setDateMeeting($dateMeeting)
+    {
+        $this->dateMeeting = $dateMeeting;
+
+        return $this;
+    }
+
+    /**
+     * Get dateMeeting
+     *
+     * @return \DateTime 
+     */
+    public function getDateMeeting()
+    {
+        return $this->dateMeeting;
+    }
+
+    /**
+     * Set isRejected
+     *
+     * @param boolean $isRejected
+     * @return CandidateJob
+     */
+    public function setIsRejected($isRejected)
+    {
+        $this->isRejected = $isRejected;
+
+        return $this;
+    }
+
+    /**
+     * Get isRejected
+     *
+     * @return boolean 
+     */
+    public function getIsRejected()
+    {
+        return $this->isRejected;
+    }
+
+    /**
+     * Set candidate
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Candidate $candidate
+     * @return CandidateJob
+     */
+    public function setCandidate(\Jobmanager\AdminBundle\Entity\Candidate $candidate)
+    {
+        $this->candidate = $candidate;
+
+        return $this;
+    }
+
+    /**
+     * Get candidate
+     *
+     * @return \Jobmanager\AdminBundle\Entity\Candidate 
+     */
+    public function getCandidate()
+    {
+        return $this->candidate;
+    }
+
+    /**
+     * Set job
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Job $job
+     * @return CandidateJob
+     */
+    public function setJob(\Jobmanager\AdminBundle\Entity\Job $job)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * Get job
+     *
+     * @return \Jobmanager\AdminBundle\Entity\Job 
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+}
