@@ -71,6 +71,14 @@ class Job
     private $company;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->createdDate = new \DateTime();
+    }
+
+    /**
      * Get id
      *
      * @return integer 

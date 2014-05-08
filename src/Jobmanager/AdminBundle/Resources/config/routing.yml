@@ -11,3 +11,11 @@ jobmanager_importdb:
 jobmanager_getremixjobs:
     pattern: /get-remixjobs
     defaults : { _controller: JobmanagerAdminBundle:Admin:getRemixjobsNewJobs }
+
+admin_job_index:
+    pattern: /job
+    defaults : { _controller: JobmanagerAdminBundle:Job:add }
+
+admin_job_add:
+    pattern: /job/add
+    defaults : { _controller: JobmanagerAdminBundle:Job:add }

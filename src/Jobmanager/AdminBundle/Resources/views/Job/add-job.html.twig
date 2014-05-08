@@ -1,0 +1,15 @@
+{# src/Jobmanager/AdminBundle/Resources/views/Admin/add-job.html.twig #}
+
+{% extends "JobmanagerAdminBundle::layout.html.twig" %}
+
+{% block title %}
+    Ajouter un poste - {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+    <h2>Ajouter un poste</h2>
+
+    {% include "JobmanagerAdminBundle:Job:job-form.html.twig" %}
+
+{% endblock %}

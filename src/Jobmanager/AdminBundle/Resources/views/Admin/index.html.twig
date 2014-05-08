@@ -36,6 +36,8 @@
                                         <th>Gender</th>
                                         <th>Firstname</th>
                                         <th>Lastname</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,6 +51,8 @@
                                             <td>{% for recruiter in job.company.recruiters %}{{ recruiter.gender }}{% endfor %}</td>
                                             <td>{% for recruiter in job.company.recruiters %}{{ recruiter.firstname }}{% endfor %}</td>
                                             <td>{% for recruiter in job.company.recruiters %}{{ recruiter.lastname }}{% endfor %}</td>
+                                            <td>Edit</td>
+                                            <td>Delete</td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
