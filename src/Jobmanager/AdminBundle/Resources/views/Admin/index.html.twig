@@ -46,9 +46,9 @@
                                             <td>{{ job.name }}</td>
                                             <td>{{ job.company.name }}</td>
                                             <td>{{ job.company.city }}</td>
-                                            <td>{% for contact in job.company.contacts %}{{ contact.gender }}{% endfor %}</td>
-                                            <td>{% for contact in job.company.contacts %}{{ contact.firstname }}{% endfor %}</td>
-                                            <td>{% for contact in job.company.contacts %}{{ contact.lastname }}{% endfor %}</td>
+                                            <td>{% for recruiter in job.company.recruiters %}{{ recruiter.gender }}{% endfor %}</td>
+                                            <td>{% for recruiter in job.company.recruiters %}{{ recruiter.firstname }}{% endfor %}</td>
+                                            <td>{% for recruiter in job.company.recruiters %}{{ recruiter.lastname }}{% endfor %}</td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

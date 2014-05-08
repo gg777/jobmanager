@@ -73,9 +73,9 @@ class Company
     /**
      * @var
      *
-     * @ORM\OneToMany(targetEntity="Jobmanager\AdminBundle\Entity\Contact", mappedBy="company", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Jobmanager\AdminBundle\Entity\Recruiter", mappedBy="company", cascade={"remove", "persist"})
      */
-    private $contacts;
+    private $recruiters;
 
     /**
      * Get id
@@ -266,35 +266,35 @@ class Company
     }
 
     /**
-     * Add contacts
+     * Add recruiters
      *
-     * @param \Jobmanager\AdminBundle\Entity\Contact $contacts
+     * @param \Jobmanager\AdminBundle\Entity\Recruiter $recruiters
      * @return Company
      */
-    public function addContact(\Jobmanager\AdminBundle\Entity\Contact $contacts)
+    public function addRecruiter(\Jobmanager\AdminBundle\Entity\Recruiter $recruiters)
     {
-        $this->contacts[] = $contacts;
+        $this->recruiters[] = $recruiters;
 
         return $this;
     }
 
     /**
-     * Remove contacts
+     * Remove recruiters
      *
-     * @param \Jobmanager\AdminBundle\Entity\Contact $contacts
+     * @param \Jobmanager\AdminBundle\Entity\Recruiter $recruiters
      */
-    public function removeContact(\Jobmanager\AdminBundle\Entity\Contact $contacts)
+    public function removeRecruiter(\Jobmanager\AdminBundle\Entity\Recruiter $recruiters)
     {
-        $this->contacts->removeElement($contacts);
+        $this->recruiters->removeElement($recruiters);
     }
 
     /**
-     * Get contacts
+     * Get recruiters
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getContacts()
+    public function getRecruiters()
     {
-        return $this->contacts;
+        return $this->recruiters;
     }
 }

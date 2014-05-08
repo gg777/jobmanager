@@ -20,8 +20,8 @@ class JobRepository extends EntityRepository
         $qb
             ->join('j.company', 'c')
             ->addSelect('c')
-            ->join('c.contacts', 'co')
-            ->addSelect('co')
+            ->join('c.recruiters', 'r')
+            ->addSelect('r')
             ->orderBy('j.createdDate', 'DESC')
 
         ;
@@ -35,9 +35,9 @@ class JobRepository extends EntityRepository
      * @param $em
      * @param $job_import
      * @param $company
-     * @return Contact
+     * @return Recruiter
      */
-    public function setContactToCompany($em, $job_import,$company)
+    public function setRecruiterToCompany($em, $job_import,$company)
     {
         // ** for the new job created create a contact if not exist
         // ** attach the contact to the company
@@ -45,13 +45,13 @@ class JobRepository extends EntityRepository
         // retrieve contact name from company entity
         $contact_import = $job_import->getContactFirstName();
 
-        $contact = $em->getRepository('JobmanagerAdminBundle:Contact')
+        $contact = $em->getRepository('JobmanagerAdminBundle:Recruiter')
                       ->findByFirstName($contact_import);
 
         // check if contact exists
         if (empty($contact)) {
             // if not exist create a new one
-            $contact = new Contact();
+            $contact = new Recruiter();
             $contact->setGender($job_import->getContactGenre());
             $contact->setFirstName($job_import->getContactFirstname());
             $contact->setLastName($job_import->getContactLastname());
@@ -100,7 +100,7 @@ class JobRepository extends EntityRepository
             $company->setUrlCompany($job_import->getUrlCompany());
 
             // set contact to company
-            $contact = $this->setContactToCompany($em, $job_import, $company);
+            $contact = $this->setRecruiterToCompany($em, $job_import, $company);
 
             // attache to job
             $job->setCompany($company);

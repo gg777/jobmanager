@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Contact
  *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Jobmanager\AdminBundle\Entity\ContactRepository")
+ * @ORM\Table(name="recruiter")
+ * @ORM\Entity(repositoryClass="Jobmanager\AdminBundle\Entity\RecruiterRepository")
  */
-class Contact
+class Recruiter
 {
     /**
      * @var integer
@@ -59,7 +59,7 @@ class Contact
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="\Jobmanager\AdminBundle\Entity\Company", inversedBy="contacts", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="\Jobmanager\AdminBundle\Entity\Company", inversedBy="recruiters", cascade={"remove"})
      */
     private $company;
 
@@ -78,7 +78,7 @@ class Contact
      * Set firstName
      *
      * @param string $firstName
-     * @return Contact
+     * @return Recruiter
      */
     public function setFirstName($firstName)
     {
@@ -101,7 +101,7 @@ class Contact
      * Set lastName
      *
      * @param string $lastName
-     * @return Contact
+     * @return Recruiter
      */
     public function setLastName($lastName)
     {
@@ -124,7 +124,7 @@ class Contact
      * Set tel
      *
      * @param string $tel
-     * @return Contact
+     * @return Recruiter
      */
     public function setTel($tel)
     {
@@ -147,7 +147,7 @@ class Contact
      * Set email
      *
      * @param string $email
-     * @return Contact
+     * @return Recruiter
      */
     public function setEmail($email)
     {
@@ -170,7 +170,7 @@ class Contact
      * Set gender
      *
      * @param string $gender
-     * @return Contact
+     * @return Recruiter
      */
     public function setGender($gender)
     {
@@ -193,7 +193,7 @@ class Contact
      * Set company
      *
      * @param \Jobmanager\AdminBundle\Entity\Company $company
-     * @return Contact
+     * @return Recruiter
      */
     public function setCompany(\Jobmanager\AdminBundle\Entity\Company $company = null)
     {
