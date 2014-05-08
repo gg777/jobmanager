@@ -46,18 +46,18 @@ class AdminController extends Controller
             );
             foreach ($sf2_occurences as $sf2_occurence) {
                 if (strpos($job->title, $sf2_occurence) !== false) {
-                    print '<pre>'; print_r($job->id); print '</pre>';
-                    print '<pre>'; print_r($job->title); print '</pre>';
-                    print '<pre>'; print_r($job->contract_type); print '</pre>';
-                    print '<pre>'; print_r($job->company_name); print '</pre>';
-                    print '<pre>'; print_r($job->company_website); print '</pre>';
-                    print '<pre>'; print_r($job->status); print '</pre>';
-                    print '<pre>'; print_r($job->soldout); print '</pre>';
-                    print '<pre>'; print_r($job->geolocation->short_formatted_address); print '</pre>';
-                    print '<pre>'; print_r($job->geolocation->formatted_address); print '</pre>';
-                    print '<pre>'; print_r($job->geolocation->lat); print '</pre>';
-                    print '<pre>'; print_r($job->geolocation->lng); print '</pre>';
-                    print '<pre>'; print_r($job->_links->www->href); print '</pre>';
+                    print '<pre>id :'; print_r($job->id); print '</pre>';
+                    print '<pre>title :'; print_r($job->title); print '</pre>';
+                    print '<pre>contract_type :'; print_r($job->contract_type); print '</pre>';
+                    print '<pre>company_name :'; print_r($job->company_name); print '</pre>';
+                    print '<pre>company_website :'; print_r($job->company_website); print '</pre>';
+                    print '<pre>status :'; print_r($job->status); print '</pre>';
+                    print '<pre>soldout :'; print_r($job->soldout); print '</pre>';
+                    print '<pre>short_formatted_address :'; print_r($job->geolocation->short_formatted_address); print '</pre>';
+                    print '<pre>formatted_address :'; print_r($job->geolocation->formatted_address); print '</pre>';
+                    print '<pre>lat :'; print_r($job->geolocation->lat); print '</pre>';
+                    print '<pre>lng :'; print_r($job->geolocation->lng); print '</pre>';
+                    print '<pre>href :'; print_r($job->_links->www->href); print '</pre>';
                 }
             }
 
@@ -65,7 +65,7 @@ class AdminController extends Controller
 
 
         }
-        print '<pre>'; print_r($jobs->jobs[0]); print '</pre>';
+        //print '<pre>'; print_r($jobs->jobs[0]); print '</pre>';
 
         return new Response('OUESH');
 
