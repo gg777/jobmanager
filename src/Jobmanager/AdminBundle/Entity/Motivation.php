@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Motivation
  *
- * @ORM\Table()
+ * @ORM\Table(name="motivation")
  * @ORM\Entity(repositoryClass="Jobmanager\AdminBundle\Entity\MotivationRepository")
  */
 class Motivation

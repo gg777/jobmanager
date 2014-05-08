@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Competence
  *
- * @ORM\Table()
+ * @ORM\Table(name="competence")
  * @ORM\Entity(repositoryClass="Jobmanager\AdminBundle\Entity\CompetenceRepository")
  */
 class Competence
