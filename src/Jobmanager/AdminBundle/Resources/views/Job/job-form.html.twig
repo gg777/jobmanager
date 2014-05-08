@@ -20,22 +20,57 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="box box-warning">
-                <div class="box-header">
-                    <h3 class="box-title">Job's form</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body">
+            <form method="POST" {{ form_enctype(form) }}>
+                <div class="col-md-6">
+                    <div class="box box-warning">
+                        <div class="box-header">
+                            <h3 class="box-title">Description du poste</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
 
-                    <form method="POST" {{ form_enctype(form) }}>
-                        {# error messages #}
-                        {{ form_errors(form) }}
-                        {{ form_rest(form) }}
-                        <button class="btn btn-primary" type="submit">Submit</button>
-                    </form>
+                            {# error messages #}
+                            {{ form_errors(form) }}
+
+                            <div>
+                                {{ form_label(form.name, "Titre") }}
+                                {{ form_errors(form.name) }}
+                                {{ form_widget(form.name) }}
+                            </div>
+                            <div>
+                                {{ form_label(form.company, "Entreprise") }}
+                                {{ form_errors(form.company) }}
+                                {{ form_widget(form.company) }}
+                            </div>
+                            <div>
+                                {{ form_label(form.urlJob, "Lien annonce") }}
+                                {{ form_errors(form.urlJob) }}
+                                {{ form_widget(form.urlJob) }}
+                            </div>
+                            <div>
+                                {{ form_label(form.remixjobs_id, "ID Remixjob") }}
+                                {{ form_errors(form.remixjobs_id) }}
+                                {{ form_widget(form.remixjobs_id) }}
+                            </div>
+                            <div>
+                                {{ form_label(form.contract_type, "Type de contrat") }}
+                                {{ form_errors(form.contract_type) }}
+                                {{ form_widget(form.contract_type) }}
+                            </div>
+                            <div>
+                                {{ form_label(form.is_soldout, "Pourvu") }}
+                                {{ form_errors(form.is_soldout) }}
+                                {{ form_widget(form.is_soldout) }}
+                            </div>
+
+                            {{ form_rest(form) }}
+                            <button class="btn btn-primary" type="submit">Submit</button>
 
 
-                </div><!-- /.box-body -->
-            </div><!-- /.box -->
+
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+            </form>
         </div>
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
