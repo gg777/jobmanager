@@ -59,6 +59,27 @@ class Company
     /**
      * @var string
      *
+     * @ORM\Column(name="lat", type="float", nullable=true)
+     */
+    private $lat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lng", type="float", nullable=true)
+     */
+    private $lng;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="is_head_hunter", type="boolean", nullable=true)
+     */
+    private $is_head_hunter;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="url_company", type="string", length=255, nullable=true)
      */
     private $urlCompany;
@@ -296,5 +317,74 @@ class Company
     public function getRecruiters()
     {
         return $this->recruiters;
+    }
+
+    /**
+     * Set lat
+     *
+     * @param float $lat
+     * @return Company
+     */
+    public function setLat($lat)
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    /**
+     * Get lat
+     *
+     * @return float 
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * Set lng
+     *
+     * @param float $lng
+     * @return Company
+     */
+    public function setLng($lng)
+    {
+        $this->lng = $lng;
+
+        return $this;
+    }
+
+    /**
+     * Get lng
+     *
+     * @return float 
+     */
+    public function getLng()
+    {
+        return $this->lng;
+    }
+
+    /**
+     * Set is_head_hunter
+     *
+     * @param \bool $isHeadHunter
+     * @return Company
+     */
+    public function setIsHeadHunter(\bool $isHeadHunter)
+    {
+        $this->is_head_hunter = $isHeadHunter;
+
+        return $this;
+    }
+
+    /**
+     * Get is_head_hunter
+     *
+     * @return \bool 
+     */
+    public function getIsHeadHunter()
+    {
+        return $this->is_head_hunter;
     }
 }
