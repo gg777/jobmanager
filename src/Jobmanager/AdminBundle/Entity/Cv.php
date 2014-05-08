@@ -35,6 +35,12 @@ class Cv
      */
     private $createdDate;
 
+    /**
+     * @var
+     * @ORM\ManyToMany(targetEntity="Jobmanager\AdminBundle\Entity\Candidate", mappedBy="cvs")
+     */
+    private $candidates;
+
 
     /**
      * Get id
@@ -90,5 +96,45 @@ class Cv
     public function getCreatedDate()
     {
         return $this->createdDate;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->candidates = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add candidates
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Candidate $candidates
+     * @return Cv
+     */
+    public function addCandidate(\Jobmanager\AdminBundle\Entity\Candidate $candidates)
+    {
+        $this->candidates[] = $candidates;
+
+        return $this;
+    }
+
+    /**
+     * Remove candidates
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Candidate $candidates
+     */
+    public function removeCandidate(\Jobmanager\AdminBundle\Entity\Candidate $candidates)
+    {
+        $this->candidates->removeElement($candidates);
+    }
+
+    /**
+     * Get candidates
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCandidates()
+    {
+        return $this->candidates;
     }
 }

@@ -49,6 +49,12 @@ class Formation
      */
     private $dateEnd;
 
+    /**
+     * @var
+     * @ORM\ManyToMany(targetEntity="Jobmanager\AdminBundle\Entity\Candidate", mappedBy="formations")
+     */
+    private $candidates;
+
 
     /**
      * Get id
