@@ -3,3 +3,11 @@ JobmanagerAdminBundle_homepage:
     defaults: { _controller: JobmanagerAdminBundle:Admin:index }
     requirements:
         _method: GET
+
+jobmanager_importdb:
+    pattern: /import-db
+    defaults : { _controller: JobmanagerAdminBundle:Admin:updateDb }
+
+jobmanager_getremixjobs:
+    pattern: /get-remixjobs
+    defaults : { _controller: JobmanagerAdminBundle:Admin:getRemixjobsNewJobs }

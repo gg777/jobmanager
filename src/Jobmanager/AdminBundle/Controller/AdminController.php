@@ -8,13 +8,12 @@ use Jobmanager\AdminBundle\Entity\Contact;
 use Jobmanager\AdminBundle\Entity\Job;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Jobmanager\AdminBundle\Entity\Jobs;
+use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends Controller
 {
     public function indexAction()
     {
-        //$this->updateDbAction();
-
         // call entity manager
         $em = $this->getDoctrine()->getManager();
 
@@ -29,6 +28,47 @@ class AdminController extends Controller
         return $this->render('JobmanagerAdminBundle:Admin:index.html.twig', array(
             'jobs' => $jobs
         ));
+    }
+
+    public function getRemixjobsNewJobsAction()
+    {
+        $json_datas = file_get_contents('https://remixjobs.com/api/jobs');
+        $jobs = json_decode($json_datas);
+        foreach ($jobs->jobs as $job) {
+            // filter sf2 jobs
+            $sf2_occurences = array(
+                'Symfony 2',
+                'Symfony2',
+                'symfony 2',
+                'symfony2',
+                'sf2',
+                'SF2'
+            );
+            foreach ($sf2_occurences as $sf2_occurence) {
+                if (strpos($job->title, $sf2_occurence) !== false) {
+                    print '<pre>'; print_r($job->id); print '</pre>';
+                    print '<pre>'; print_r($job->title); print '</pre>';
+                    print '<pre>'; print_r($job->contract_type); print '</pre>';
+                    print '<pre>'; print_r($job->company_name); print '</pre>';
+                    print '<pre>'; print_r($job->company_website); print '</pre>';
+                    print '<pre>'; print_r($job->status); print '</pre>';
+                    print '<pre>'; print_r($job->soldout); print '</pre>';
+                    print '<pre>'; print_r($job->geolocation->short_formatted_address); print '</pre>';
+                    print '<pre>'; print_r($job->geolocation->formatted_address); print '</pre>';
+                    print '<pre>'; print_r($job->geolocation->lat); print '</pre>';
+                    print '<pre>'; print_r($job->geolocation->lng); print '</pre>';
+                    print '<pre>'; print_r($job->_links->www->href); print '</pre>';
+                }
+            }
+
+
+
+
+        }
+        print '<pre>'; print_r($jobs->jobs[0]); print '</pre>';
+
+        return new Response('OUESH');
+
     }
 
     public function updateDbAction()
