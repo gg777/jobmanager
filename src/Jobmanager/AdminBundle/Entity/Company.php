@@ -71,7 +71,7 @@ class Company
     private $lng;
 
     /**
-     * @var string
+     * @var bool
      *
      * @ORM\Column(name="is_head_hunter", type="boolean", nullable=true)
      */
