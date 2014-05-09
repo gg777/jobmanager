@@ -85,8 +85,12 @@
                                             </td>
 
 
-                                            <td>Edit</td>
-                                            <td>Delete</td>
+                                            <td>
+                                                <a href="{{ path('admin_job_edit', {'id': job.id}) }}">Edit</a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ path('admin_job_delete', {'id': job.id}) }}">Delete</a>
+                                            </td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

@@ -21,6 +21,10 @@ class JobType extends AbstractType
             ->add('remixjobs_id', 'text')
             ->add('contract_type', 'text')
             ->add('is_soldout', 'checkbox', array('required' => false))
+            ->add('company', 'entity', array(
+                'class' => 'JobmanagerAdminBundle:Company',
+                'property' => 'name'
+            ))
         ;
     }
     

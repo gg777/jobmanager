@@ -4,6 +4,7 @@
 namespace Jobmanager\AdminBundle\Controller;
 
 use Jobmanager\AdminBundle\Entity\Job;
+use Jobmanager\AdminBundle\Form\JobEditType;
 use Jobmanager\AdminBundle\Form\JobType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,7 +63,7 @@ class JobController extends Controller
         }
 
         // if no post
-        return $this->render('JobmanagerAdminBundle:Job:add-job.html.twig', array('form' => $form->createView()));
+        return $this->render('JobmanagerAdminBundle:Job:create-edit-job.html.twig', array('form' => $form->createView()));
 
     }
 
@@ -80,6 +81,86 @@ class JobController extends Controller
             'job' => $job
         ));
     }
+
+    public function editAction(Job $job)
+    {
+        // generate form
+        $form = $this->createForm(new JobEditType, $job);
+
+        // get request
+        $request = $this->get('request');
+
+        // check if post sent
+        if ($request->getMethod() == 'POST') {
+
+            // bind data form
+            $form->handleRequest($request);
+
+            // valid data
+            if ($form->isValid()) {
+
+                // call entity manager
+                $em = $this->getDoctrine()->getManager();
+
+                // persist and flush
+                $em->persist($job);
+                $em->flush();
+
+                // send flas message
+                $this->get('session')->getFlashMessage()->add('info', 'Poste modifié');
+
+                // redirect
+                return $this->redirect($this->generateUrl('admin_job_index'));
+
+            }
+        }
+
+        // send view
+        return $this->render('JobmanagerAdminBundle:Job:create-edit-job.html.twig', array(
+            'form' => $form->createView(),
+            'job' => $job
+        ));
+    }
+
+    public function deleteAction(Job $job)
+    {
+        // create empty form against csrf
+        $form = $this->createFormBuilder()->getForm();
+
+        // get request
+        $request = $this->get('request');
+
+        // check if post sent
+        if ($request->getMethod() == 'POST') {
+
+            // bind data form
+            $form->handleRequest($request);
+
+            // valide data
+            if ($form->isValid()) {
+
+                // call entity manager
+                $em = $this->getDoctrine()->getManager();
+
+                // remove job
+                $em->remove($job);
+                $em->flush();
+
+                // send flash message
+                $this->get('session')->getFlashBag()->add('info', 'Poste supprimé.');
+
+                // redirect
+                return $this->redirect($this->generateUrl('admin_job_index'));
+            }
+        }
+
+        // send view
+        return $this->render('JobmanagerAdminBundle:Job:delete.html.twig', array(
+            'form' => $form->createView(),
+            'job' => $job
+        ));
+    }
+
 
 
 }
