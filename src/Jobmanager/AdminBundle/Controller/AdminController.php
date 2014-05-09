@@ -165,8 +165,6 @@ class AdminController extends Controller
 
             }
 
-
-
             // persist job
             $em->persist($job);
 
