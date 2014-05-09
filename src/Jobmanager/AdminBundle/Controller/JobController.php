@@ -1,8 +1,7 @@
 <?php
-
+// src/Jobmanager/AdminBundle/Controller/JobController.php
 
 namespace Jobmanager\AdminBundle\Controller;
-
 
 use Jobmanager\AdminBundle\Entity\Job;
 use Jobmanager\AdminBundle\Form\JobType;
@@ -11,6 +10,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class JobController extends Controller
 {
+    /**
+     * Create
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
     public function createAction()
     {
         // create new job
@@ -53,4 +56,25 @@ class JobController extends Controller
             'form' => $form->createView()
         ));
     }
+
+    public function viewAction(Job $job)
+    {
+        // call entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // retrieve current job by id
+        $job = $em->getRepository('JobmanagerAdminBundle:Job')
+                  ->find($job->getId());
+
+        // send view
+        return $this->render('JobmanagerAdminBundle:Job:view.html.twig', array(
+            'job' => $job
+        ));
+    }
+
+    public function editAction(Job $job)
+    {}
+
+    public function deleteAction(Job $job)
+    {}
 } 
