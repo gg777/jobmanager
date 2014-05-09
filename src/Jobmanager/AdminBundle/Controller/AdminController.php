@@ -85,12 +85,8 @@ class AdminController extends Controller
         $candidate = $em->getRepository('JobmanagerAdminBundle:Candidate')
                         ->find(1);
 
-        //print "<pre>"; \Doctrine\Common\Util\Debug::dump($candidate); print "</pre>";
-
         // for each jobs entry split data and insert them on job and company table
         foreach ($jobs_import as $job_import) {
-
-
 
             // create new job
             $job = new Job();
@@ -118,10 +114,9 @@ class AdminController extends Controller
                 $recruiter = $em->getRepository('JobmanagerAdminBundle:Recruiter')
                                 ->findByFirstName($job_import->getContactLastName());
 
-                //print "<pre>"; \Doctrine\Common\Util\Debug::dump($recruiter); print "</pre>"; die;
-
                 // check if company have empty recruiter
                 if ($job_import->getContactFirstName() != null) {
+
                     // company has a recruiter
                     // check if company already have recruiter
                     if (empty($recruiter)) {
@@ -141,27 +136,12 @@ class AdminController extends Controller
                         // attach recruiter company
                         $company->setRecruiter($recruiter);
 
-                    } else {
-
-                        // recruiter exist
-                        echo 'recruiter exists</br>';
-
-                        // attach recruiter to company
-//                        $company->setRecruiter($recruiter[0]);
-
                     }
 
-                } else {
-                    echo 'company has recruiter without firstname<br/>';
                 }
-
-
 
                 // attach company to job
                 $job->setCompany($company);
-
-
-
 
             }
 
@@ -169,10 +149,6 @@ class AdminController extends Controller
             $em->persist($job);
 
             $em->flush();
-
-            //print "<pre>"; \Doctrine\Common\Util\Debug::dump($job); print "</pre>";
-
-
         }
 
         die('coucou');

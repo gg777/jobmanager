@@ -18,15 +18,13 @@ class JobRepository extends EntityRepository
         $qb = $this->createQueryBuilder('j');
 
         $qb
-
             ->addSelect('j')
             ->distinct('j')
             ->leftJoin('j.company', 'c')
             ->addSelect('c')
             ->leftJoin('c.recruiter', 'r')
             ->addSelect('r')
-
-
+            ->orderBy('j.createdDate', 'DESC')
         ;
 
         return $qb->getQuery()->getResult();
