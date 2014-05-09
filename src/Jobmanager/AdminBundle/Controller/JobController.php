@@ -10,16 +10,28 @@ use Symfony\Component\HttpFoundation\Response;
 
 class JobController extends Controller
 {
-    /**
-     * Create
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     */
+    public function indexAction()
+    {
+        // call entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // retrieve jobs
+        $jobs = $em->getRepository('JobmanagerAdminBundle:Job')
+                   ->getJobs();
+
+        // send view
+        return $this->render('JobmanagerAdminBundle:Job:index.html.twig', array(
+            'jobs' => $jobs
+        ));
+    }
+
+
     public function createAction()
     {
-        // create new job
+        // new job
         $job = new Job();
 
-        // create form
+        // generate form
         $form = $this->createForm(new JobType, $job);
 
         // get request
@@ -28,33 +40,30 @@ class JobController extends Controller
         // check if post sent
         if ($request->getMethod() == 'POST') {
 
-            // handle request
+            // bind data form
             $form->handleRequest($request);
 
-            // check if form is valid
-            if($form->isValid()) {
+            // valid form
+            if ($form->isValid()) {
 
-                // call entity manager
+                // save in db
                 $em = $this->getDoctrine()->getManager();
-
-                // persist job
                 $em->persist($job);
                 $em->flush();
 
-                // add flash message
-                $this->get('session')->getFlashBag()->add('infos', 'Poste ajouté.');
+                // send message
+                $this->get('session')->getFlashBag()->add('notice', 'Poste bien enregistré');
 
-                // send redirection
-                return $this->redirect($this->generateUrl('admin_job_index', array(
-                    'id' => $job->getId()
-                )));
+                // redirect
+                return $this->redirect($this->generateUrl('admin_job_index'));
+
             }
+
         }
 
-        // send view
-        return $this->render('JobmanagerAdminBundle:Job:add-job.html.twig', array(
-            'form' => $form->createView()
-        ));
+        // if no post
+        return $this->render('JobmanagerAdminBundle:Job:add-job.html.twig', array('form' => $form->createView()));
+
     }
 
     public function viewAction(Job $job)
@@ -72,9 +81,5 @@ class JobController extends Controller
         ));
     }
 
-    public function editAction(Job $job)
-    {}
 
-    public function deleteAction(Job $job)
-    {}
-} 
+}

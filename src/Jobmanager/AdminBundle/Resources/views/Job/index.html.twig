@@ -1,0 +1,120 @@
+{% extends 'JobmanagerAdminBundle::layout.html.twig' %}
+
+{% block content %}
+    <!-- Right side column. Contains the navbar and content of the page -->
+    <aside class="right-side">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Dashboard
+                <small>home</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <a href="/"><i class="fa fa-dashboard"></i> Jobs</a>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Job list</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body table-responsive">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Date</th>
+                                    <th>Job title</th>
+                                    <th>Company</th>
+                                    <th>City</th>
+                                    <th>Gender</th>
+                                    <th>Firstname</th>
+                                    <th>Lastname</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for job in jobs %}
+                                    <tr>
+                                        <td>{{ job.id }}</td>
+                                        <td>
+                                            {{ job.createdDate|date('d/m/Y') }}
+                                        </td>
+                                        <td>
+                                            {{ job.name }}
+                                        </td>
+
+                                        <td>
+                                            {% if job.company %}
+                                                {{ job.company.name }}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if job.company %}
+                                                {{ job.company.city }}
+                                            {% endif %}
+                                        </td>
+
+                                        <td>
+                                            {% if job.company %}
+                                                {% if job.company.recruiter %}
+                                                    {{ job.company.recruiter.gender }}
+                                                {% endif %}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if job.company %}
+                                                {% if job.company.recruiter %}
+                                                    {{ job.company.recruiter.firstname }}
+                                                {% endif %}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if job.company %}
+                                                {% if job.company.recruiter %}
+                                                    {{ job.company.recruiter.lastname }}
+                                                {% endif %}
+                                            {% endif %}
+                                        </td>
+
+
+                                        <td>Edit</td>
+                                        <td>Delete</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+            </div>
+        </section><!-- /.content -->
+    </aside><!-- /.right-side -->
+{% endblock %}
+{% block javascript %}
+
+    <!-- jQuery 2.0.2 -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    {% javascripts output='js/main.js' filter='cssrewrite, ?yui_js'
+    '@JobmanagerAdminBundle/Resources/public/js/jquery-ui-1.10.3.min.js'
+    '@JobmanagerAdminBundle/Resources/public/js/bootstrap.min.js'
+    '@JobmanagerAdminBundle/Resources/public/js/plugins/iCheck/icheck.min.js'
+    '@JobmanagerAdminBundle/Resources/public/js/plugins/datatables/jquery.dataTables.js'
+    '@JobmanagerAdminBundle/Resources/public/js/plugins/datatables/dataTables.bootstrap.js'
+    '@JobmanagerAdminBundle/Resources/public/js/AdminLTE/app.js'
+    '@JobmanagerAdminBundle/Resources/public/js/AdminLTE/dashboard.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+
+    {% endjavascripts %}
+
+{% endblock %}

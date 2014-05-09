@@ -6,36 +6,35 @@ JobmanagerAdminBundle_homepage:
 
 jobmanager_importdb:
     pattern: /import-db
-    defaults : { _controller: JobmanagerAdminBundle:Admin:updateDb }
+    defaults: { _controller: JobmanagerAdminBundle:Admin:updateDb }
 
 jobmanager_getremixjobs:
     pattern: /get-remixjobs
-    defaults : { _controller: JobmanagerAdminBundle:Admin:getRemixjobsNewJobs }
-
+    defaults: { _controller: JobmanagerAdminBundle:Admin:getRemixjobsNewJobs }
 
 
 # job CRUD
 
 admin_job_index:
     pattern: /job
-    defaults : { _controller: JobmanagerAdminBundle:Job:create }
+    defaults: { _controller: JobmanagerAdminBundle:Job:index }
 
 admin_job_view:
     path: /job/{id}
     defaults: { _controller: JobmanagerAdminBundle:Job:view }
 
-admin_job_add:
-    pattern: /job/add
-    defaults : { _controller: JobmanagerAdminBundle:Job:add }
+admin_job_create:
+    pattern: /job-create
+    defaults: { _controller: JobmanagerAdminBundle:Job:create }
 
 admin_job_edit:
-    path: /job/edit/{id}
+    path: /job-edit/{id}
     defaults: { _controller: JobmanagerAdminBundle:Job:edit }
     requirements:
         id: \d+
 
 admin_job_delete:
-    path: /job/delete/{id}
+    path: /job-delete/{id}
     defaults: { _controller: JobmanagerAdminBundle:Job:delete }
     requirements:
         id: \d+
