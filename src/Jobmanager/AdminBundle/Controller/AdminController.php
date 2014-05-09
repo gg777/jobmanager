@@ -145,7 +145,18 @@ class AdminController extends Controller
 
             }
 
-            // persist job
+            //$job->setCompany($company[0]);
+            if ($company instanceof Company) {
+                $job->setCompany($company);
+            } else {
+                $job->setCompany($company[0]);
+            }
+
+
+
+
+            // persist job and company
+
             $em->persist($job);
 
             $em->flush();

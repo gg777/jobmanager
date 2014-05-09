@@ -33,21 +33,31 @@
                         </div><!-- /.box-header -->
                         <div class="box-body">
 
-                            <h1>{{ job.name }}</h1>
+                            <h1>
+                                {% if job.name %}
+                                    {{ job.name }}
+                                {% endif %}
+                            </h1>
                             <span>{{ job.contractType }}</span>
-                            <h2>{{ job.company.name }}</h2>
+                            <h2>
+                                {% if job.company %}
+                                    {% if job.company.name %}
+                                        {{ job.company.name }}
+                                    {% endif %}
+                                {% endif %}
+                            </h2>
                             <h3>Adresse</h3>
-                            <p>{{ job.company.address }}</p>
-                            <p>{{ job.company.zip }} - {{ job.company.city }}</p>
-                            <p>{{ job.company.country }}</p>
-                            <p>{{ job.company.lat }} - {{ job.company.lng }}</p>
-                            <h3>Infos</h3>
-                            <p>Site web : {{ job.company.urlCompany }}</p>
-                            <p>Source : {{ job.urlJob }}</p>
-                            <p>ID Remixjobs : {{ job.remixjobsId }}</p>
-                            <h3>Contact</h3>
-                            <p>{% for recruiter in job.company.recruiters %}{{ recruiter.gender }} {{ recruiter.firstname }} {{ recruiter.lastname }}{% endfor %}</p>
-                            <p>E-mail : {% for recruiter in job.company.recruiters %}{{ recruiter.email }}{% endfor %}</p>
+                            {#<p>{{ job.company.address }}</p>#}
+                            {#<p>{{ job.company.zip }} - {{ job.company.city }}</p>#}
+                            {#<p>{{ job.company.country }}</p>#}
+                            {#<p>{{ job.company.lat }} - {{ job.company.lng }}</p>#}
+                            {#<h3>Infos</h3>#}
+                            {#<p>Site web : {{ job.company.urlCompany }}</p>#}
+                            {#<p>Source : {{ job.urlJob }}</p>#}
+                            {#<p>ID Remixjobs : {{ job.remixjobsId }}</p>#}
+                            {#<h3>Contact</h3>#}
+                            {#<p>{% for recruiter in job.company.recruiters %}{{ recruiter.gender }} {{ recruiter.firstname }} {{ recruiter.lastname }}{% endfor %}</p>#}
+                            {#<p>E-mail : {% for recruiter in job.company.recruiters %}{{ recruiter.email }}{% endfor %}</p>#}
 
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
