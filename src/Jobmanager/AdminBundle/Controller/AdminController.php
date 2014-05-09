@@ -6,6 +6,7 @@ namespace Jobmanager\AdminBundle\Controller;
 use Jobmanager\AdminBundle\Entity\Company;
 use Jobmanager\AdminBundle\Entity\Contact;
 use Jobmanager\AdminBundle\Entity\Job;
+use Jobmanager\AdminBundle\Entity\Recruiter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Jobmanager\AdminBundle\Entity\Jobs;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +22,7 @@ class AdminController extends Controller
         $jobs = $em->getRepository('JobmanagerAdminBundle:Job')
                    ->getJobs();
 
-//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($jobs[0]->getCompany()); print "</pre>";
+//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($jobs); print "</pre>";
 //        die('coucou');
 
         // send view
@@ -80,8 +81,16 @@ class AdminController extends Controller
         $jobs_import = $em->getRepository('JobmanagerAdminBundle:Jobs')
                           ->findAll();
 
+        // retrieve current candidate
+        $candidate = $em->getRepository('JobmanagerAdminBundle:Candidate')
+                        ->find(1);
+
+        //print "<pre>"; \Doctrine\Common\Util\Debug::dump($candidate); print "</pre>";
+
         // for each jobs entry split data and insert them on job and company table
         foreach ($jobs_import as $job_import) {
+
+
 
             // create new job
             $job = new Job();
@@ -89,16 +98,87 @@ class AdminController extends Controller
             $job->setCreatedDate($job_import->getDate());
             $job->setUrlJob($job_import->getUrlJob());
 
-            // set Contact and Company
-            $em->getRepository('JobmanagerAdminBundle:Job')
-               ->setCompanyToJob($em, $job_import, $job);
+
+            // retrieve company by name
+            $company = $em->getRepository('JobmanagerAdminBundle:Company')
+                          ->findByName($job_import->getCompany());
+
+            // check if company already exists
+            if (empty($company)) {
+                // company not exist
+                // create company
+                $company = new Company();
+                $company->setName($job_import->getCompany());
+                $company->setZip($job_import->getZip());
+                $company->setCity($job_import->getCity());
+                $company->setCountry('France');
+                $company->setUrlCompany($job_import->getUrlCompany());
+
+                // retrieve recruiter by name
+                $recruiter = $em->getRepository('JobmanagerAdminBundle:Recruiter')
+                                ->findByFirstName($job_import->getContactLastName());
+
+                //print "<pre>"; \Doctrine\Common\Util\Debug::dump($recruiter); print "</pre>"; die;
+
+                // check if company have empty recruiter
+                if ($job_import->getContactFirstName() != null) {
+                    // company has a recruiter
+                    // check if company already have recruiter
+                    if (empty($recruiter)) {
+
+                        // no recruiter
+
+                        echo 'no recruiter</br>';
+                        // create recruiter
+                        $recruiter = new Recruiter();
+                        $recruiter->setGender($job_import->getContactGenre());
+                        $recruiter->setFirstName($job_import->getContactFirstName());
+                        $recruiter->setLastName($job_import->getContactLastName());
+                        $recruiter->setTel($job_import->getTel());
+                        $recruiter->setEmail($job_import->getEmail());
+                        $em->persist($recruiter);
+
+                        // attach recruiter company
+                        $company->setRecruiter($recruiter);
+
+                    } else {
+
+                        // recruiter exist
+                        echo 'recruiter exists</br>';
+
+                        // attach recruiter to company
+//                        $company->setRecruiter($recruiter[0]);
+
+                    }
+
+                } else {
+                    echo 'company has recruiter without firstname<br/>';
+                }
+
+
+
+                // attach company to job
+                $job->setCompany($company);
+
+
+
+
+            }
+
+
+
+            // persist job
             $em->persist($job);
+
             $em->flush();
+
+            //print "<pre>"; \Doctrine\Common\Util\Debug::dump($job); print "</pre>";
+
 
         }
 
-        print "<pre>"; \Doctrine\Common\Util\Debug::dump($jobs_import); print "</pre>";
-        die;
+        die('coucou');
+
 
         // send view
         return $this->render('JobmanagerAdminBundle:Admin:index.html.twig');

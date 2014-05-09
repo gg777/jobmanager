@@ -87,16 +87,9 @@ class Company
     /**
      * @var
      *
-     * @ORM\OneToMany(targetEntity="Jobmanager\AdminBundle\Entity\Job", mappedBy="company", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="Jobmanager\AdminBundle\Entity\Recruiter", cascade={"persist"})
      */
-    private $jobs;
-
-    /**
-     * @var
-     *
-     * @ORM\OneToMany(targetEntity="Jobmanager\AdminBundle\Entity\Recruiter", mappedBy="company", cascade={"remove", "persist"})
-     */
-    private $recruiters;
+    private $recruiter;
 
     /**
      * Get id
@@ -253,71 +246,6 @@ class Company
         $this->jobs = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * Add jobs
-     *
-     * @param \Jobmanager\AdminBundle\Entity\Job $jobs
-     * @return Company
-     */
-    public function addJob(\Jobmanager\AdminBundle\Entity\Job $jobs)
-    {
-        $this->jobs[] = $jobs;
-
-        return $this;
-    }
-
-    /**
-     * Remove jobs
-     *
-     * @param \Jobmanager\AdminBundle\Entity\Job $jobs
-     */
-    public function removeJob(\Jobmanager\AdminBundle\Entity\Job $jobs)
-    {
-        $this->jobs->removeElement($jobs);
-    }
-
-    /**
-     * Get jobs
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getJobs()
-    {
-        return $this->jobs;
-    }
-
-    /**
-     * Add recruiters
-     *
-     * @param \Jobmanager\AdminBundle\Entity\Recruiter $recruiters
-     * @return Company
-     */
-    public function addRecruiter(\Jobmanager\AdminBundle\Entity\Recruiter $recruiters)
-    {
-        $this->recruiters[] = $recruiters;
-
-        return $this;
-    }
-
-    /**
-     * Remove recruiters
-     *
-     * @param \Jobmanager\AdminBundle\Entity\Recruiter $recruiters
-     */
-    public function removeRecruiter(\Jobmanager\AdminBundle\Entity\Recruiter $recruiters)
-    {
-        $this->recruiters->removeElement($recruiters);
-    }
-
-    /**
-     * Get recruiters
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getRecruiters()
-    {
-        return $this->recruiters;
-    }
 
     /**
      * Set lat
@@ -386,5 +314,28 @@ class Company
     public function getIsHeadHunter()
     {
         return $this->is_head_hunter;
+    }
+
+    /**
+     * Set recruiter
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Recruiter $recruiter
+     * @return Company
+     */
+    public function setRecruiter(\Jobmanager\AdminBundle\Entity\Recruiter $recruiter = null)
+    {
+        $this->recruiter = $recruiter;
+
+        return $this;
+    }
+
+    /**
+     * Get recruiter
+     *
+     * @return \Jobmanager\AdminBundle\Entity\Recruiter 
+     */
+    public function getRecruiter()
+    {
+        return $this->recruiter;
     }
 }

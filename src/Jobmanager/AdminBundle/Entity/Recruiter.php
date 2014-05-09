@@ -57,14 +57,6 @@ class Recruiter
     private $gender;
 
     /**
-     * @var
-     *
-     * @ORM\ManyToOne(targetEntity="\Jobmanager\AdminBundle\Entity\Company", inversedBy="recruiters", cascade={"remove"})
-     */
-    private $company;
-
-
-    /**
      * Get id
      *
      * @return integer 
@@ -189,26 +181,4 @@ class Recruiter
         return $this->gender;
     }
 
-    /**
-     * Set company
-     *
-     * @param \Jobmanager\AdminBundle\Entity\Company $company
-     * @return Recruiter
-     */
-    public function setCompany(\Jobmanager\AdminBundle\Entity\Company $company = null)
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
-    /**
-     * Get company
-     *
-     * @return \Jobmanager\AdminBundle\Entity\Company 
-     */
-    public function getCompany()
-    {
-        return $this->company;
-    }
 }

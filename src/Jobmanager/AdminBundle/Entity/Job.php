@@ -65,8 +65,8 @@ class Job
 
     /**
      * @var
-     *
-     * @ORM\ManyToOne(targetEntity="\Jobmanager\AdminBundle\Entity\Company", inversedBy="jobs", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Company", cascade="persist")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $company;
 
@@ -158,29 +158,6 @@ class Job
     }
 
     /**
-     * Set company
-     *
-     * @param \Jobmanager\AdminBundle\Entity\Company $company
-     * @return Job
-     */
-    public function setCompany(\Jobmanager\AdminBundle\Entity\Company $company = null)
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
-    /**
-     * Get company
-     *
-     * @return \Jobmanager\AdminBundle\Entity\Company 
-     */
-    public function getCompany()
-    {
-        return $this->company;
-    }
-
-    /**
      * Set remixjobs_id
      *
      * @param integer $remixjobsId
@@ -247,5 +224,28 @@ class Job
     public function getIsSoldout()
     {
         return $this->is_soldout;
+    }
+
+    /**
+     * Set company
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Company $company
+     * @return Job
+     */
+    public function setCompany(\Jobmanager\AdminBundle\Entity\Company $company)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \Jobmanager\AdminBundle\Entity\Company 
+     */
+    public function getCompany()
+    {
+        return $this->company;
     }
 }

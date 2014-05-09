@@ -44,13 +44,27 @@
                                     {% for job in jobs %}
                                         <tr>
                                             <td>{{ job.id }}</td>
-                                            <td>{{ job.createdDate|date('d/m/Y') }}</td>
-                                            <td>{{ job.name }}</td>
-                                            <td>{{ job.company.name }}</td>
-                                            <td>{{ job.company.city }}</td>
-                                            <td>{% for recruiter in job.company.recruiters %}{{ recruiter.gender }}{% endfor %}</td>
-                                            <td>{% for recruiter in job.company.recruiters %}{{ recruiter.firstname }}{% endfor %}</td>
-                                            <td>{% for recruiter in job.company.recruiters %}{{ recruiter.lastname }}{% endfor %}</td>
+                                            <td>
+                                                {{ job.createdDate|date('d/m/Y') }}
+                                            </td>
+                                            <td>
+                                                {{ job.name }}
+                                            </td>
+                                            <td>
+                                                {{ job.company.name }}
+                                            </td>
+                                            <td>
+                                                {{ job.company.city }}
+                                            </td>
+                                            {#<td>#}
+                                                {#{{ job.company.recruiter.gender }}#}
+                                            {#</td>#}
+                                            {#<td>#}
+                                                {#{{ job.company.recruiter.firstname }}#}
+                                            {#</td>#}
+                                            {#<td>#}
+                                                {#{{ job.company.recruiter.lastname }}#}
+                                            {#</td>#}
                                             <td>Edit</td>
                                             <td>Delete</td>
                                         </tr>
