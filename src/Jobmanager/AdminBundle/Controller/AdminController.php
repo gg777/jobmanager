@@ -22,7 +22,7 @@ class AdminController extends Controller
         $jobs = $em->getRepository('JobmanagerAdminBundle:Job')
                    ->getJobs();
 
-//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($jobs); print "</pre>";
+//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($jobs[0]); print "</pre>";
 //        die('coucou');
 
         // send view

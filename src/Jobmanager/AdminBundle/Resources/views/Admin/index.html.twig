@@ -50,21 +50,41 @@
                                             <td>
                                                 {{ job.name }}
                                             </td>
+
                                             <td>
-                                                {{ job.company.name }}
+                                                {% if job.company %}
+                                                    {{ job.company.name }}
+                                                {% endif %}
                                             </td>
                                             <td>
-                                                {{ job.company.city }}
+                                                {% if job.company %}
+                                                    {{ job.company.city }}
+                                                {% endif %}
                                             </td>
-                                            {#<td>#}
-                                                {#{{ job.company.recruiter.gender }}#}
-                                            {#</td>#}
-                                            {#<td>#}
-                                                {#{{ job.company.recruiter.firstname }}#}
-                                            {#</td>#}
-                                            {#<td>#}
-                                                {#{{ job.company.recruiter.lastname }}#}
-                                            {#</td>#}
+
+                                            <td>
+                                                {% if job.company %}
+                                                    {% if job.company.recruiter %}
+                                                        {{ job.company.recruiter.gender }}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if job.company %}
+                                                    {% if job.company.recruiter %}
+                                                        {{ job.company.recruiter.firstname }}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if job.company %}
+                                                    {% if job.company.recruiter %}
+                                                        {{ job.company.recruiter.lastname }}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </td>
+
+
                                             <td>Edit</td>
                                             <td>Delete</td>
                                         </tr>
