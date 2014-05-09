@@ -26,27 +26,27 @@ class CandidateJob
     private $job;
 
     /**
-     * @ORM\Column(name="created_date", type="datetime")
+     * @ORM\Column(name="created_date", type="datetime", nullable=true)
      */
     private $createdDate;
 
     /**
-     * @ORM\Column(name="interest", type="text")
+     * @ORM\Column(name="interest", type="text", nullable=true)
      */
     private $interest;
 
     /**
-     * @ORM\Column(name="is_applied", type="boolean")
+     * @ORM\Column(name="is_applied", type="boolean", nullable=true)
      */
     private $isApplied;
 
     /**
-     * @ORM\Column(name="date_meeting", type="datetime")
+     * @ORM\Column(name="date_meeting", type="datetime", nullable=true)
      */
     private $dateMeeting;
 
     /**
-     * @ORM\Column(name="is_rejected", type="boolean")
+     * @ORM\Column(name="is_rejected", type="boolean", nullable=true)
      */
     private $isRejected;
 

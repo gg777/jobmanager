@@ -3,6 +3,7 @@
 
 namespace Jobmanager\AdminBundle\Controller;
 
+use Jobmanager\AdminBundle\Entity\CandidateJob;
 use Jobmanager\AdminBundle\Entity\Company;
 use Jobmanager\AdminBundle\Entity\Contact;
 use Jobmanager\AdminBundle\Entity\Job;
@@ -85,6 +86,9 @@ class AdminController extends Controller
         $candidate = $em->getRepository('JobmanagerAdminBundle:Candidate')
                         ->find(1);
 
+//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($candidate); print "</pre>";
+//        die('coucou');
+
         // for each jobs entry split data and insert them on job and company table
         foreach ($jobs_import as $job_import) {
 
@@ -145,23 +149,45 @@ class AdminController extends Controller
 
             }
 
-            //$job->setCompany($company[0]);
+            // check if job ist return as object or array
             if ($company instanceof Company) {
                 $job->setCompany($company);
             } else {
                 $job->setCompany($company[0]);
             }
 
-
-
-
-            // persist job and company
-
+            // persist job
             $em->persist($job);
 
+
+
+            // flush
             $em->flush();
+
+
+
+            // create new candidate_job
+            $candidateJob = new CandidateJob();
+            $candidateJob->setJob($job);
+            $candidateJob->setCandidate($candidate);
+            $candidateJob->setCreatedDate($job_import->getDate());
+            $candidateJob->setInterest($job_import->getInterest());
+            $candidateJob->setIsApplied(true);
+            $candidateJob->setIsRejected($job_import->getOut());
+            $candidateJob->setDateMeeting($job_import->getDateMeeting1());
+
+//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($candidateJob); print "</pre>";
+//            die('coucou');
+
+            // persist candidate_job
+            $em->persist($candidateJob);
+
+            // flush
+            $em->flush();
+
         }
 
+        // todo finir la vue
         die('coucou');
 
 
