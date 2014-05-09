@@ -23,7 +23,6 @@ class JobRepository extends EntityRepository
             ->join('c.recruiters', 'r')
             ->addSelect('r')
             ->orderBy('j.createdDate', 'DESC')
-
         ;
 
         return $qb->getQuery()->getResult();
