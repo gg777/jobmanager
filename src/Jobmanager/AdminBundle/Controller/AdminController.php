@@ -159,12 +159,8 @@ class AdminController extends Controller
             // persist job
             $em->persist($job);
 
-
-
             // flush
             $em->flush();
-
-
 
             // create new candidate_job
             $candidateJob = new CandidateJob();
