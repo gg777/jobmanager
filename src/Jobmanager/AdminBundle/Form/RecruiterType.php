@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class JobType extends AbstractType
+class RecruiterType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,12 +15,12 @@ class JobType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('createdDate', 'date')
-            ->add('name', 'text')
-            ->add('urlJob', 'text')
-            ->add('remixjobs_id', 'text')
-            ->add('contract_type', 'text')
-            ->add('is_soldout', 'checkbox', array('required' => false))
+            ->add('firstName', 'text')
+            ->add('lastName', 'text')
+            ->add('tel', 'text')
+            ->add('email', 'text')
+            ->add('gender', 'text')
+            ->add('company', 'text')
         ;
     }
     
@@ -30,7 +30,7 @@ class JobType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Jobmanager\AdminBundle\Entity\Job'
+            'data_class' => 'Jobmanager\AdminBundle\Entity\Recruiter'
         ));
     }
 
@@ -39,6 +39,6 @@ class JobType extends AbstractType
      */
     public function getName()
     {
-        return 'jobmanager_adminbundle_job';
+        return 'jobmanager_adminbundle_recruiter';
     }
 }

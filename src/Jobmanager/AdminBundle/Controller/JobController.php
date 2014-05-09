@@ -19,10 +19,17 @@ class JobController extends Controller
 
         $request = $this->get('request');
 
+
+
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
+//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($job); print "</pre>";
+//            die;
             if($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
+
+
+
                 $em->persist($job);
                 $em->flush();
 

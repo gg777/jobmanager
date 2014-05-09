@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class JobType extends AbstractType
+class CompanyType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,12 +15,15 @@ class JobType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('createdDate', 'date')
             ->add('name', 'text')
-            ->add('urlJob', 'text')
-            ->add('remixjobs_id', 'text')
-            ->add('contract_type', 'text')
-            ->add('is_soldout', 'checkbox', array('required' => false))
+            ->add('address', 'textarea')
+            ->add('zip', 'text')
+            ->add('city', 'text')
+            ->add('country', 'text')
+            ->add('lat', 'text')
+            ->add('lng', 'text')
+            ->add('is_head_hunter', 'checkbox', array('required' => false))
+            ->add('urlCompany', 'text')
         ;
     }
     
@@ -30,7 +33,7 @@ class JobType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Jobmanager\AdminBundle\Entity\Job'
+            'data_class' => 'Jobmanager\AdminBundle\Entity\Company'
         ));
     }
 
@@ -39,6 +42,6 @@ class JobType extends AbstractType
      */
     public function getName()
     {
-        return 'jobmanager_adminbundle_job';
+        return 'jobmanager_adminbundle_company';
     }
 }

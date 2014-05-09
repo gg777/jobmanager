@@ -371,7 +371,7 @@ class Company
      * @param \bool $isHeadHunter
      * @return Company
      */
-    public function setIsHeadHunter(\bool $isHeadHunter)
+    public function setIsHeadHunter($isHeadHunter)
     {
         $this->is_head_hunter = $isHeadHunter;
 
