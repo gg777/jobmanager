@@ -11,36 +11,44 @@ use Symfony\Component\HttpFoundation\Response;
 
 class JobController extends Controller
 {
-    public function addAction()
+    public function createAction()
     {
+        // create new job
         $job = new Job();
 
+        // create form
         $form = $this->createForm(new JobType, $job);
 
+        // get request
         $request = $this->get('request');
 
-
-
+        // check if post sent
         if ($request->getMethod() == 'POST') {
+
+            // handle request
             $form->handleRequest($request);
-//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($job); print "</pre>";
-//            die;
+
+            // check if form is valid
             if($form->isValid()) {
+
+                // call entity manager
                 $em = $this->getDoctrine()->getManager();
 
-
-
+                // persist job
                 $em->persist($job);
                 $em->flush();
 
+                // add flash message
                 $this->get('session')->getFlashBag()->add('infos', 'Poste ajouté.');
 
+                // send redirection
                 return $this->redirect($this->generateUrl('admin_job_index', array(
                     'id' => $job->getId()
                 )));
             }
         }
 
+        // send view
         return $this->render('JobmanagerAdminBundle:Job:add-job.html.twig', array(
             'form' => $form->createView()
         ));
