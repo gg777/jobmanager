@@ -146,3 +146,30 @@ admin_competence_delete:
     defaults: { _controller: JobmanagerAdminBundle:Competence:delete }
     requirements:
         id: \d+
+
+
+# language CRUD
+
+admin_language_index:
+    pattern: /language
+    defaults: { _controller: JobmanagerAdminBundle:Language:index }
+
+admin_language_view:
+    path: /language/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Language:view }
+
+admin_language_create:
+    pattern: /language-create
+    defaults: { _controller: JobmanagerAdminBundle:Language:create }
+
+admin_language_edit:
+    path: /language-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Language:edit }
+    requirements:
+        id: \d+
+
+admin_language_delete:
+    path: /language-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Language:delete }
+    requirements:
+        id: \d+
