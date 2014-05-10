@@ -173,3 +173,30 @@ admin_language_delete:
     defaults: { _controller: JobmanagerAdminBundle:Language:delete }
     requirements:
         id: \d+
+        
+        
+# diploma CRUD
+
+admin_diploma_index:
+    pattern: /diploma
+    defaults: { _controller: JobmanagerAdminBundle:Diploma:index }
+
+admin_diploma_view:
+    path: /diploma/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Diploma:view }
+
+admin_diploma_create:
+    pattern: /diploma-create
+    defaults: { _controller: JobmanagerAdminBundle:Diploma:create }
+
+admin_diploma_edit:
+    path: /diploma-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Diploma:edit }
+    requirements:
+        id: \d+
+
+admin_diploma_delete:
+    path: /diploma-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Diploma:delete }
+    requirements:
+        id: \d+
