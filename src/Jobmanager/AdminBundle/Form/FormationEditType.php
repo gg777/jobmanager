@@ -32,6 +32,6 @@ class FormationEditType extends FormationType
      */
     public function getName()
     {
-        return 'jobmanager_adminbundle_formation';
+        return 'jobmanager_adminbundle_formationedittype';
     }
 }

@@ -227,3 +227,30 @@ admin_formation_delete:
     defaults: { _controller: JobmanagerAdminBundle:Formation:delete }
     requirements:
         id: \d+
+        
+        
+# jobexperience CRUD
+
+admin_jobexperience_index:
+    pattern: /jobexperience
+    defaults: { _controller: JobmanagerAdminBundle:JobExperience:index }
+
+admin_jobexperience_view:
+    path: /jobexperience/{id}
+    defaults: { _controller: JobmanagerAdminBundle:JobExperience:view }
+
+admin_jobexperience_create:
+    pattern: /jobexperience-create
+    defaults: { _controller: JobmanagerAdminBundle:JobExperience:create }
+
+admin_jobexperience_edit:
+    path: /jobexperience-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:JobExperience:edit }
+    requirements:
+        id: \d+
+
+admin_jobexperience_delete:
+    path: /jobexperience-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:JobExperience:delete }
+    requirements:
+        id: \d+

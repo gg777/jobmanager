@@ -32,6 +32,6 @@ class DiplomaEditType extends DiplomaType
      */
     public function getName()
     {
-        return 'jobmanager_adminbundle_diploma';
+        return 'jobmanager_adminbundle_diplomaedittype';
     }
 }

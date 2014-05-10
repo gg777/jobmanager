@@ -6,9 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class LanguageEditType extends LanguageType
+class JobExperienceEditType extends JobExperienceType
 {
-    /**
+        /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -23,7 +23,7 @@ class LanguageEditType extends LanguageType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Jobmanager\AdminBundle\Entity\Language'
+            'data_class' => 'Jobmanager\AdminBundle\Entity\JobExperience'
         ));
     }
 
@@ -32,6 +32,6 @@ class LanguageEditType extends LanguageType
      */
     public function getName()
     {
-        return 'jobmanager_adminbundle_languageedittype';
+        return 'jobmanager_adminbundle_jobexperience';
     }
 }

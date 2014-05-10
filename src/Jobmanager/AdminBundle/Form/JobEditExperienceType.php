@@ -6,15 +6,26 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class LanguageEditType extends LanguageType
+class JobExperienceType extends AbstractType
 {
-    /**
+        /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        parent::buildForm($builder, $options);
+        $builder
+            ->add('titleJob', 'text')
+            ->add('companyName', 'text')
+            ->add('dateBegin', 'date')
+            ->add('dateEnd', 'date')
+            ->add('description', 'textarea')
+            ->add('candidates', 'entity', array(
+                'class' => 'JobmanagerAdminBundle:Candidate',
+                'property' => 'lastname',
+                'multiple' => true
+            ))
+        ;
     }
     
     /**
@@ -23,7 +34,7 @@ class LanguageEditType extends LanguageType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Jobmanager\AdminBundle\Entity\Language'
+            'data_class' => 'Jobmanager\AdminBundle\Entity\JobExperience'
         ));
     }
 
@@ -32,6 +43,6 @@ class LanguageEditType extends LanguageType
      */
     public function getName()
     {
-        return 'jobmanager_adminbundle_languageedittype';
+        return 'jobmanager_adminbundle_jobexperience';
     }
 }
