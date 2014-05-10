@@ -200,3 +200,30 @@ admin_diploma_delete:
     defaults: { _controller: JobmanagerAdminBundle:Diploma:delete }
     requirements:
         id: \d+
+        
+        
+# formation CRUD
+
+admin_formation_index:
+    pattern: /formation
+    defaults: { _controller: JobmanagerAdminBundle:Formation:index }
+
+admin_formation_view:
+    path: /formation/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Formation:view }
+
+admin_formation_create:
+    pattern: /formation-create
+    defaults: { _controller: JobmanagerAdminBundle:Formation:create }
+
+admin_formation_edit:
+    path: /formation-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Formation:edit }
+    requirements:
+        id: \d+
+
+admin_formation_delete:
+    path: /formation-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Formation:delete }
+    requirements:
+        id: \d+
