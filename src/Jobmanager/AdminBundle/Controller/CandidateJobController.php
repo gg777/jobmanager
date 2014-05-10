@@ -8,6 +8,8 @@
 
 namespace Jobmanager\AdminBundle\Controller;
 
+use Jobmanager\AdminBundle\Entity\Candidate;
+use Jobmanager\AdminBundle\Entity\Job;
 use Jobmanager\AdminBundle\Form\CandidateJobEditType;
 use Jobmanager\AdminBundle\Form\CandidateJobType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,7 +25,7 @@ class CandidateJobController extends Controller
 
         // retrieve candidatejobs
         $candidatejobs = $em->getRepository('JobmanagerAdminBundle:CandidateJob')
-            ->findAll();
+                            ->findAll();
 
         // send view
         return $this->render('JobmanagerAdminBundle:CandidateJob:index.html.twig', array(
@@ -55,11 +57,12 @@ class CandidateJobController extends Controller
 
                 // save in db
                 $em = $this->getDoctrine()->getManager();
+
                 $em->persist($candidatejob);
                 $em->flush();
 
                 // send message
-                $this->get('session')->getFlashBag()->add('notice', 'Langage enregistrée');
+                $this->get('session')->getFlashBag()->add('notice', 'Candidature enregistrée');
 
                 // redirect
                 return $this->redirect($this->generateUrl('admin_candidatejob_index'));
@@ -68,8 +71,7 @@ class CandidateJobController extends Controller
 
         }
 
-
-        // if no post
+        // send view
         return $this->render('JobmanagerAdminBundle:CandidateJob:create-edit-candidatejob.html.twig', array(
             'form' => $form->createView()
         ));

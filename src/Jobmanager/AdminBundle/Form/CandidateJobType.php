@@ -22,13 +22,11 @@ class CandidateJobType extends AbstractType
             ->add('isRejected', 'checkbox')
             ->add('job', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Job',
-                'property' => 'name',
-                'multiple' => true
+                'property' => 'name'
             ))
             ->add('candidate', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Candidate',
-                'property' => 'lastname',
-                'multiple' => true
+                'property' => 'lastname'
             ))
         ;
     }

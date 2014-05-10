@@ -310,7 +310,7 @@ admin_cv_delete:
         id: \d+
         
         
-# Cv CRUD
+# Candidature CRUD
 
 admin_candidatejob_index:
     pattern: /job-application

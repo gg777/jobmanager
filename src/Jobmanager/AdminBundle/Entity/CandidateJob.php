@@ -3,6 +3,7 @@
 
 namespace Jobmanager\AdminBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -49,6 +50,12 @@ class CandidateJob
      * @ORM\Column(name="is_rejected", type="boolean", nullable=true)
      */
     private $isRejected;
+
+//    public function __construct()
+//    {
+//        $this->job = new ArrayCollection();
+//        $this->candidate = new ArrayCollection();
+//    }
 
     /**
      * Set createdDate
