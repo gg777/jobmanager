@@ -254,3 +254,30 @@ admin_jobexperience_delete:
     defaults: { _controller: JobmanagerAdminBundle:JobExperience:delete }
     requirements:
         id: \d+
+
+
+# motivation CRUD
+
+admin_motivation_index:
+    pattern: /motivation
+    defaults: { _controller: JobmanagerAdminBundle:Motivation:index }
+
+admin_motivation_view:
+    path: /motivation/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Motivation:view }
+
+admin_motivation_create:
+    pattern: /motivation-create
+    defaults: { _controller: JobmanagerAdminBundle:Motivation:create }
+
+admin_motivation_edit:
+    path: /motivation-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Motivation:edit }
+    requirements:
+        id: \d+
+
+admin_motivation_delete:
+    path: /motivation-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Motivation:delete }
+    requirements:
+        id: \d+
