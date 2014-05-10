@@ -92,3 +92,30 @@ admin_recruiter_delete:
     defaults: { _controller: JobmanagerAdminBundle:Recruiter:delete }
     requirements:
         id: \d+
+        
+        
+# candidate CRUD
+
+admin_candidate_index:
+    pattern: /candidate
+    defaults: { _controller: JobmanagerAdminBundle:Candidate:index }
+
+admin_candidate_view:
+    path: /candidate/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Candidate:view }
+
+admin_candidate_create:
+    pattern: /candidate-create
+    defaults: { _controller: JobmanagerAdminBundle:Candidate:create }
+
+admin_candidate_edit:
+    path: /candidate-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Candidate:edit }
+    requirements:
+        id: \d+
+
+admin_candidate_delete:
+    path: /candidate-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Candidate:delete }
+    requirements:
+        id: \d+

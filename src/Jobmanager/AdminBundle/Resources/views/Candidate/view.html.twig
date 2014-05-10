@@ -1,0 +1,49 @@
+{# src/Jobmanager/AdminBundle/Resources/views/Recruiter/view.html.twig #}
+
+{% extends "JobmanagerAdminBundle::layout.html.twig" %}
+
+{% block title %}
+    Voir un candidat - {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <!-- Right side column. Contains the navbar and content of the page -->
+    <aside class="right-side">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Dashboard
+                <small>home</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <a href="/"><i class="fa fa-dashboard"></i> Home</a>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="box box-warning">
+                        <div class="box-header">
+                            <h3 class="box-title">Description du candidat</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+
+                            <h1>{{ candidate.gender }} {{ candidate.lastname }} {{ candidate.firstname }}</h1>
+                            <h2>Contact</h2>
+                            <p>Tel : {{ candidate.tel }}</p>
+                            <p>Email : {{ candidate.email }}</p>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+
+            </div>
+        </section><!-- /.content -->
+    </aside><!-- /.right-side -->
+
+
+{% endblock %}
