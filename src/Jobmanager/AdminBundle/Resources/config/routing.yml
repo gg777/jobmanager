@@ -119,3 +119,30 @@ admin_candidate_delete:
     defaults: { _controller: JobmanagerAdminBundle:Candidate:delete }
     requirements:
         id: \d+
+        
+        
+# competence CRUD
+
+admin_competence_index:
+    pattern: /competence
+    defaults: { _controller: JobmanagerAdminBundle:Competence:index }
+
+admin_competence_view:
+    path: /competence/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Competence:view }
+
+admin_competence_create:
+    pattern: /competence-create
+    defaults: { _controller: JobmanagerAdminBundle:Competence:create }
+
+admin_competence_edit:
+    path: /competence-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Competence:edit }
+    requirements:
+        id: \d+
+
+admin_competence_delete:
+    path: /competence-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Competence:delete }
+    requirements:
+        id: \d+
