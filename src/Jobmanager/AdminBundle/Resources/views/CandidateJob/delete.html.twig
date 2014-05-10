@@ -1,0 +1,59 @@
+{# src/Jobmanager/AdminBundle/Resources/views/CandidateJob/create-candidatejob.html.twig #}
+
+{% extends "JobmanagerAdminBundle::layout.html.twig" %}
+
+{% block title %}
+Ajouter une compétence - {{ parent() }}
+{% endblock %}
+
+{% block content %}
+<!-- Right side column. Contains the navbar and content of the page -->
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Dashboard
+            <small>home</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li class="active">
+                <a href="/"><i class="fa fa-dashboard"></i> Home</a>
+            </li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="box box-warning">
+                    <div class="box-header">
+                        <h3 class="box-title">Description</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                        <h2>Supprimer une candidature</h2>
+
+                        <p>Etes vous certain de vouloir supprimer une candidature "{{ candidatejob.id }}" ?</p>
+
+                        <form action="{{ path('admin_candidatejob_delete', {'id': candidatejob.id}) }}" method="post">
+                            <a href="{{ path('admin_candidatejob_view', {'id': candidatejob.id}) }}" class="btn">
+                                <i class="icon-chevron-left"></i>
+                                Retour à la fiche
+                            </a>
+                            <input type="submit" value="Supprimer" class="btn btn-danger"/>
+                            {{ form_rest(form) }}
+                        </form>
+
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+
+
+        </div>
+    </section><!-- /.content -->
+</aside><!-- /.right-side -->
+
+
+{% endblock %}

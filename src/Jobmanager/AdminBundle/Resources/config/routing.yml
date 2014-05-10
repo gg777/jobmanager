@@ -308,3 +308,30 @@ admin_cv_delete:
     defaults: { _controller: JobmanagerAdminBundle:Cv:delete }
     requirements:
         id: \d+
+        
+        
+# Cv CRUD
+
+admin_candidatejob_index:
+    pattern: /job-application
+    defaults: { _controller: JobmanagerAdminBundle:CandidateJob:index }
+
+admin_candidatejob_view:
+    path: /job-application/{id}
+    defaults: { _controller: JobmanagerAdminBundle:CandidateJob:view }
+
+admin_candidatejob_create:
+    pattern: /job-application-create
+    defaults: { _controller: JobmanagerAdminBundle:CandidateJob:create }
+
+admin_candidatejob_edit:
+    path: /job-application-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:CandidateJob:edit }
+    requirements:
+        id: \d+
+
+admin_candidatejob_delete:
+    path: /job-application-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:CandidateJob:delete }
+    requirements:
+        id: \d+
