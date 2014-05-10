@@ -38,3 +38,30 @@ admin_job_delete:
     defaults: { _controller: JobmanagerAdminBundle:Job:delete }
     requirements:
         id: \d+
+
+
+# company CRUD
+
+admin_company_index:
+    pattern: /company
+    defaults: { _controller: JobmanagerAdminBundle:Company:index }
+
+admin_company_view:
+    path: /company/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Company:view }
+
+admin_company_create:
+    pattern: /company-create
+    defaults: { _controller: JobmanagerAdminBundle:Company:create }
+
+admin_company_edit:
+    path: /company-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Company:edit }
+    requirements:
+        id: \d+
+
+admin_company_delete:
+    path: /company-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Company:delete }
+    requirements:
+        id: \d+

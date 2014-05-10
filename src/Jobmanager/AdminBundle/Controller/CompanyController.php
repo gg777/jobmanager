@@ -1,38 +1,44 @@
 <?php
-// src/Jobmanager/AdminBundle/Controller/JobController.php
+/**
+ * Created by PhpStorm.
+ * User: gerard
+ * Date: 09/05/2014
+ * Time: 21:35
+ */
 
 namespace Jobmanager\AdminBundle\Controller;
 
-use Jobmanager\AdminBundle\Entity\Job;
-use Jobmanager\AdminBundle\Form\JobEditType;
-use Jobmanager\AdminBundle\Form\JobType;
+use Jobmanager\AdminBundle\Form\CompanyEditType;
+use Jobmanager\AdminBundle\Form\CompanyType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Jobmanager\AdminBundle\Entity\Company;
 
-class JobController extends Controller
+class CompanyController extends Controller
 {
     public function indexAction()
     {
         // call entity manager
         $em = $this->getDoctrine()->getManager();
 
-        // retrieve jobs
-        $jobs = $em->getRepository('JobmanagerAdminBundle:Job')
-                   ->getJobs();
+        // retrieve companies
+        $companies = $em->getRepository('JobmanagerAdminBundle:Company')
+                        ->findAll();
 
         // send view
-        return $this->render('JobmanagerAdminBundle:Job:index.html.twig', array(
-            'jobs' => $jobs
+        return $this->render('JobmanagerAdminBundle:Company:index.html.twig', array(
+            'companies' => $companies
         ));
     }
 
+
     public function createAction()
     {
-        // new job
-        $job = new Job();
+        // new company
+        $company = new Company();
 
         // generate form
-        $form = $this->createForm(new JobType, $job);
+        $form = $this->createForm(new CompanyType, $company);
 
         // get request
         $request = $this->get('request');
@@ -48,45 +54,45 @@ class JobController extends Controller
 
                 // save in db
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($job);
+                $em->persist($company);
                 $em->flush();
 
                 // send message
-                $this->get('session')->getFlashBag()->add('notice', 'Poste bien enregistré');
+                $this->get('session')->getFlashBag()->add('notice', 'Entreprise bien enregistré');
 
                 // redirect
-                return $this->redirect($this->generateUrl('admin_job_index'));
+                return $this->redirect($this->generateUrl('admin_company_index'));
 
             }
 
         }
 
         // if no post
-        return $this->render('JobmanagerAdminBundle:Job:create-edit-job.html.twig', array(
+        return $this->render('JobmanagerAdminBundle:Company:create-edit-company.html.twig', array(
             'form' => $form->createView()
         ));
 
     }
 
-    public function viewAction(Job $job)
+    public function viewAction(Company $company)
     {
         // call entity manager
         $em = $this->getDoctrine()->getManager();
 
-        // retrieve current job by id
-        $job = $em->getRepository('JobmanagerAdminBundle:Job')
-                  ->find($job->getId());
+        // retrieve current company by id
+//        $company = $em->getRepository('JobmanagerAdminBundle:Company')
+//                  ->find($company->getId());
 
         // send view
-        return $this->render('JobmanagerAdminBundle:Job:view.html.twig', array(
-            'job' => $job
+        return $this->render('JobmanagerAdminBundle:Company:view.html.twig', array(
+            'company' => $company
         ));
     }
 
-    public function editAction(Job $job)
+    public function editAction(Company $company)
     {
         // generate form
-        $form = $this->createForm(new JobEditType, $job);
+        $form = $this->createForm(new CompanyEditType, $company);
 
         // get request
         $request = $this->get('request');
@@ -104,26 +110,26 @@ class JobController extends Controller
                 $em = $this->getDoctrine()->getManager();
 
                 // persist and flush
-                $em->persist($job);
+                $em->persist($company);
                 $em->flush();
 
                 // send flas message
-                $this->get('session')->getFlashMessage()->add('info', 'Poste modifié');
+                $this->get('session')->getFlashMessage()->add('info', 'Entreprise modifié');
 
                 // redirect
-                return $this->redirect($this->generateUrl('admin_job_index'));
+                return $this->redirect($this->generateUrl('admin_company_index'));
 
             }
         }
 
         // send view
-        return $this->render('JobmanagerAdminBundle:Job:create-edit-job.html.twig', array(
+        return $this->render('JobmanagerAdminBundle:Company:create-edit-company.html.twig', array(
             'form' => $form->createView(),
-            'job' => $job
+            'company' => $company
         ));
     }
 
-    public function deleteAction(Job $job)
+    public function deleteAction(Company $company)
     {
         // create empty form against csrf
         $form = $this->createFormBuilder()->getForm();
@@ -143,24 +149,22 @@ class JobController extends Controller
                 // call entity manager
                 $em = $this->getDoctrine()->getManager();
 
-                // remove job
-                $em->remove($job);
+                // remove company
+                $em->remove($company);
                 $em->flush();
 
                 // send flash message
-                $this->get('session')->getFlashBag()->add('info', 'Poste supprimé.');
+                $this->get('session')->getFlashBag()->add('info', 'Entreprise supprimé.');
 
                 // redirect
-                return $this->redirect($this->generateUrl('admin_job_index'));
+                return $this->redirect($this->generateUrl('admin_company_index'));
             }
         }
 
         // send view
-        return $this->render('JobmanagerAdminBundle:Job:delete.html.twig', array(
+        return $this->render('JobmanagerAdminBundle:Company:delete.html.twig', array(
             'form' => $form->createView(),
-            'job' => $job
+            'company' => $company
         ));
     }
-
-
 }

@@ -9,7 +9,7 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
                 <li class="active">
-                    <a href="/">
+                    <a href="/app_dev.php">
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                 </li>
@@ -31,8 +31,8 @@
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> View</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> Create</a></li>
+                        <li><a href="{{ path('admin_company_index') }}"><i class="fa fa-angle-double-right"></i> View</a></li>
+                        <li><a href="{{ path('admin_company_create') }}"><i class="fa fa-angle-double-right"></i> Create</a></li>
                     </ul>
                 </li>
 
@@ -137,5 +137,20 @@
 {% endblock %}
 
 {% block javascript %}
+
+    <!-- jQuery 2.0.2 -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    {% javascripts output='js/main.js' filter='cssrewrite, ?yui_js'
+    '@JobmanagerAdminBundle/Resources/public/js/jquery-ui-1.10.3.min.js'
+    '@JobmanagerAdminBundle/Resources/public/js/bootstrap.min.js'
+    '@JobmanagerAdminBundle/Resources/public/js/plugins/iCheck/icheck.min.js'
+    '@JobmanagerAdminBundle/Resources/public/js/plugins/datatables/jquery.dataTables.js'
+    '@JobmanagerAdminBundle/Resources/public/js/plugins/datatables/dataTables.bootstrap.js'
+    '@JobmanagerAdminBundle/Resources/public/js/AdminLTE/app.js'
+    '@JobmanagerAdminBundle/Resources/public/js/AdminLTE/dashboard.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+
+    {% endjavascripts %}
 
 {% endblock %}
