@@ -11,7 +11,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
-                    <a href="/"><i class="fa fa-dashboard"></i> Jobs</a>
+                    <a href="/"><i class="fa fa-dashboard"></i> Contact</a>
                 </li>
             </ol>
         </section>
@@ -22,52 +22,40 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Company list</h3>
+                            <h3 class="box-title">Contact list</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body table-responsive">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Company</th>
-                                    <th>City</th>
                                     <th>Gender</th>
                                     <th>Firstname</th>
                                     <th>Lastname</th>
+                                    <th>Tel</th>
+                                    <th>Email</th>
                                     <th>View</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for company in companies %}
+                                {% for recruiter in recruiters %}
                                     <tr>
-                                        <td>{{ company.id }}</td>
-                                        <td>{{ company.name }}</td>
-                                        <td>{{ company.city }}</td>
+                                        <td>{{ recruiter.id }}</td>
+                                        <td>{{ recruiter.gender }}</td>
+                                        <td>{{ recruiter.firstname }}</td>
+                                        <td>{{ recruiter.lastname }}</td>
+                                        <td>{{ recruiter.tel }}</td>
+                                        <td>{{ recruiter.email }}</td>
                                         <td>
-                                            {% if company.recruiter %}
-                                                {{ company.recruiter.gender }}
-                                            {% endif %}
+                                            <a href="{{ path('admin_recruiter_view', {'id': recruiter.id}) }}">View</a>
                                         </td>
                                         <td>
-                                            {% if company.recruiter %}
-                                                {{ company.recruiter.firstname }}
-                                            {% endif %}
+                                            <a href="{{ path('admin_recruiter_edit', {'id': recruiter.id}) }}">Edit</a>
                                         </td>
                                         <td>
-                                            {% if company.recruiter %}
-                                                {{ company.recruiter.lastname }}
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            <a href="{{ path('admin_company_view', {'id': company.id}) }}">View</a>
-                                        </td>
-                                        <td>
-                                            <a href="{{ path('admin_company_edit', {'id': company.id}) }}">Edit</a>
-                                        </td>
-                                        <td>
-                                            <a href="{{ path('admin_company_delete', {'id': company.id}) }}">Delete</a>
+                                            <a href="{{ path('admin_recruiter_delete', {'id': recruiter.id}) }}">Delete</a>
                                         </td>
                                     </tr>
                                 {% endfor %}

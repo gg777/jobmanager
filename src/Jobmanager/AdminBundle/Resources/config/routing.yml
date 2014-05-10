@@ -65,3 +65,30 @@ admin_company_delete:
     defaults: { _controller: JobmanagerAdminBundle:Company:delete }
     requirements:
         id: \d+
+      
+        
+# recruiter CRUD
+
+admin_recruiter_index:
+    pattern: /recruiter
+    defaults: { _controller: JobmanagerAdminBundle:Recruiter:index }
+
+admin_recruiter_view:
+    path: /recruiter/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Recruiter:view }
+
+admin_recruiter_create:
+    pattern: /recruiter-create
+    defaults: { _controller: JobmanagerAdminBundle:Recruiter:create }
+
+admin_recruiter_edit:
+    path: /recruiter-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Recruiter:edit }
+    requirements:
+        id: \d+
+
+admin_recruiter_delete:
+    path: /recruiter-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Recruiter:delete }
+    requirements:
+        id: \d+

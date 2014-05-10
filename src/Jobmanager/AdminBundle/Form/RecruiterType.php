@@ -15,12 +15,11 @@ class RecruiterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('gender', 'text')
             ->add('firstName', 'text')
             ->add('lastName', 'text')
             ->add('tel', 'text')
             ->add('email', 'text')
-            ->add('gender', 'text')
-            ->add('company', 'text')
         ;
     }
     
