@@ -281,3 +281,30 @@ admin_motivation_delete:
     defaults: { _controller: JobmanagerAdminBundle:Motivation:delete }
     requirements:
         id: \d+
+        
+        
+# Cv CRUD
+
+admin_cv_index:
+    pattern: /cv
+    defaults: { _controller: JobmanagerAdminBundle:Cv:index }
+
+admin_cv_view:
+    path: /cv/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Cv:view }
+
+admin_cv_create:
+    pattern: /cv-create
+    defaults: { _controller: JobmanagerAdminBundle:Cv:create }
+
+admin_cv_edit:
+    path: /cv-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Cv:edit }
+    requirements:
+        id: \d+
+
+admin_cv_delete:
+    path: /cv-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Cv:delete }
+    requirements:
+        id: \d+

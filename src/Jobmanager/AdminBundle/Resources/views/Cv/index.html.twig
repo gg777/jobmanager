@@ -1,0 +1,64 @@
+{% extends 'JobmanagerAdminBundle::layout.html.twig' %}
+
+{% block content %}
+    <!-- Right side column. Contains the navbar and content of the page -->
+    <aside class="right-side">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Dashboard
+                <small>home</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <a href="/"><i class="fa fa-dashboard"></i> Cv</a>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Cv list</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body table-responsive">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>View</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for cv in cvs %}
+                                    <tr>
+                                        <td>{{ cv.id }}</td>
+                                        <td>{{ cv.name }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_cv_view', {'id': cv.id}) }}">View</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_cv_edit', {'id': cv.id}) }}">Edit</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_cv_delete', {'id': cv.id}) }}">Delete</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+            </div>
+        </section><!-- /.content -->
+    </aside><!-- /.right-side -->
+{% endblock %}
