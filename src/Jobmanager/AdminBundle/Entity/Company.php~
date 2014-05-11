@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Company
  *
  * @ORM\Table(name="company")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="JobManager\AdminBundle\Entity\CompanyRepository")
  */
 class Company
 {
@@ -31,44 +31,65 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=255, nullable=false)
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
     private $address;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="zip", type="integer", nullable=false)
+     * @ORM\Column(name="zip", type="integer", nullable=true)
      */
     private $zip;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255, nullable=false)
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     private $city;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="country", type="string", length=255, nullable=false)
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
      */
     private $country;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="url_company", type="string", length=255, nullable=false)
+     * @ORM\Column(name="lat", type="float", nullable=true)
+     */
+    private $lat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lng", type="float", nullable=true)
+     */
+    private $lng;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_head_hunter", type="boolean", nullable=true)
+     */
+    private $is_head_hunter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url_company", type="string", length=255, nullable=true)
      */
     private $urlCompany;
 
     /**
      * @var
      *
-     * @ORM\OneToMany(targetEntity="Jobmanager\AdminBundle\Entity\Job", mappedBy="company", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="Jobmanager\AdminBundle\Entity\Recruiter", cascade={"persist"})
      */
-    private $jobs;
+    private $recruiter;
 
     /**
      * Get id
@@ -225,36 +246,96 @@ class Company
         $this->jobs = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+
     /**
-     * Add jobs
+     * Set lat
      *
-     * @param \Jobmanager\AdminBundle\Entity\Job $jobs
+     * @param float $lat
      * @return Company
      */
-    public function addJob(\Jobmanager\AdminBundle\Entity\Job $jobs)
+    public function setLat($lat)
     {
-        $this->jobs[] = $jobs;
+        $this->lat = $lat;
 
         return $this;
     }
 
     /**
-     * Remove jobs
+     * Get lat
      *
-     * @param \Jobmanager\AdminBundle\Entity\Job $jobs
+     * @return float 
      */
-    public function removeJob(\Jobmanager\AdminBundle\Entity\Job $jobs)
+    public function getLat()
     {
-        $this->jobs->removeElement($jobs);
+        return $this->lat;
     }
 
     /**
-     * Get jobs
+     * Set lng
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @param float $lng
+     * @return Company
      */
-    public function getJobs()
+    public function setLng($lng)
     {
-        return $this->jobs;
+        $this->lng = $lng;
+
+        return $this;
+    }
+
+    /**
+     * Get lng
+     *
+     * @return float 
+     */
+    public function getLng()
+    {
+        return $this->lng;
+    }
+
+    /**
+     * Set is_head_hunter
+     *
+     * @param \bool $isHeadHunter
+     * @return Company
+     */
+    public function setIsHeadHunter($isHeadHunter)
+    {
+        $this->is_head_hunter = $isHeadHunter;
+
+        return $this;
+    }
+
+    /**
+     * Get is_head_hunter
+     *
+     * @return \bool 
+     */
+    public function getIsHeadHunter()
+    {
+        return $this->is_head_hunter;
+    }
+
+    /**
+     * Set recruiter
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Recruiter $recruiter
+     * @return Company
+     */
+    public function setRecruiter(\Jobmanager\AdminBundle\Entity\Recruiter $recruiter = null)
+    {
+        $this->recruiter = $recruiter;
+
+        return $this;
+    }
+
+    /**
+     * Get recruiter
+     *
+     * @return \Jobmanager\AdminBundle\Entity\Recruiter 
+     */
+    public function getRecruiter()
+    {
+        return $this->recruiter;
     }
 }

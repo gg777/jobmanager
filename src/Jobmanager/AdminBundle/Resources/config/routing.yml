@@ -40,6 +40,16 @@ admin_job_delete:
         id: \d+
 
 
+# super job CRUD
+
+admin_superjob_create:
+    pattern: /superjob-create
+    defaults: { _controller: JobmanagerAdminBundle:SuperJob:create }
+
+admin_superjob_create_newcompany:
+    pattern: /superjob-create-new-company
+    defaults: { _controller: JobmanagerAdminBundle:SuperJob:createNewCompany }
+
 # company CRUD
 
 admin_company_index:
@@ -335,3 +345,4 @@ admin_candidatejob_delete:
     defaults: { _controller: JobmanagerAdminBundle:CandidateJob:delete }
     requirements:
         id: \d+
+

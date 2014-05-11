@@ -10,7 +10,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\Test\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class JobType extends AbstractType
+class SuperJobType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -25,21 +25,8 @@ class JobType extends AbstractType
             ->add('remixjobs_id', 'text')
             ->add('contract_type', 'text')
             ->add('is_soldout', 'checkbox', array('required' => false))
-            ->add('company', 'entity', array(
-                'class' => 'JobmanagerAdminBundle:Company',
-                'property' => 'name',
-                'empty_value' => 'Choose Company',
-                'required' => false,
-                'empty_data' => null
-            ))
-//            ->add('company', 'collection', array(
-//                'type' => new CompanyType(),
-//                'prototype' => true,
-//                'allow_add' => true
-//            ))
+            ->add('company', new CompanyType())
         ;
-
-
     }
     
     /**
@@ -57,6 +44,6 @@ class JobType extends AbstractType
      */
     public function getName()
     {
-        return 'jobmanager_adminbundle_job';
+        return 'jobmanager_adminbundle_superjob';
     }
 }

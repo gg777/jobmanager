@@ -6,6 +6,7 @@ namespace Jobmanager\AdminBundle\Controller;
 use Jobmanager\AdminBundle\Entity\Job;
 use Jobmanager\AdminBundle\Form\JobEditType;
 use Jobmanager\AdminBundle\Form\JobType;
+use Jobmanager\AdminBundle\Form\JobCompleteType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -40,8 +41,14 @@ class JobController extends Controller
         // check if post sent
         if ($request->getMethod() == 'POST') {
 
+
+
+
             // bind data form
             $form->handleRequest($request);
+
+            print "<pre>"; \Doctrine\Common\Util\Debug::dump($request->request); print "</pre>";
+            die;
 
             // valid form
             if ($form->isValid()) {
@@ -64,6 +71,8 @@ class JobController extends Controller
 
         }
 
+        // if post sent from super job form
+
         // if no post
         return $this->render('JobmanagerAdminBundle:Job:create-edit-job.html.twig', array(
             'form' => $form->createView()
@@ -71,20 +80,6 @@ class JobController extends Controller
 
     }
 
-    public function viewAction(Job $job)
-    {
-        // call entity manager
-        $em = $this->getDoctrine()->getManager();
-
-        // retrieve current job by id
-        $job = $em->getRepository('JobmanagerAdminBundle:Job')
-                  ->find($job->getId());
-
-        // send view
-        return $this->render('JobmanagerAdminBundle:Job:view.html.twig', array(
-            'job' => $job
-        ));
-    }
 
     public function editAction(Job $job)
     {
@@ -126,6 +121,23 @@ class JobController extends Controller
         ));
     }
 
+    public function viewAction(Job $job)
+    {
+        // call entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // retrieve current job by id
+        $job = $em->getRepository('JobmanagerAdminBundle:Job')
+                  ->find($job->getId());
+
+        // send view
+        return $this->render('JobmanagerAdminBundle:Job:view.html.twig', array(
+            'job' => $job
+        ));
+    }
+
+
+
     public function deleteAction(Job $job)
     {
         // create empty form against csrf
@@ -164,6 +176,11 @@ class JobController extends Controller
             'job' => $job
         ));
     }
+
+
+
+
+
 
 
 }
