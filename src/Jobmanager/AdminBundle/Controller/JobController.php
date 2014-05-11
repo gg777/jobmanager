@@ -46,6 +46,9 @@ class JobController extends Controller
             // valid form
             if ($form->isValid()) {
 
+//                print "<pre>"; \Doctrine\Common\Util\Debug::dump($job); print "</pre>";
+//                die;
+
                 // save in db
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($job);

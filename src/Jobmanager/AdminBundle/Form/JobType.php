@@ -2,8 +2,12 @@
 
 namespace Jobmanager\AdminBundle\Form;
 
+use Jobmanager\AdminBundle\Entity\Company;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\Test\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class JobType extends AbstractType
@@ -23,9 +27,14 @@ class JobType extends AbstractType
             ->add('is_soldout', 'checkbox', array('required' => false))
             ->add('company', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Company',
-                'property' => 'name'
+                'property' => 'name',
+                'empty_value' => 'Choose Company',
+                'required' => false,
+                'empty_data' => null
             ))
         ;
+
+
     }
     
     /**
