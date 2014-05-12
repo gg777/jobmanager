@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package Jobmanager\AdminBundle\Entity
  * @ORM\Entity
  * @ORM\Table("candidate_job")
- * @ORM\Entity(repositoryClass="JobManager\AdminBundle\Entity\CandidateJobRepository")
+ * @ORM\Entity(repositoryClass="Jobmanager\AdminBundle\Entity\CandidateJobRepository")
  */
 class CandidateJob
 {
