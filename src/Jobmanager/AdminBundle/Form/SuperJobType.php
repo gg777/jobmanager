@@ -25,7 +25,13 @@ class SuperJobType extends AbstractType
             ->add('remixjobs_id', 'text')
             ->add('contract_type', 'text')
             ->add('is_soldout', 'checkbox', array('required' => false))
-            ->add('company', new CompanyType())
+            ->add('company', 'entity', array(
+                'class' => 'JobmanagerAdminBundle:Company',
+                'property' => 'name',
+                'empty_value' => 'Choose Company',
+                'required' => false,
+                'empty_data' => null
+            ))
         ;
     }
     

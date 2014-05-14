@@ -46,9 +46,22 @@ admin_superjob_create:
     pattern: /superjob-create
     defaults: { _controller: JobmanagerAdminBundle:SuperJob:create }
 
+admin_superjob_create_newcompanyform:
+    pattern: /superjob-create-new-company-form
+    defaults: { _controller: JobmanagerAdminBundle:SuperJob:createNewCompanyForm }
+
 admin_superjob_create_newcompany:
     pattern: /superjob-create-new-company
     defaults: { _controller: JobmanagerAdminBundle:SuperJob:createNewCompany }
+    
+admin_superjob_create_newrecruiterform:
+    pattern: /superjob-create-new-recruiter-form
+    defaults: { _controller: JobmanagerAdminBundle:SuperJob:createNewRecruiterForm }
+
+admin_superjob_create_newrecruiter:
+    pattern: /superjob-create-new-recruiter
+    defaults: { _controller: JobmanagerAdminBundle:SuperJob:createNewRecruiter }
+
 
 # company CRUD
 

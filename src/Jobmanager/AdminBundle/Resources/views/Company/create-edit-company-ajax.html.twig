@@ -1,9 +1,15 @@
 {% form_theme form "JobmanagerAdminBundle:Form:fields.html.twig" %}
 
-{# error messages #}
-{{ form_errors(form) }}
+<div id="company-form-wrapper">
 
-{{ form_rest(form) }}
+    <div class="box-header">
+        <h3 class="box-title">Description de l'entreprise</h3>
+    </div><!-- /.box-header -->
 
+    {{ form_errors(form) }}
 
+    {{ form_rest(form) }}
 
+    <div class="btn btn-primary" id="create-recruiter">New Recruiter</div>
+    <div class="btn btn-primary" id="submit-company">Submit</div>
+</div>
