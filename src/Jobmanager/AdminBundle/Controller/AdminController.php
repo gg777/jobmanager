@@ -170,7 +170,13 @@ class AdminController extends Controller
             $candidateJob->setInterest($job_import->getInterest());
             $candidateJob->setIsApplied(true);
             $candidateJob->setIsRejected($job_import->getOut());
-            $candidateJob->setDateMeeting($job_import->getDateMeeting1());
+            //$candidateJob->setDateMeeting($job_import->getDateMeeting1());
+
+            // check if date meeting exist in import
+            // if yes attach to candidate_job a meeting with answer
+
+            // check if date answer exist in import
+            // if yes attach to candidate_job a fonecall with answer and contact inbound
 
 //            print "<pre>"; \Doctrine\Common\Util\Debug::dump($candidateJob); print "</pre>";
 //            die('coucou');

@@ -43,20 +43,10 @@ class CandidateJob
     private $isApplied;
 
     /**
-     * @ORM\Column(name="date_meeting", type="datetime", nullable=true)
-     */
-    private $dateMeeting;
-
-    /**
      * @ORM\Column(name="is_rejected", type="boolean", nullable=true)
      */
     private $isRejected;
 
-//    public function __construct()
-//    {
-//        $this->job = new ArrayCollection();
-//        $this->candidate = new ArrayCollection();
-//    }
 
     /**
      * Set createdDate
@@ -125,29 +115,6 @@ class CandidateJob
     public function getIsApplied()
     {
         return $this->isApplied;
-    }
-
-    /**
-     * Set dateMeeting
-     *
-     * @param \DateTime $dateMeeting
-     * @return CandidateJob
-     */
-    public function setDateMeeting($dateMeeting)
-    {
-        $this->dateMeeting = $dateMeeting;
-
-        return $this;
-    }
-
-    /**
-     * Get dateMeeting
-     *
-     * @return \DateTime 
-     */
-    public function getDateMeeting()
-    {
-        return $this->dateMeeting;
     }
 
     /**
