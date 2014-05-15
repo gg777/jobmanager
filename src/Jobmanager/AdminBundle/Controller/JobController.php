@@ -41,14 +41,8 @@ class JobController extends Controller
         // check if post sent
         if ($request->getMethod() == 'POST') {
 
-
-
-
             // bind data form
             $form->handleRequest($request);
-
-            print "<pre>"; \Doctrine\Common\Util\Debug::dump($request->request); print "</pre>";
-            die;
 
             // valid form
             if ($form->isValid()) {
