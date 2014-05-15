@@ -29,7 +29,7 @@ set :update_vendors, true
 set :keep_releases,  3
 
 task :upload_parameters do
-  origin_file = "app/config/parameters_prod.yml"
+  origin_file = "app/config/parameters_inte.yml"
   destination_file = shared_path + "/app/config/parameters.yml" # Notice the shared_path
 
   try_sudo "mkdir -p #{File.dirname(destination_file)}"
