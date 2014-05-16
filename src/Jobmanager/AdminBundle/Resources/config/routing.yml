@@ -466,3 +466,30 @@ admin_techtest_delete:
     defaults: { _controller: JobmanagerAdminBundle:Techtest:delete }
     requirements:
         id: \d+
+        
+
+# Project CRUD
+
+admin_project_index:
+    pattern: /project
+    defaults: { _controller: JobmanagerAdminBundle:Project:index }
+
+admin_project_view:
+    path: /job-project/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Project:view }
+
+admin_project_create:
+    pattern: /project-create
+    defaults: { _controller: JobmanagerAdminBundle:Project:create }
+
+admin_project_edit:
+    path: /project-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Project:edit }
+    requirements:
+        id: \d+
+
+admin_project_delete:
+    path: /project-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Project:delete }
+    requirements:
+        id: \d+

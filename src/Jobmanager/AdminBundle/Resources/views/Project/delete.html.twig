@@ -1,9 +1,9 @@
-{# src/Jobmanager/AdminBundle/Resources/views/JobExperience/create-jobexperience.html.twig #}
+{# src/Jobmanager/AdminBundle/Resources/views/Project/add-project.html.twig #}
 
 {% extends "JobmanagerAdminBundle::layout.html.twig" %}
 
 {% block title %}
-Supprimer une expérience - {{ parent() }}
+Supprimer une projet - {{ parent() }}
 {% endblock %}
 
 {% block content %}
@@ -29,16 +29,16 @@ Supprimer une expérience - {{ parent() }}
             <div class="col-md-6">
                 <div class="box box-warning">
                     <div class="box-header">
-                        <h3 class="box-title">Description de l'expérience</h3>
+                        <h3 class="box-title">Description du projet</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
 
-                        <h2>Supprimer un compétence</h2>
+                        <h2>Supprimer un test projet</h2>
 
-                        <p>Etes vous certain de vouloir supprimer l'expérience "{{ jobexperience.titleJob }} - {{ jobexperience.companyName }}" ?</p>
+                        <p>Etes vous certain de vouloir supprimer un projet "{{ project.name }}" ?</p>
 
-                        <form action="{{ path('admin_jobexperience_delete', {'id': jobexperience.id}) }}" method="post">
-                            <a href="{{ path('admin_jobexperience_view', {'id': jobexperience.id}) }}" class="btn">
+                        <form action="{{ path('admin_project_delete', {'id': project.id}) }}" method="post">
+                            <a href="{{ path('admin_project_view', {'id': project.id}) }}" class="btn">
                                 <i class="icon-chevron-left"></i>
                                 Retour à la fiche
                             </a>

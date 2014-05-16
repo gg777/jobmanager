@@ -1,9 +1,9 @@
-{# src/Jobmanager/AdminBundle/Resources/views/CandidateJob/create-edit-candidatejob.html.twig #}
+{# src/Jobmanager/AdminBundle/Resources/views/Project/view.html.twig #}
 
 {% extends "JobmanagerAdminBundle::layout.html.twig" %}
 
 {% block title %}
-    Ajouter une candidature - {{ parent() }}
+    Voir un projet - {{ parent() }}
 {% endblock %}
 
 {% block content %}
@@ -25,20 +25,20 @@
         <!-- Main content -->
         <section class="content">
             <div class="row">
-                <form method="POST" {{ form_enctype(form) }}>
-                    <div class="col-md-6">
-                        <div class="box box-warning">
-                            <div class="box-header">
-                                <h3 class="box-title">Description</h3>
-                            </div><!-- /.box-header -->
-                            <div class="box-body">
 
-                                {% include "JobmanagerAdminBundle:CandidateJob:candidatejob-form.html.twig" %}
+                <div class="col-md-6">
+                    <div class="box box-warning">
+                        <div class="box-header">
+                            <h3 class="box-title">Description du projet</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <h1>{{ project.type }}</h1>
+                            <h2>Infos</h2>
+                            <p>Note : {{ project.note }}</p>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
 
-                            </div><!-- /.box-body -->
-                        </div><!-- /.box -->
-                    </div>
-                </form>
             </div>
         </section><!-- /.content -->
     </aside><!-- /.right-side -->

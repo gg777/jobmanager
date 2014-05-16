@@ -3,7 +3,7 @@
 {% extends "JobmanagerAdminBundle::layout.html.twig" %}
 
 {% block title %}
-Ajouter un contact - {{ parent() }}
+Supprimer un recruteur - {{ parent() }}
 {% endblock %}
 
 {% block content %}
@@ -29,13 +29,13 @@ Ajouter un contact - {{ parent() }}
             <div class="col-md-6">
                 <div class="box box-warning">
                     <div class="box-header">
-                        <h3 class="box-title">Description du contact</h3>
+                        <h3 class="box-title">Description du recruteur</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
 
-                        <h2>Supprimer un contact</h2>
+                        <h2>Supprimer un recruteur</h2>
 
-                        <p>Etes vous certain de vouloir supprimer le contact "{{ recruiter.gender }} {{ recruiter.lastname }} {{ recruiter.firstname }}" ?</p>
+                        <p>Etes vous certain de vouloir supprimer le recruteur "{{ recruiter.gender }} {{ recruiter.lastname }} {{ recruiter.firstname }}" ?</p>
 
                         <form action="{{ path('admin_recruiter_delete', {'id': recruiter.id}) }}" method="post">
                             <a href="{{ path('admin_recruiter_view', {'id': recruiter.id}) }}" class="btn">
