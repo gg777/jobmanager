@@ -2,32 +2,32 @@
 /**
  * Created by PhpStorm.
  * User: gerard
- * Date: 09/05/2014
- * Time: 21:35
+ * Date: 16/05/2014
+ * Time: 16:30
  */
 
 namespace Jobmanager\AdminBundle\Controller;
 
-use Jobmanager\AdminBundle\Form\DiplomaEditType;
-use Jobmanager\AdminBundle\Form\DiplomaType;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use Jobmanager\AdminBundle\Entity\Diploma;
+use Jobmanager\AdminBundle\Entity\Fonecall;
+use Jobmanager\AdminBundle\Form\FonecallType;
 
-class DiplomaController extends Controller
+class FonecallController extends Controller
 {
     public function indexAction()
     {
         // call entity manager
         $em = $this->getDoctrine()->getManager();
 
-        // retrieve diplomas
-        $diplomas = $em->getRepository('JobmanagerAdminBundle:Diploma')
+        // retrieve fonecalls
+        $fonecalls = $em->getRepository('JobmanagerAdminBundle:Fonecall')
             ->findAll();
 
         // send view
-        return $this->render('JobmanagerAdminBundle:Diploma:index.html.twig', array(
-            'diplomas' => $diplomas
+        return $this->render('JobmanagerAdminBundle:Fonecall:index.html.twig', array(
+            'fonecalls' => $fonecalls
         ));
     }
 
@@ -35,11 +35,11 @@ class DiplomaController extends Controller
     public function createAction()
     {
 
-        // new diploma
-        $diploma = new Diploma();
+        // new fonecall
+        $fonecall = new Fonecall();
 
         // generate form
-        $form = $this->createForm(new DiplomaType, $diploma);
+        $form = $this->createForm(new FonecallType, $fonecall);
 
         // get request
         $request = $this->get('request');
@@ -55,14 +55,14 @@ class DiplomaController extends Controller
 
                 // save in db
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($diploma);
+                $em->persist($fonecall);
                 $em->flush();
 
                 // send message
-                $this->get('session')->getFlashBag()->add('notice', 'Langage enregistrée');
+                $this->get('session')->getFlashBag()->add('notice', 'Appel enregistrée');
 
                 // redirect
-                return $this->redirect($this->generateUrl('admin_diploma_index'));
+                return $this->redirect($this->generateUrl('admin_fonecall_index'));
 
             }
 
@@ -70,27 +70,27 @@ class DiplomaController extends Controller
 
 
         // if no post
-        return $this->render('JobmanagerAdminBundle:Diploma:create-edit-diploma.html.twig', array(
+        return $this->render('JobmanagerAdminBundle:Fonecall:create-edit-fonecall.html.twig', array(
             'form' => $form->createView()
         ));
 
     }
 
-    public function viewAction(Diploma $diploma)
+    public function viewAction(Fonecall $fonecall)
     {
         // call entity manager
         $em = $this->getDoctrine()->getManager();
 
         // send view
-        return $this->render('JobmanagerAdminBundle:Diploma:view.html.twig', array(
-            'diploma' => $diploma
+        return $this->render('JobmanagerAdminBundle:Fonecall:view.html.twig', array(
+            'fonecall' => $fonecall
         ));
     }
 
-    public function editAction(Diploma $diploma)
+    public function editAction(Fonecall $fonecall)
     {
         // generate form
-        $form = $this->createForm(new DiplomaEditType, $diploma);
+        $form = $this->createForm(new FonecallEditType, $fonecall);
 
         // get request
         $request = $this->get('request');
@@ -108,26 +108,26 @@ class DiplomaController extends Controller
                 $em = $this->getDoctrine()->getManager();
 
                 // persist and flush
-                $em->persist($diploma);
+                $em->persist($fonecall);
                 $em->flush();
 
                 // send flas message
                 $this->get('session')->getFlashMessage()->add('info', 'Langage modifié.');
 
                 // redirect
-                return $this->redirect($this->generateUrl('admin_diploma_index'));
+                return $this->redirect($this->generateUrl('admin_fonecall_index'));
 
             }
         }
 
         // send view
-        return $this->render('JobmanagerAdminBundle:Diploma:create-edit-diploma.html.twig', array(
+        return $this->render('JobmanagerAdminBundle:Fonecall:create-edit-fonecall.html.twig', array(
             'form' => $form->createView(),
-            'diploma' => $diploma
+            'fonecall' => $fonecall
         ));
     }
 
-    public function deleteAction(Diploma $diploma)
+    public function deleteAction(Fonecall $fonecall)
     {
         // create empty form against csrf
         $form = $this->createFormBuilder()->getForm();
@@ -147,22 +147,22 @@ class DiplomaController extends Controller
                 // call entity manager
                 $em = $this->getDoctrine()->getManager();
 
-                // remove diploma
-                $em->remove($diploma);
+                // remove fonecall
+                $em->remove($fonecall);
                 $em->flush();
 
                 // send flash message
-                $this->get('session')->getFlashBag()->add('info', 'Diplome supprimé.');
+                $this->get('session')->getFlashBag()->add('info', 'Langage supprimé.');
 
                 // redirect
-                return $this->redirect($this->generateUrl('admin_diploma_index'));
+                return $this->redirect($this->generateUrl('admin_fonecall_index'));
             }
         }
 
         // send view
-        return $this->render('JobmanagerAdminBundle:Diploma:delete.html.twig', array(
+        return $this->render('JobmanagerAdminBundle:Fonecall:delete.html.twig', array(
             'form' => $form->createView(),
-            'diploma' => $diploma
+            'fonecall' => $fonecall
         ));
     }
-}
+} 

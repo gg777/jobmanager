@@ -172,16 +172,7 @@ class AdminController extends Controller
             $candidateJob->setInterest($job_import->getInterest());
             $candidateJob->setIsApplied(true);
             $candidateJob->setIsRejected($job_import->getOut());
-            //$candidateJob->setDateMeeting($job_import->getDateMeeting1());
-
-
-
-
-
-
-
-
-
+            $candidateJob->setName($job_import->getPosition().' - '.$job_import->getCompany());
 
             // persist candidate_job
             $em->persist($candidateJob);

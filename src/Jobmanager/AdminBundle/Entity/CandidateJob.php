@@ -35,6 +35,11 @@ class CandidateJob
     private $job;
 
     /**
+     * @ORM\Column(name="name", type="string", nullable=true)
+     */
+    private $name;
+
+    /**
      * @ORM\Column(name="created_date", type="datetime", nullable=true)
      */
     private $createdDate;
@@ -201,5 +206,28 @@ class CandidateJob
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return CandidateJob
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

@@ -11,7 +11,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
-                    <a href="/"><i class="fa fa-dashboard"></i> Candidature</a>
+                    <a href="/"><i class="fa fa-dashboard"></i> Fonecalls</a>
                 </li>
             </ol>
         </section>
@@ -22,37 +22,24 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Candidature list</h3>
+                            <h3 class="box-title">Foncalls list</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body table-responsive">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Date</th>
-                                    <th>Candidature</th>
-                                    <th>Rejected</th>
+
                                     <th>View</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for candidatejob in candidatejobs %}
+                                {% for fonecall in fonecalls %}
                                     <tr>
-                                        {#<td>{{ candidatejob.id }}</td>#}
-                                        <td>{{ candidatejob.createdDate|date('d/m/Y') }}</td>
-                                        <td>{{ candidatejob.isApplied }}</td>
-                                        <td>{{ candidatejob.isRejected }}</td>
-                                        {#<td>#}
-                                            {#<a href="{{ path('admin_candidatejob_view', {'id': candidatejob.id}) }}">View</a>#}
-                                        {#</td>#}
-                                        {#<td>#}
-                                            {#<a href="{{ path('admin_candidatejob_edit', {'id': candidatejob.id}) }}">Edit</a>#}
-                                        {#</td>#}
-                                        {#<td>#}
-                                            {#<a href="{{ path('admin_candidatejob_delete', {'id': candidatejob.id}) }}">Delete</a>#}
-                                        {#</td>#}
+                                        <td>{{ fonecall.id }}</td>
+
                                     </tr>
                                 {% endfor %}
                                 </tbody>

@@ -359,3 +359,29 @@ admin_candidatejob_delete:
     requirements:
         id: \d+
 
+
+# Fonecall CRUD
+
+admin_fonecall_index:
+    pattern: /fonecall
+    defaults: { _controller: JobmanagerAdminBundle:Fonecall:index }
+
+admin_fonecall_view:
+    path: /job-fonecall/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Fonecall:view }
+
+admin_fonecall_create:
+    pattern: /fonecall-create
+    defaults: { _controller: JobmanagerAdminBundle:Fonecall:create }
+
+admin_fonecall_edit:
+    path: /fonecall-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Fonecall:edit }
+    requirements:
+        id: \d+
+
+admin_fonecall_delete:
+    path: /fonecall-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Fonecall:delete }
+    requirements:
+        id: \d+
