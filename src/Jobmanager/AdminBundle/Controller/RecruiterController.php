@@ -23,7 +23,7 @@ class RecruiterController extends Controller
 
         // retrieve recruiters
         $recruiters = $em->getRepository('JobmanagerAdminBundle:Recruiter')
-                        ->findAll();
+                         ->getRecruitersByIdInv();
 
         // send view
         return $this->render('JobmanagerAdminBundle:Recruiter:index.html.twig', array(

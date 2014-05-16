@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class RecruiterRepository extends EntityRepository
 {
+    public function getRecruitersByIdInv()
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        $qb
+            ->orderBy('r.id', 'DESC')
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
 }
