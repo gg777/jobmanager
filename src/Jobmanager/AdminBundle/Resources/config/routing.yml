@@ -493,3 +493,30 @@ admin_project_delete:
     defaults: { _controller: JobmanagerAdminBundle:Project:delete }
     requirements:
         id: \d+
+
+        
+# JobSource CRUD
+
+admin_jobsource_index:
+    pattern: /jobsource
+    defaults: { _controller: JobmanagerAdminBundle:JobSource:index }
+
+admin_jobsource_view:
+    path: /job-jobsource/{id}
+    defaults: { _controller: JobmanagerAdminBundle:JobSource:view }
+
+admin_jobsource_create:
+    pattern: /jobsource-create
+    defaults: { _controller: JobmanagerAdminBundle:JobSource:create }
+
+admin_jobsource_edit:
+    path: /jobsource-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:JobSource:edit }
+    requirements:
+        id: \d+
+
+admin_jobsource_delete:
+    path: /jobsource-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:JobSource:delete }
+    requirements:
+        id: \d+

@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class RecallType extends AbstractType
+class JobSourceEditType extends JobSourceType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -14,15 +14,7 @@ class RecallType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('createdDate', 'date', array('required' => false))
-            ->add('isFirstContact', 'checkbox', array('required' => false))
-            ->add('source', 'text', array('required' => false))
-            ->add('recruiter', 'entity', array(
-                'class' => 'JobmanagerAdminBundle:Recruiter',
-                'property' => 'lastname'
-            ))
-        ;
+        parent::buildForm($builder, $options);
     }
     
     /**
@@ -31,7 +23,7 @@ class RecallType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Jobmanager\AdminBundle\Entity\Recall'
+            'data_class' => 'Jobmanager\AdminBundle\Entity\JobSource'
         ));
     }
 
@@ -40,6 +32,6 @@ class RecallType extends AbstractType
      */
     public function getName()
     {
-        return 'jobmanager_adminbundle_recall';
+        return 'jobmanager_adminbundle_jobsourceedit';
     }
 }

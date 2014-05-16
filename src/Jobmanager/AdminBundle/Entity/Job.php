@@ -71,6 +71,13 @@ class Job
     private $company;
 
     /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\JobSource", cascade="persist")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $jobSource;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -247,5 +254,28 @@ class Job
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Set jobSource
+     *
+     * @param \Jobmanager\AdminBundle\Entity\JobSource $jobSource
+     * @return Job
+     */
+    public function setJobSource(\Jobmanager\AdminBundle\Entity\JobSource $jobSource = null)
+    {
+        $this->jobSource = $jobSource;
+
+        return $this;
+    }
+
+    /**
+     * Get jobSource
+     *
+     * @return \Jobmanager\AdminBundle\Entity\JobSource 
+     */
+    public function getJobSource()
+    {
+        return $this->jobSource;
     }
 }

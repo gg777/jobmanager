@@ -38,6 +38,13 @@ class Recall
     /**
      * @var
      *
+     * @ORM\Column(name="source", type="string", length=255, nullable=true)
+     */
+    private $source;
+
+    /**
+     * @var
+     *
      * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Recruiter")
      */
     private $recruiter;
@@ -120,5 +127,28 @@ class Recall
     public function getRecruiter()
     {
         return $this->recruiter;
+    }
+
+    /**
+     * Set source
+     *
+     * @param string $source
+     * @return Recall
+     */
+    public function setSource($source)
+    {
+        $this->source = $source;
+
+        return $this;
+    }
+
+    /**
+     * Get source
+     *
+     * @return string 
+     */
+    public function getSource()
+    {
+        return $this->source;
     }
 }
