@@ -19,6 +19,7 @@ class RecruiterType extends AbstractType
             ->add('firstName', 'text', array('required' => false))
             ->add('lastName', 'text', array('required' => false))
             ->add('tel', 'text', array('required' => false))
+            ->add('mobile', 'text', array('required' => false))
             ->add('email', 'text', array('required' => false))
         ;
     }

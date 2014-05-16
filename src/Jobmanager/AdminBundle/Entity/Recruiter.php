@@ -43,6 +43,13 @@ class Recruiter
     private $tel;
 
     /**
+     * @var
+     *
+     * @ORM\Column(name="mobile", type="string", length=255, nullable=true)
+     */
+    private $mobile;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
@@ -181,4 +188,27 @@ class Recruiter
         return $this->gender;
     }
 
+
+    /**
+     * Set mobile
+     *
+     * @param string $mobile
+     * @return Recruiter
+     */
+    public function setMobile($mobile)
+    {
+        $this->mobile = $mobile;
+
+        return $this;
+    }
+
+    /**
+     * Get mobile
+     *
+     * @return string 
+     */
+    public function getMobile()
+    {
+        return $this->mobile;
+    }
 }
