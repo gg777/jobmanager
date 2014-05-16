@@ -30,7 +30,7 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-
+                                    <th>Name</th>
                                     <th>View</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -40,7 +40,16 @@
                                 {% for jobsource in jobsources %}
                                     <tr>
                                         <td>{{ jobsource.id }}</td>
-
+                                        <td>{{ jobsource.name }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_jobsource_view', {'id': jobsource.id}) }}">View</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_jobsource_edit', {'id': jobsource.id}) }}">Edit</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_jobsource_delete', {'id': jobsource.id}) }}">Delete</a>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

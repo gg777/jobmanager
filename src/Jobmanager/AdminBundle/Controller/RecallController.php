@@ -59,7 +59,7 @@ class RecallController extends Controller
                 $em->flush();
 
                 // send message
-                $this->get('session')->getFlashBag()->add('notice', 'Rdv enregistrée');
+                $this->get('session')->getFlashBag()->add('notice', 'Rappel enregistrée');
 
                 // redirect
                 return $this->redirect($this->generateUrl('admin_recall_index'));

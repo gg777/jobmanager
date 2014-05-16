@@ -35,7 +35,7 @@ Supprimer un rappel - {{ parent() }}
 
                         <h2>Supprimer un compétence</h2>
 
-                        <p>Etes vous certain de vouloir supprimer le rappel "{{ recall.name }}" ?</p>
+                        <p>Etes vous certain de vouloir supprimer le rappel "{{ recall.id }}" ?</p>
 
                         <form action="{{ path('admin_recall_delete', {'id': recall.id}) }}" method="post">
                             <a href="{{ path('admin_recall_view', {'id': recall.id}) }}" class="btn">

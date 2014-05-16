@@ -15,9 +15,9 @@ class JobSourceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array('require' => false))
-            ->add('url', 'text', array('require' => false))
-            ->add('urlDocApi', 'text', array('require' => false))
+            ->add('name', 'text', array('required' => false))
+            ->add('url', 'text', array('required' => false))
+            ->add('urlDocApi', 'text', array('required' => false))
         ;
     }
     

@@ -17,10 +17,13 @@ class RecallType extends AbstractType
         $builder
             ->add('createdDate', 'date', array('required' => false))
             ->add('isFirstContact', 'checkbox', array('required' => false))
-            ->add('source', 'text', array('required' => false))
             ->add('recruiter', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Recruiter',
                 'property' => 'lastname'
+            ))
+            ->add('jobSource', 'entity', array(
+                'class' => 'JobmanagerAdminBundle:JobSource',
+                'property' => 'name'
             ))
         ;
     }

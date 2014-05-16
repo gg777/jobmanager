@@ -45,6 +45,20 @@ class Recall
     /**
      * @var
      *
+     * @ORM\Column(name="is_recalled", type="boolean", nullable=true)
+     */
+    private $isRecalled;
+
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\JobSource")
+     */
+    private $jobSource;
+
+    /**
+     * @var
+     *
      * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Recruiter")
      */
     private $recruiter;
@@ -150,5 +164,51 @@ class Recall
     public function getSource()
     {
         return $this->source;
+    }
+
+    /**
+     * Set jobSource
+     *
+     * @param \Jobmanager\AdminBundle\Entity\JobSource $jobSource
+     * @return Recall
+     */
+    public function setJobSource(\Jobmanager\AdminBundle\Entity\JobSource $jobSource = null)
+    {
+        $this->jobSource = $jobSource;
+
+        return $this;
+    }
+
+    /**
+     * Get jobSource
+     *
+     * @return \Jobmanager\AdminBundle\Entity\JobSource 
+     */
+    public function getJobSource()
+    {
+        return $this->jobSource;
+    }
+
+    /**
+     * Set isRecalled
+     *
+     * @param boolean $isRecalled
+     * @return Recall
+     */
+    public function setIsRecalled($isRecalled)
+    {
+        $this->isRecalled = $isRecalled;
+
+        return $this;
+    }
+
+    /**
+     * Get isRecalled
+     *
+     * @return boolean 
+     */
+    public function getIsRecalled()
+    {
+        return $this->isRecalled;
     }
 }

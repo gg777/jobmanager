@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * JobSource
  *
- * @ORM\Table()
+ * @ORM\Table(name="job_source")
  * @ORM\Entity(repositoryClass="Jobmanager\AdminBundle\Entity\JobSourceRepository")
  */
 class JobSource
@@ -24,21 +24,21 @@ class JobSource
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="url", type="string", length=255, nullable=true)
      */
     private $url;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="url_doc_api", type="string", length=255)
+     * @ORM\Column(name="url_doc_api", type="string", length=255, nullable=true)
      */
     private $urlDocApi;
 

@@ -30,7 +30,11 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-
+                                    <th>Date</th>
+                                    <th>Gender</th>
+                                    <th>Lastname</th>
+                                    <th>Tel</th>
+                                    <th>Is recalled</th>
                                     <th>View</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -40,7 +44,20 @@
                                 {% for recall in recalls %}
                                     <tr>
                                         <td>{{ recall.id }}</td>
-
+                                        <td>{{ recall.createdDate|date('Y-m-d H:i') }}</td>
+                                        <td>{{ recall.recruiter.gender }}</td>
+                                        <td>{{ recall.recruiter.lastName }}</td>
+                                        <td>{{ recall.recruiter.tel }}</td>
+                                        <td>{{ recall.isRecalled }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_recall_view', {'id': recall.id}) }}">View</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_recall_edit', {'id': recall.id}) }}">Edit</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_recall_delete', {'id': recall.id}) }}">Delete</a>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
