@@ -40,6 +40,7 @@ class JobExperienceController extends Controller
 
         // generate form
         $form = $this->createForm(new JobExperienceType, $jobexperience);
+        //die('coucou');
 
         // get request
         $request = $this->get('request');

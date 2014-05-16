@@ -32,6 +32,6 @@ class JobExperienceEditType extends JobExperienceType
      */
     public function getName()
     {
-        return 'jobmanager_adminbundle_jobexperience';
+        return 'jobmanager_adminbundle_jobexperienceedit';
     }
 }

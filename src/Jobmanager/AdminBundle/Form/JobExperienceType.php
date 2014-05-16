@@ -17,10 +17,11 @@ class JobExperienceType extends AbstractType
         $builder
             ->add('titleJob', 'text')
             ->add('companyName', 'text')
+            ->add('contractType', 'text')
             ->add('dateBegin', 'date')
             ->add('dateEnd', 'date')
             ->add('description', 'textarea')
-            ->add('candidates', 'entity', array(
+            ->add('candidate', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Candidate',
                 'property' => 'lastname',
                 'multiple' => true
