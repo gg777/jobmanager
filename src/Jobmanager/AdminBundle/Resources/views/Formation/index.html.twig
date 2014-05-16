@@ -62,12 +62,3 @@
         </section><!-- /.content -->
     </aside><!-- /.right-side -->
 {% endblock %}
-{% block javascript %}
-
-    {% javascripts output='js/main.js' filter='cssrewrite, ?yui_js'
-    '@JobmanagerAdminBundle/Resources/public/js/AdminLTE/dashboard.js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-
-    {% endjavascripts %}
-
-{% endblock %}
