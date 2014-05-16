@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Fonecall
  *
- * @ORM\Table()
+ * @ORM\Table(name="fonecall")
  * @ORM\Entity(repositoryClass="Jobmanager\AdminBundle\Entity\FonecallRepository")
  */
 class Fonecall
@@ -59,9 +59,16 @@ class Fonecall
     /**
      * @var string
      *
-     * @ORM\Column(name="sousource", type="string", length=255)
+     * @ORM\Column(name="source", type="string", length=255)
      */
-    private $sousource;
+    private $source;
+
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\CandidateJob")
+     */
+    private $candidate_job;
 
 
     /**
@@ -190,25 +197,61 @@ class Fonecall
     }
 
     /**
-     * Set sousource
+     * Set source
      *
-     * @param string $sousource
+     * @param string $source
      * @return Fonecall
      */
-    public function setSousource($sousource)
+    public function setSousource($source)
     {
-        $this->sousource = $sousource;
+        $this->source = $source;
 
         return $this;
     }
 
     /**
-     * Get sousource
+     * Get source
      *
      * @return string 
      */
-    public function getSousource()
+    public function getSource()
     {
-        return $this->sousource;
+        return $this->source;
+    }
+
+    /**
+     * Set source
+     *
+     * @param string $source
+     * @return Fonecall
+     */
+    public function setSource($source)
+    {
+        $this->source = $source;
+
+        return $this;
+    }
+
+    /**
+     * Set candidate_job
+     *
+     * @param \Jobmanager\AdminBundle\Entity\CandidateJob $candidateJob
+     * @return Fonecall
+     */
+    public function setCandidateJob(\Jobmanager\AdminBundle\Entity\CandidateJob $candidateJob = null)
+    {
+        $this->candidate_job = $candidateJob;
+
+        return $this;
+    }
+
+    /**
+     * Get candidate_job
+     *
+     * @return \Jobmanager\AdminBundle\Entity\CandidateJob 
+     */
+    public function getCandidateJob()
+    {
+        return $this->candidate_job;
     }
 }

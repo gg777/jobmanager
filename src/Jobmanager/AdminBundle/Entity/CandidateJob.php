@@ -16,13 +16,20 @@ use Doctrine\ORM\Mapping as ORM;
 class CandidateJob
 {
     /**
-     * @ORM\id
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Candidate")
      */
     private $candidate;
 
     /**
-     * @ORM\id
      * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Job")
      */
     private $job;
@@ -184,5 +191,15 @@ class CandidateJob
     public function getJob()
     {
         return $this->job;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

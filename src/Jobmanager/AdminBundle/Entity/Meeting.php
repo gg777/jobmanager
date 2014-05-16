@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Meeting
  *
- * @ORM\Table()
+ * @ORM\Table(name="meeting")
  * @ORM\Entity(repositoryClass="Jobmanager\AdminBundle\Entity\MeetingRepository")
  */
 class Meeting
@@ -41,6 +41,13 @@ class Meeting
      * @ORM\Column(name="description", type="text")
      */
     private $description;
+
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\CandidateJob")
+     */
+    private $candidate_job;
 
 
     /**
@@ -120,5 +127,28 @@ class Meeting
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set candidate_job
+     *
+     * @param \JobmanagerBundleAdmin\Entity\CandidateJob $candidateJob
+     * @return Meeting
+     */
+    public function setCandidateJob(\JobmanagerBundleAdmin\Entity\CandidateJob $candidateJob = null)
+    {
+        $this->candidate_job = $candidateJob;
+
+        return $this;
+    }
+
+    /**
+     * Get candidate_job
+     *
+     * @return \JobmanagerBundleAdmin\Entity\CandidateJob 
+     */
+    public function getCandidateJob()
+    {
+        return $this->candidate_job;
     }
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Techtest
  *
- * @ORM\Table()
+ * @ORM\Table(name="techtest")
  * @ORM\Entity(repositoryClass="Jobmanager\AdminBundle\Entity\TechtestRepository")
  */
 class Techtest
@@ -41,6 +41,14 @@ class Techtest
      * @ORM\Column(name="note", type="integer")
      */
     private $note;
+
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Meeting")
+     */
+    private $meeting;
+
 
 
     /**
@@ -120,5 +128,28 @@ class Techtest
     public function getNote()
     {
         return $this->note;
+    }
+
+    /**
+     * Set meeting
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Meeting $meeting
+     * @return Techtest
+     */
+    public function setMeeting(\Jobmanager\AdminBundle\Entity\Meeting $meeting = null)
+    {
+        $this->meeting = $meeting;
+
+        return $this;
+    }
+
+    /**
+     * Get meeting
+     *
+     * @return \Jobmanager\AdminBundle\Entity\Meeting 
+     */
+    public function getMeeting()
+    {
+        return $this->meeting;
     }
 }
