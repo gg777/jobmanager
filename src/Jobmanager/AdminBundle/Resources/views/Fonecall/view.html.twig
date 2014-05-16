@@ -3,7 +3,7 @@
 {% extends "JobmanagerAdminBundle::layout.html.twig" %}
 
 {% block title %}
-    Voir un appel tel. - {{ parent() }}
+    Voir un entretien tel. - {{ parent() }}
 {% endblock %}
 
 {% block content %}
@@ -29,12 +29,26 @@
                 <div class="col-md-6">
                     <div class="box box-warning">
                         <div class="box-header">
-                            <h3 class="box-title">Description de l'appel</h3>
+                            <h3 class="box-title">Description de l'entretien tel.</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <h1>{{ fonecall.name }}</h1>
+                            <h1>{{ fonecall.dateBegin|date('Y-m-d') }}</h1>
                             <h2>Infos</h2>
-                            <p>Level : {{ fonecall.level }}</p>
+                            <p>
+                                Begin :
+                                {% if fonecall.dateBegin %}
+                                    {{ fonecall.dateBegin|date('Y-m-d H:i') }}
+                                {% endif %}
+                            </p>
+                            <p>
+                                End :
+                                {% if fonecall.dateEnd %}
+                                    {{ fonecall.dateEnd|date('Y-m-d H:i') }}
+                                {% endif %}
+                            </p>
+                            <p>Description : {{ fonecall.description }}</p>
+                            <p>Inbound : {{ fonecall.isInbound }}</p>
+                            <p>Source : {{ fonecall.jobSource }}</p>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </div>

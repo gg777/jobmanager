@@ -46,6 +46,7 @@ class Techtest
      * @var
      *
      * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Meeting")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $meeting;
 
