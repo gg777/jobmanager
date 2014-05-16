@@ -1,0 +1,11 @@
+{# src/Jobmanager/AdminBundle/Resources/views/Meeting/meeting-form.html.twig #}
+
+{% form_theme form "JobmanagerAdminBundle:Form:fields.html.twig" %}
+
+{# error messages #}
+{{ form_errors(form) }}
+
+
+{{ form_rest(form) }}
+<button class="btn btn-primary" type="submit">Submit</button>
+

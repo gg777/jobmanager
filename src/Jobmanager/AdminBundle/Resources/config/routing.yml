@@ -385,3 +385,30 @@ admin_fonecall_delete:
     defaults: { _controller: JobmanagerAdminBundle:Fonecall:delete }
     requirements:
         id: \d+
+        
+        
+# Meeting CRUD
+
+admin_meeting_index:
+    pattern: /meeting
+    defaults: { _controller: JobmanagerAdminBundle:Meeting:index }
+
+admin_meeting_view:
+    path: /job-meeting/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Meeting:view }
+
+admin_meeting_create:
+    pattern: /meeting-create
+    defaults: { _controller: JobmanagerAdminBundle:Meeting:create }
+
+admin_meeting_edit:
+    path: /meeting-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Meeting:edit }
+    requirements:
+        id: \d+
+
+admin_meeting_delete:
+    path: /meeting-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Meeting:delete }
+    requirements:
+        id: \d+

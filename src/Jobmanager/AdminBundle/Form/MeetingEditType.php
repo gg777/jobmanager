@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class FonecallEditType extends FonecallType
+class MeetingEditType extends MeetingType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -23,7 +23,7 @@ class FonecallEditType extends FonecallType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Jobmanager\AdminBundle\Entity\Fonecall'
+            'data_class' => 'Jobmanager\AdminBundle\Entity\Meeting'
         ));
     }
 
@@ -32,6 +32,6 @@ class FonecallEditType extends FonecallType
      */
     public function getName()
     {
-        return 'jobmanager_adminbundle_fonecalledit';
+        return 'jobmanager_adminbundle_meetingedit';
     }
 }
