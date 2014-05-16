@@ -6,7 +6,9 @@ namespace Jobmanager\AdminBundle\Controller;
 use Jobmanager\AdminBundle\Entity\CandidateJob;
 use Jobmanager\AdminBundle\Entity\Company;
 use Jobmanager\AdminBundle\Entity\Contact;
+use Jobmanager\AdminBundle\Entity\Fonecall;
 use Jobmanager\AdminBundle\Entity\Job;
+use Jobmanager\AdminBundle\Entity\Meeting;
 use Jobmanager\AdminBundle\Entity\Recruiter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Jobmanager\AdminBundle\Entity\Jobs;
@@ -172,17 +174,49 @@ class AdminController extends Controller
             $candidateJob->setIsRejected($job_import->getOut());
             //$candidateJob->setDateMeeting($job_import->getDateMeeting1());
 
-            // check if date meeting exist in import
-            // if yes attach to candidate_job a meeting with answer
 
-            // check if date answer exist in import
-            // if yes attach to candidate_job a fonecall with answer and contact inbound
+
+
+
+
+
+
+
+
+            // persist candidate_job
+            $em->persist($candidateJob);
 
 //            print "<pre>"; \Doctrine\Common\Util\Debug::dump($candidateJob); print "</pre>";
 //            die('coucou');
 
-            // persist candidate_job
-            $em->persist($candidateJob);
+            // check if date meeting exist in import
+            if ($job_import->getDateMeeting1() != null) {
+                // if yes attach to meeting a candidate_job with answer
+                // create a new meeting
+                $meeting = new Meeting();
+                $meeting->setCandidateJob($candidateJob);
+                $meeting->setDateBegin($job_import->getDateMeeting1());
+                $meeting->setDescription($job_import->getAnswer());
+
+                // persist
+                $em->persist($meeting);
+            }
+
+            // check if date answer exist in import
+
+            if ($job_import->getDateAnswer() != null) {
+                // if yes attach to fonecall a candidate_job with answer and contact inbound
+                // create a new fonecall
+                $fonecall = new Fonecall();
+                $fonecall->setCandidateJob($candidateJob);
+                $fonecall->setDateBegin($job_import->getDateAnswer());
+                $fonecall->setDescription($job_import->getAnswer());
+                $fonecall->setIsInbound($job_import->getContactInbound());
+                $fonecall->setSource($job_import->getSource());
+
+                // persist
+                $em->persist($fonecall);
+            }
 
             // flush
             $em->flush();

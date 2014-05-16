@@ -24,42 +24,42 @@ class Fonecall
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_begin", type="datetime")
+     * @ORM\Column(name="date_begin", type="datetime", nullable=true)
      */
     private $dateBegin;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_end", type="datetime")
+     * @ORM\Column(name="date_end", type="datetime", nullable=true)
      */
     private $dateEnd;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
     private $type;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="isInbound", type="boolean")
+     * @ORM\Column(name="isInbound", type="boolean", nullable=true)
      */
     private $isInbound;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="source", type="string", length=255)
+     * @ORM\Column(name="source", type="string", length=255, nullable=true)
      */
     private $source;
 

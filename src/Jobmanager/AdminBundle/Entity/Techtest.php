@@ -24,21 +24,21 @@ class Techtest
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
     private $type;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="techno", type="string", length=255)
+     * @ORM\Column(name="techno", type="string", length=255, nullable=true)
      */
     private $techno;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="note", type="integer")
+     * @ORM\Column(name="note", type="integer", nullable=true)
      */
     private $note;
 

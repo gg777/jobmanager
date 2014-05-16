@@ -24,21 +24,21 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="domain_intervention", type="text")
+     * @ORM\Column(name="domain_intervention", type="text", nullable=true)
      */
     private $domainIntervention;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="technical_environnement", type="text")
+     * @ORM\Column(name="technical_environnement", type="text", nullable=true)
      */
     private $technicalEnvironnement;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 

@@ -154,6 +154,27 @@ class Jobs
      */
     private $recall;
 
+    /**
+     * @var
+     *
+     * @ORM\Column(name="answer", type="string", length=255, nullable=true)
+     */
+    private $answer;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="date_answer", type="date", nullable=true)
+     */
+    private $dateAnswer;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="contact_inbound", type="boolean", nullable=true)
+     */
+    private $contactInBound;
+
 
 
     /**
@@ -601,5 +622,74 @@ class Jobs
     public function getRecall()
     {
         return $this->recall;
+    }
+
+    /**
+     * Set answer
+     *
+     * @param string $answer
+     * @return Jobs
+     */
+    public function setAnswer($answer)
+    {
+        $this->answer = $answer;
+
+        return $this;
+    }
+
+    /**
+     * Get answer
+     *
+     * @return string 
+     */
+    public function getAnswer()
+    {
+        return $this->answer;
+    }
+
+    /**
+     * Set dateAnswer
+     *
+     * @param \DateTime $dateAnswer
+     * @return Jobs
+     */
+    public function setDateAnswer($dateAnswer)
+    {
+        $this->dateAnswer = $dateAnswer;
+
+        return $this;
+    }
+
+    /**
+     * Get dateAnswer
+     *
+     * @return \DateTime 
+     */
+    public function getDateAnswer()
+    {
+        return $this->dateAnswer;
+    }
+
+    /**
+     * Set contactInBound
+     *
+     * @param boolean $contactInBound
+     * @return Jobs
+     */
+    public function setContactInBound($contactInBound)
+    {
+        $this->contactInBound = $contactInBound;
+
+        return $this;
+    }
+
+    /**
+     * Get contactInBound
+     *
+     * @return boolean 
+     */
+    public function getContactInBound()
+    {
+        return $this->contactInBound;
     }
 }

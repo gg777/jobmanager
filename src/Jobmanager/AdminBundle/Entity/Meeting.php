@@ -24,21 +24,21 @@ class Meeting
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_begin", type="datetime")
+     * @ORM\Column(name="date_begin", type="datetime", nullable=true)
      */
     private $dateBegin;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_end", type="datetime")
+     * @ORM\Column(name="date_end", type="datetime", nullable=true)
      */
     private $dateEnd;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -132,10 +132,10 @@ class Meeting
     /**
      * Set candidate_job
      *
-     * @param \JobmanagerBundleAdmin\Entity\CandidateJob $candidateJob
+     * @param \Jobmanager\AdminBundle\Entity\CandidateJob $candidateJob
      * @return Meeting
      */
-    public function setCandidateJob(\JobmanagerBundleAdmin\Entity\CandidateJob $candidateJob = null)
+    public function setCandidateJob(\Jobmanager\AdminBundle\Entity\CandidateJob $candidateJob = null)
     {
         $this->candidate_job = $candidateJob;
 
@@ -145,7 +145,7 @@ class Meeting
     /**
      * Get candidate_job
      *
-     * @return \JobmanagerBundleAdmin\Entity\CandidateJob 
+     * @return \Jobmanager\AdminBundle\Entity\CandidateJob
      */
     public function getCandidateJob()
     {

@@ -24,14 +24,14 @@ class Recall
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_date", type="datetime")
+     * @ORM\Column(name="created_date", type="datetime", nullable=true)
      */
     private $createdDate;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="is_first_contact", type="boolean")
+     * @ORM\Column(name="is_first_contact", type="boolean", nullable=true)
      */
     private $isFirstContact;
 
