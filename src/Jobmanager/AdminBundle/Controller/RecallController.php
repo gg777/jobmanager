@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Jobmanager\AdminBundle\Entity\Recall;
 use Jobmanager\AdminBundle\Form\RecallType;
+use Jobmanager\AdminBundle\Form\RecallEditType;
 
 class RecallController extends Controller
 {

@@ -11,13 +11,16 @@ namespace Jobmanager\AdminBundle\Controller;
 use Jobmanager\AdminBundle\Entity\Company;
 use Jobmanager\AdminBundle\Form\CompanyType;
 use Jobmanager\AdminBundle\Form\SuperJobType;
+use Jobmanager\AdminBundle\Form\SuperJobEditType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Jobmanager\AdminBundle\Entity\Job;
 use Jobmanager\AdminBundle\Form\JobType;
+use Jobmanager\AdminBundle\Form\JobEditType;
 use Jobmanager\AdminBundle\Entity\Recruiter;
 use Jobmanager\AdminBundle\Form\RecruiterType;
+use Jobmanager\AdminBundle\Form\RecruiterEditType;
 
 class SuperJobController extends Controller
 {

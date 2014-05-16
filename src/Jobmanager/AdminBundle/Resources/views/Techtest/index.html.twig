@@ -29,7 +29,9 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-
+                                    <th>Entretien</th>
+                                    <th>Type</th>
+                                    <th>Techno</th>
                                     <th>View</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -38,8 +40,19 @@
                                 <tbody>
                                 {% for techtest in techtests %}
                                     <tr>
+                                        <td>{{ techtest.meeting.name }}</td>
                                         <td>{{ techtest.id }}</td>
-
+                                        <td>{{ techtest.type }}</td>
+                                        <td>{{ techtest.techno }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_techtest_view', {'id': techtest.id}) }}">View</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_techtest_edit', {'id': techtest.id}) }}">Edit</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_techtest_delete', {'id': techtest.id}) }}">Delete</a>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

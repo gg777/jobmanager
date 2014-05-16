@@ -6,7 +6,6 @@ namespace Jobmanager\AdminBundle\Controller;
 use Jobmanager\AdminBundle\Entity\Job;
 use Jobmanager\AdminBundle\Form\JobEditType;
 use Jobmanager\AdminBundle\Form\JobType;
-use Jobmanager\AdminBundle\Form\JobCompleteType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 

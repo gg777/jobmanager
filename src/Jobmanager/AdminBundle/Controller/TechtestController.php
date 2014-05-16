@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Jobmanager\AdminBundle\Entity\Techtest;
 use Jobmanager\AdminBundle\Form\TechtestType;
+use Jobmanager\AdminBundle\Form\TechtestEditType;
 
 class TechtestController extends Controller
 {

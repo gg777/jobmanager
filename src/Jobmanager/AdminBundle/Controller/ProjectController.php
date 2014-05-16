@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Jobmanager\AdminBundle\Entity\Project;
 use Jobmanager\AdminBundle\Form\ProjectType;
+use Jobmanager\AdminBundle\Form\ProjectEditType;
 
 class ProjectController extends Controller
 {

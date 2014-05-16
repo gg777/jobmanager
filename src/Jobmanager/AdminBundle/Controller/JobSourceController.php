@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Jobmanager\AdminBundle\Entity\JobSource;
 use Jobmanager\AdminBundle\Form\JobSourceType;
+use Jobmanager\AdminBundle\Form\JobSourceEditType;
 
 class JobSourceController extends Controller
 {
