@@ -15,7 +15,7 @@ class RecallType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('createdDate', 'date', array('required' => false))
+            ->add('createdDate', 'datetime', array('required' => false))
             ->add('isFirstContact', 'checkbox', array('required' => false))
             ->add('recruiter', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Recruiter',

@@ -15,8 +15,8 @@ class FonecallType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateBegin', 'date', array('required' => false))
-            ->add('dateEnd', 'date', array('required' => false))
+            ->add('dateBegin', 'datetime', array('required' => false))
+            ->add('dateEnd', 'datetime', array('required' => false))
             ->add('type', 'text', array('required' => false))
             ->add('description', 'textarea', array('required' => false))
             ->add('isInbound', 'checkbox', array('required' => false))
