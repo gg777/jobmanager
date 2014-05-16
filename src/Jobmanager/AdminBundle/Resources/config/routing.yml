@@ -412,3 +412,30 @@ admin_meeting_delete:
     defaults: { _controller: JobmanagerAdminBundle:Meeting:delete }
     requirements:
         id: \d+
+        
+        
+# Recall CRUD
+
+admin_recall_index:
+    pattern: /recall
+    defaults: { _controller: JobmanagerAdminBundle:Recall:index }
+
+admin_recall_view:
+    path: /job-recall/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Recall:view }
+
+admin_recall_create:
+    pattern: /recall-create
+    defaults: { _controller: JobmanagerAdminBundle:Recall:create }
+
+admin_recall_edit:
+    path: /recall-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Recall:edit }
+    requirements:
+        id: \d+
+
+admin_recall_delete:
+    path: /recall-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Recall:delete }
+    requirements:
+        id: \d+
