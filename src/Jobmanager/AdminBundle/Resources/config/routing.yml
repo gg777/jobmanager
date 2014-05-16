@@ -439,3 +439,30 @@ admin_recall_delete:
     defaults: { _controller: JobmanagerAdminBundle:Recall:delete }
     requirements:
         id: \d+
+        
+        
+# Techtest CRUD
+
+admin_techtest_index:
+    pattern: /techtest
+    defaults: { _controller: JobmanagerAdminBundle:Techtest:index }
+
+admin_techtest_view:
+    path: /job-techtest/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Techtest:view }
+
+admin_techtest_create:
+    pattern: /techtest-create
+    defaults: { _controller: JobmanagerAdminBundle:Techtest:create }
+
+admin_techtest_edit:
+    path: /techtest-edit/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Techtest:edit }
+    requirements:
+        id: \d+
+
+admin_techtest_delete:
+    path: /techtest-delete/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Techtest:delete }
+    requirements:
+        id: \d+

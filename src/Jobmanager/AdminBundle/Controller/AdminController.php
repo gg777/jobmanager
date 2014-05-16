@@ -177,8 +177,7 @@ class AdminController extends Controller
             // persist candidate_job
             $em->persist($candidateJob);
 
-//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($candidateJob); print "</pre>";
-//            die('coucou');
+
 
             // check if date meeting exist in import
             if ($job_import->getDateMeeting1() != null) {
@@ -188,6 +187,9 @@ class AdminController extends Controller
                 $meeting->setCandidateJob($candidateJob);
                 $meeting->setDateBegin($job_import->getDateMeeting1());
                 $meeting->setDescription($job_import->getAnswer());
+//                print "<pre>"; \Doctrine\Common\Util\Debug::dump($job_import->getDateMeeting1()->format('Y-m-d H:i:s')); print "</pre>";
+//                die('coucou');
+                $meeting->setName($job_import->getDateMeeting1()->format('Y-m-d H:i:s').' - '.$job_import->getCompany());
 
                 // persist
                 $em->persist($meeting);

@@ -22,6 +22,13 @@ class Meeting
     private $id;
 
     /**
+     * @var
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_begin", type="datetime", nullable=true)
@@ -150,5 +157,28 @@ class Meeting
     public function getCandidateJob()
     {
         return $this->candidate_job;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Meeting
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }
