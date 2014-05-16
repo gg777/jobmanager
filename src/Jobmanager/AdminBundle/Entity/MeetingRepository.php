@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class MeetingRepository extends EntityRepository
 {
+    public function getMeetingsByDate()
+    {
+        $qb = $this->createQueryBuilder('m');
+
+        $qb
+            ->orderBy('m.dateBegin', 'DESC')
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
 }

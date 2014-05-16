@@ -29,7 +29,10 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-
+                                    <th>Name</th>
+                                    <th>Begin</th>
+                                    <th>End</th>
+                                    <th>Job</th>
                                     <th>View</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -39,7 +42,10 @@
                                 {% for meeting in meetings %}
                                     <tr>
                                         <td>{{ meeting.id }}</td>
-
+                                        <td>{{ meeting.name }}</td>
+                                        <td>{{ meeting.dateBegin|date('d/m/Y') }}</td>
+                                        <td>{{ meeting.dateEnd|date('d/m/Y') }}</td>
+                                        <td>{{ meeting.candidateJob.name }}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
