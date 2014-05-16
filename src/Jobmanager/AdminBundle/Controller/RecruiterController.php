@@ -34,7 +34,6 @@ class RecruiterController extends Controller
 
     public function createAction()
     {
-
         // new recruiter
         $recruiter = new Recruiter();
 
