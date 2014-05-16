@@ -23,7 +23,7 @@ class CompanyController extends Controller
 
         // retrieve companies
         $companies = $em->getRepository('JobmanagerAdminBundle:Company')
-                        ->findAll();
+                        ->getCompanyByIdInv();
 
         // send view
         return $this->render('JobmanagerAdminBundle:Company:index.html.twig', array(

@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class CompanyRepository extends EntityRepository
 {
+    public function getCompanyByIdInv()
+    {
+        $qb = $this->createQueryBuilder('c');
+
+        $qb->orderBy('c.id', 'DESC');
+
+        return $qb->getQuery()->getResult();
+    }
 }
