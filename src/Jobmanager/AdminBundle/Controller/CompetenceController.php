@@ -112,7 +112,7 @@ class CompetenceController extends Controller
                 $em->flush();
 
                 // send flas message
-                $this->get('session')->getFlashMessage()->add('info', 'Compétence modifié.');
+                $this->get('session')->getFlashBag()->add('info', 'Compétence modifié.');
 
                 // redirect
                 return $this->redirect($this->generateUrl('admin_competence_index'));

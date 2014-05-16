@@ -11,7 +11,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
-                    <a href="/"><i class="fa fa-dashboard"></i> Fonecalls</a>
+                    <a href="/"><i class="fa fa-dashboard"></i> Entretiens tel.</a>
                 </li>
             </ol>
         </section>
@@ -22,14 +22,15 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Foncalls list</h3>
+                            <h3 class="box-title">Entretiens tel.</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body table-responsive">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-
+                                    <td>Date</td>
+                                    <td>Name Job</td>
                                     <th>View</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -39,7 +40,17 @@
                                 {% for fonecall in fonecalls %}
                                     <tr>
                                         <td>{{ fonecall.id }}</td>
-
+                                        <td>{{ fonecall.dateBegin|date('Y-m-d H:s') }}</td>
+                                        <td>{{ fonecall.candidateJob.name }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_fonecall_view', {'id': fonecall.id}) }}">View</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_fonecall_edit', {'id': fonecall.id}) }}">Edit</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_fonecall_delete', {'id': fonecall.id}) }}">Delete</a>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

@@ -112,7 +112,7 @@ class ProjectController extends Controller
                 $em->flush();
 
                 // send flas message
-                $this->get('session')->getFlashMessage()->add('info', 'Projet modifié.');
+                $this->get('session')->getFlashBag()->add('info', 'Projet modifié.');
 
                 // redirect
                 return $this->redirect($this->generateUrl('admin_project_index'));

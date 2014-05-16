@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Jobmanager\AdminBundle\Entity\Fonecall;
 use Jobmanager\AdminBundle\Form\FonecallType;
+use Jobmanager\AdminBundle\Form\FonecallEditType;
 
 class FonecallController extends Controller
 {
@@ -23,7 +24,7 @@ class FonecallController extends Controller
 
         // retrieve fonecalls
         $fonecalls = $em->getRepository('JobmanagerAdminBundle:Fonecall')
-            ->findAll();
+                        ->getFonecallByDate();
 
         // send view
         return $this->render('JobmanagerAdminBundle:Fonecall:index.html.twig', array(
@@ -34,7 +35,6 @@ class FonecallController extends Controller
 
     public function createAction()
     {
-
         // new fonecall
         $fonecall = new Fonecall();
 
@@ -112,7 +112,7 @@ class FonecallController extends Controller
                 $em->flush();
 
                 // send flas message
-                $this->get('session')->getFlashMessage()->add('info', 'Langage modifié.');
+                $this->get('session')->getFlashBag()->add('info', 'Langage modifié.');
 
                 // redirect
                 return $this->redirect($this->generateUrl('admin_fonecall_index'));

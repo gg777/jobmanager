@@ -114,7 +114,7 @@ class CompanyController extends Controller
                 $em->flush();
 
                 // send flas message
-                $this->get('session')->getFlashMessage()->add('info', 'Entreprise modifié');
+                $this->get('session')->getFlashBag()->add('info', 'Entreprise modifié');
 
                 // redirect
                 return $this->redirect($this->generateUrl('admin_company_index'));

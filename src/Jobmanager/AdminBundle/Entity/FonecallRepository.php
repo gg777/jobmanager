@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class FonecallRepository extends EntityRepository
 {
+    public function getFonecallByDate()
+    {
+        $qb = $this->createQueryBuilder('f');
+
+        $qb->orderBy('f.dateBegin', 'DESC');
+
+        return $qb->getQuery()->getResult();
+    }
 }

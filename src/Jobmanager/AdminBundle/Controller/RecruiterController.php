@@ -115,7 +115,7 @@ class RecruiterController extends Controller
                 $em->flush();
 
                 // send flas message
-                $this->get('session')->getFlashMessage()->add('info', 'Contact modifié');
+                $this->get('session')->getFlashBag()->add('info', 'Contact modifié');
 
                 // redirect
                 return $this->redirect($this->generateUrl('admin_recruiter_index'));

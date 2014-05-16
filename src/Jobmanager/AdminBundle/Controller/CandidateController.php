@@ -112,7 +112,7 @@ class CandidateController extends Controller
                 $em->flush();
 
                 // send flas message
-                $this->get('session')->getFlashMessage()->add('info', 'Candidat modifié.');
+                $this->get('session')->getFlashBag()->add('info', 'Candidat modifié.');
 
                 // redirect
                 return $this->redirect($this->generateUrl('admin_candidate_index'));

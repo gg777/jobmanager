@@ -112,7 +112,7 @@ class FormationController extends Controller
                 $em->flush();
 
                 // send flas message
-                $this->get('session')->getFlashMessage()->add('info', 'Langage modifié.');
+                $this->get('session')->getFlashBag()->add('info', 'Langage modifié.');
 
                 // redirect
                 return $this->redirect($this->generateUrl('admin_formation_index'));

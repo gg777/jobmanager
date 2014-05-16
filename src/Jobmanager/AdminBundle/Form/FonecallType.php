@@ -17,10 +17,13 @@ class FonecallType extends AbstractType
         $builder
             ->add('dateBegin', 'datetime', array('required' => false))
             ->add('dateEnd', 'datetime', array('required' => false))
-            ->add('type', 'text', array('required' => false))
             ->add('description', 'textarea', array('required' => false))
             ->add('isInbound', 'checkbox', array('required' => false))
-            ->add('source', 'text', array('required' => false))
+            ->add('jobSource', 'entity', array(
+                'class' => 'JobmanagerAdminBundle:JobSource',
+                'property' => 'name',
+                'required' => false
+            ))
             ->add('candidate_job', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:CandidateJob',
                 'property' => 'name',

@@ -100,7 +100,7 @@ class JobController extends Controller
                 $em->flush();
 
                 // send flas message
-                $this->get('session')->getFlashMessage()->add('info', 'Poste modifié');
+                $this->get('session')->getFlashBag()->add('info', 'Poste modifié');
 
                 // redirect
                 return $this->redirect($this->generateUrl('admin_job_index'));

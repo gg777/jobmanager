@@ -38,13 +38,6 @@ class Fonecall
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255, nullable=true)
-     */
-    private $type;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
@@ -59,9 +52,10 @@ class Fonecall
     /**
      * @var string
      *
-     * @ORM\Column(name="source", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\JobSource")
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $source;
+    private $jobSource;
 
     /**
      * @var
@@ -128,29 +122,6 @@ class Fonecall
     }
 
     /**
-     * Set type
-     *
-     * @param string $type
-     * @return Fonecall
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string 
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
      * Set description
      *
      * @param string $description
@@ -196,28 +167,7 @@ class Fonecall
         return $this->isInbound;
     }
 
-    /**
-     * Set source
-     *
-     * @param string $source
-     * @return Fonecall
-     */
-    public function setSousource($source)
-    {
-        $this->source = $source;
 
-        return $this;
-    }
-
-    /**
-     * Get source
-     *
-     * @return string 
-     */
-    public function getSource()
-    {
-        return $this->source;
-    }
 
     /**
      * Set source
@@ -253,5 +203,28 @@ class Fonecall
     public function getCandidateJob()
     {
         return $this->candidate_job;
+    }
+
+    /**
+     * Set jobSource
+     *
+     * @param \Jobmanager\AdminBundle\Entity\JobSource $jobSource
+     * @return Fonecall
+     */
+    public function setJobSource(\Jobmanager\AdminBundle\Entity\JobSource $jobSource = null)
+    {
+        $this->jobSource = $jobSource;
+
+        return $this;
+    }
+
+    /**
+     * Get jobSource
+     *
+     * @return \Jobmanager\AdminBundle\Entity\JobSource 
+     */
+    public function getJobSource()
+    {
+        return $this->jobSource;
     }
 }
