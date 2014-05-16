@@ -44,9 +44,10 @@ class Motivation
 
     /**
      * @var
-     * @ORM\ManyToMany(targetEntity="Jobmanager\AdminBundle\Entity\Candidate", mappedBy="motivations")
+     *
+     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Candidate")
      */
-    private $candidates;
+    private $candidate;
 
     /**
      * Get id
@@ -165,5 +166,28 @@ class Motivation
     public function getCandidates()
     {
         return $this->candidates;
+    }
+
+    /**
+     * Set candidate
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Candidate $candidate
+     * @return Motivation
+     */
+    public function setCandidate(\Jobmanager\AdminBundle\Entity\Candidate $candidate = null)
+    {
+        $this->candidate = $candidate;
+
+        return $this;
+    }
+
+    /**
+     * Get candidate
+     *
+     * @return \Jobmanager\AdminBundle\Entity\Candidate 
+     */
+    public function getCandidate()
+    {
+        return $this->candidate;
     }
 }

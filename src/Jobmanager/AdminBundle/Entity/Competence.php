@@ -37,9 +37,10 @@ class Competence
 
     /**
      * @var
-     * @ORM\ManyToMany(targetEntity="Jobmanager\AdminBundle\Entity\Candidate", mappedBy="competences")
+     *
+     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Candidate")
      */
-    private $candidates;
+    private $candidate;
 
 
     /**
@@ -97,44 +98,28 @@ class Competence
     {
         return $this->level;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->candidates = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+
 
     /**
-     * Add candidates
+     * Set candidate
      *
-     * @param \Jobmanager\AdminBundle\Entity\Candidate $candidates
+     * @param \Jobmanager\AdminBundle\Entity\Candidate $candidate
      * @return Competence
      */
-    public function addCandidate(\Jobmanager\AdminBundle\Entity\Candidate $candidates)
+    public function setCandidate(\Jobmanager\AdminBundle\Entity\Candidate $candidate = null)
     {
-        $this->candidates[] = $candidates;
+        $this->candidate = $candidate;
 
         return $this;
     }
 
     /**
-     * Remove candidates
+     * Get candidate
      *
-     * @param \Jobmanager\AdminBundle\Entity\Candidate $candidates
+     * @return \Jobmanager\AdminBundle\Entity\Candidate 
      */
-    public function removeCandidate(\Jobmanager\AdminBundle\Entity\Candidate $candidates)
+    public function getCandidate()
     {
-        $this->candidates->removeElement($candidates);
-    }
-
-    /**
-     * Get candidates
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCandidates()
-    {
-        return $this->candidates;
+        return $this->candidate;
     }
 }
