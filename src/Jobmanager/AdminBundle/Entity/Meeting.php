@@ -110,6 +110,8 @@ class Meeting
      */
     public function getDateEnd()
     {
+//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($this->dateEnd); print "</pre>";
+//        die;
         return $this->dateEnd;
     }
 
@@ -135,6 +137,11 @@ class Meeting
     {
         return $this->description;
     }
+
+//    public function __construct()
+//    {
+//        $this->candidate_job = new \Doctrine\Common\Collections\ArrayCollection();
+//    }
 
     /**
      * Set candidate_job

@@ -18,10 +18,9 @@ class MeetingType extends AbstractType
             ->add('dateBegin', 'date')
             ->add('dateEnd', 'date')
             ->add('description', 'textarea')
-            ->add('candidate_job', 'entity', array(
+            ->add('candidateJob', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:CandidateJob',
-                'property' => 'name',
-                'multiple' => true
+                'property' => 'name'
             ))
         ;
     }

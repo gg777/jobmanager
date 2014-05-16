@@ -19,6 +19,10 @@
                 <li class="active">
                     <a href="/"><i class="fa fa-dashboard"></i> Home</a>
                 </li>
+                <li>
+                    <a href="{{ path('admin_meeting_index') }}">Rdv</a>
+                </li>
+                <li class="active">View</li>
             </ol>
         </section>
 
@@ -34,7 +38,17 @@
                         <div class="box-body">
                             <h1>{{ meeting.name }}</h1>
                             <h2>Infos</h2>
-                            <p>Level : {{ meeting.level }}</p>
+                            <p>
+                                Date begin : {% if meeting.dateBegin %}
+                                    {{ meeting.dateBegin|date('Y-m-d H:i') }}
+                                {% endif %}
+                            </p>
+                            <p
+                                    Date end : {% if meeting.dateEnd %}
+                                    {{ meeting.dateEnd|date('Y-m-d H:i') }}
+                                {% endif %}
+                            </p>
+                            <p>{{ meeting.description }}</p>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </div>

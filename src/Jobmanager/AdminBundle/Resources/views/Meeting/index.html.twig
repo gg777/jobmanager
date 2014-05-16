@@ -10,9 +10,10 @@
                 <small>home</small>
             </h1>
             <ol class="breadcrumb">
-                <li class="active">
-                    <a href="/"><i class="fa fa-dashboard"></i> Meetings</a>
+                <li>
+                    <a href="/"><i class="fa fa-dashboard"></i> Home</a>
                 </li>
+                <li class="active">Rdv</li>
             </ol>
         </section>
 
@@ -43,9 +44,26 @@
                                     <tr>
                                         <td>{{ meeting.id }}</td>
                                         <td>{{ meeting.name }}</td>
-                                        <td>{{ meeting.dateBegin|date('d/m/Y') }}</td>
-                                        <td>{{ meeting.dateEnd|date('d/m/Y') }}</td>
+                                        <td>
+                                            {% if meeting.dateBegin %}
+                                                {{ meeting.dateBegin|date('d/m/Y') }}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if meeting.dateEnd %}
+                                                {{ meeting.dateEnd|date('d/m/Y') }}
+                                            {% endif %}
+                                        </td>
                                         <td>{{ meeting.candidateJob.name }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_meeting_view', {'id': meeting.id}) }}">View</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_meeting_edit', {'id': meeting.id}) }}">Edit</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_meeting_delete', {'id': meeting.id}) }}">Delete</a>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

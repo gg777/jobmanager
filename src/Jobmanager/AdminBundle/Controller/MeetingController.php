@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Jobmanager\AdminBundle\Entity\Meeting;
 use Jobmanager\AdminBundle\Form\MeetingType;
+use Jobmanager\AdminBundle\Form\MeetingEditType;
 
 class MeetingController extends Controller
 {
@@ -81,6 +82,9 @@ class MeetingController extends Controller
         // call entity manager
         $em = $this->getDoctrine()->getManager();
 
+//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($meeting); print "</pre>";
+//        die;
+
         // send view
         return $this->render('JobmanagerAdminBundle:Meeting:view.html.twig', array(
             'meeting' => $meeting
@@ -89,8 +93,11 @@ class MeetingController extends Controller
 
     public function editAction(Meeting $meeting)
     {
+
+
         // generate form
         $form = $this->createForm(new MeetingEditType, $meeting);
+        //die('coucou');
 
         // get request
         $request = $this->get('request');
