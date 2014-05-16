@@ -15,12 +15,12 @@ class CvType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text')
-            ->add('createdDate', 'date')
+            ->add('name', 'text', array('required' => false))
+            ->add('createdDate', 'date', array('required' => false))
             ->add('candidates', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Candidate',
                 'property' => 'lastname',
-                'multiple' => true
+                'required' => false
             ))
         ;
     }

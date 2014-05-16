@@ -15,12 +15,12 @@ class CompetenceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text')
-            ->add('level', 'text')
+            ->add('name', 'text', array('required' => false))
+            ->add('level', 'text', array('required' => false))
             ->add('candidates', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Candidate',
                 'property' => 'lastname',
-                'multiple' => true
+                'required' => false
             ))
         ;
     }

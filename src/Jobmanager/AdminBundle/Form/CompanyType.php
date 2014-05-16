@@ -15,18 +15,19 @@ class CompanyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text')
-            ->add('address', 'textarea')
-            ->add('zip', 'text')
-            ->add('city', 'text')
-            ->add('country', 'text')
-            ->add('lat', 'text')
-            ->add('lng', 'text')
+            ->add('name', 'text', array('required' => false))
+            ->add('address', 'textarea', array('required' => false))
+            ->add('zip', 'text', array('required' => false))
+            ->add('city', 'text', array('required' => false))
+            ->add('country', 'text', array('required' => false))
+            ->add('lat', 'text', array('required' => false))
+            ->add('lng', 'text', array('required' => false))
             ->add('is_head_hunter', 'checkbox', array('required' => false))
-            ->add('urlCompany', 'text')
+            ->add('urlCompany', 'text', array('required' => false))
             ->add('recruiter', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Recruiter',
-                'property' => 'lastname'
+                'property' => 'lastname',
+                'required' => false
             ))
         ;
     }

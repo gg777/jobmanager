@@ -15,14 +15,14 @@ class FormationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text')
-            ->add('schoolName', 'text')
-            ->add('dateBegin', 'date')
-            ->add('dateEnd', 'date')
+            ->add('name', 'text', array('required' => false))
+            ->add('schoolName', 'text', array('required' => false))
+            ->add('dateBegin', 'date', array('required' => false))
+            ->add('dateEnd', 'date', array('required' => false))
             ->add('candidates', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Candidate',
                 'property' => 'lastname',
-                'multiple' => true
+                'required' => false
             ))
         ;
     }

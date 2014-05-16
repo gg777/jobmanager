@@ -15,16 +15,16 @@ class JobExperienceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titleJob', 'text')
-            ->add('companyName', 'text')
-            ->add('contractType', 'text')
-            ->add('dateBegin', 'date')
-            ->add('dateEnd', 'date')
-            ->add('description', 'textarea')
+            ->add('titleJob', 'text', array('required' => false))
+            ->add('companyName', 'text', array('required' => false))
+            ->add('contractType', 'text', array('required' => false))
+            ->add('dateBegin', 'date', array('required' => false))
+            ->add('dateEnd', 'date', array('required' => false))
+            ->add('description', 'textarea', array('required' => false))
             ->add('candidate', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Candidate',
                 'property' => 'lastname',
-                'multiple' => true
+                'required' => false
             ))
         ;
     }

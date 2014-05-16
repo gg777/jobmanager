@@ -16,10 +16,9 @@ class CandidateJobType extends AbstractType
     {
         $builder
             ->add('createdDate', 'date')
-            ->add('interest', 'textarea')
-            ->add('isApplied', 'checkbox')
-            ->add('dateMeeting', 'date')
-            ->add('isRejected', 'checkbox')
+            ->add('interest', 'textarea', array('required' => false))
+            ->add('isApplied', 'checkbox', array('required' => false))
+            ->add('isRejected', 'checkbox', array('required' => false))
             ->add('job', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Job',
                 'property' => 'name'

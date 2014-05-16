@@ -15,16 +15,16 @@ class FonecallType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateBegin', 'date')
-            ->add('dateEnd', 'date')
-            ->add('type', 'text')
-            ->add('description', 'textarea')
-            ->add('isInbound', 'checkbox')
-            ->add('source', 'text')
+            ->add('dateBegin', 'date', array('required' => false))
+            ->add('dateEnd', 'date', array('required' => false))
+            ->add('type', 'text', array('required' => false))
+            ->add('description', 'textarea', array('required' => false))
+            ->add('isInbound', 'checkbox', array('required' => false))
+            ->add('source', 'text', array('required' => false))
             ->add('candidate_job', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:CandidateJob',
                 'property' => 'name',
-                'multiple' => true
+                'required' => false
             ))
         ;
     }
