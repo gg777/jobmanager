@@ -56,7 +56,7 @@ class MeetingController extends Controller
 
                 // save in db
                 $em = $this->getDoctrine()->getManager();
-                $meeting->setName($meeting->getDateBegin().' - '.$meeting->getName());
+                $meeting->setName($meeting->getDateBegin()->format('Y-m-d H:i:s').' - '.$meeting->getName());
                 $em->persist($meeting);
                 $em->flush();
 

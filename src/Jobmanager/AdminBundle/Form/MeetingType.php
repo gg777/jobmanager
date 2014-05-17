@@ -20,7 +20,8 @@ class MeetingType extends AbstractType
             ->add('description', 'textarea', array('required' => false))
             ->add('candidateJob', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:CandidateJob',
-                'property' => 'name'
+                'property' => 'name',
+                'required' => false
             ))
         ;
     }
