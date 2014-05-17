@@ -24,7 +24,7 @@ class TechtestController extends Controller
 
         // retrieve techtests
         $techtests = $em->getRepository('JobmanagerAdminBundle:Techtest')
-                       ->findAll();
+                        ->getTechtestByIdInv();
 
         // send view
         return $this->render('JobmanagerAdminBundle:Techtest:index.html.twig', array(

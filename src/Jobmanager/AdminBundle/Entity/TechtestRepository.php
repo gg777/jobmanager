@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class TechtestRepository extends EntityRepository
 {
+    public function getTechtestByIdInv()
+    {
+        $qb = $this->createQueryBuilder('t');
+
+        $qb->orderBy('t.id', 'DESC');
+
+        return $qb->getQuery()->getResult();
+    }
 }
