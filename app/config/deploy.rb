@@ -23,7 +23,7 @@ role :web,        domain                         # Your HTTP server, Apache/etc
 role :app,        domain, :primary => true       # This may be the same as your `Web` server
 
 set :shared_files,    ["app/config/parameters.yml"]
-set :shared_chlidren, [app_path + "/logs", web_path + "/uploads"]
+set :shared_chlidren, [app_path + "/cache", app_path + "/logs", web_path + "/uploads"]
 set :use_composer,   true
 set :update_vendors, true
 set :keep_releases,  3
