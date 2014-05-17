@@ -79,10 +79,6 @@ class RecruiterController extends Controller
         // call entity manager
         $em = $this->getDoctrine()->getManager();
 
-        // retrieve current recruiter by id
-//        $recruiter = $em->getRepository('JobmanagerAdminBundle:Recruiter')
-//                  ->find($recruiter->getId());
-
         // send view
         return $this->render('JobmanagerAdminBundle:Recruiter:view.html.twig', array(
             'recruiter' => $recruiter
