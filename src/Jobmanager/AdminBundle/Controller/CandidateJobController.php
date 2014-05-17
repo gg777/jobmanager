@@ -57,9 +57,11 @@ class CandidateJobController extends Controller
 
                 // save in db
                 $em = $this->getDoctrine()->getManager();
-
+//                print "<pre>"; \Doctrine\Common\Util\Debug::dump($candidatejob->getJob()->getCompany()->getName()); print "</pre>";
+//                die;
+                $candidatejob->setName($candidatejob->getJob()->getName().' - '.$candidatejob->getJob()->getCompany()->getName());
                 $em->persist($candidatejob);
-                $candidatejob->setName($candidatejob->getJob()->getName().' - '.$candidatejob->getJob()->getCompany());
+
                 $em->flush();
 
                 // send message
