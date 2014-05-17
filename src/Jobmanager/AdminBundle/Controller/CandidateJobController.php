@@ -59,6 +59,7 @@ class CandidateJobController extends Controller
                 $em = $this->getDoctrine()->getManager();
 
                 $em->persist($candidatejob);
+                $candidatejob->setName($candidatejob->getJob()->getName().' - '.$candidatejob->getJob()->getCompany());
                 $em->flush();
 
                 // send message
