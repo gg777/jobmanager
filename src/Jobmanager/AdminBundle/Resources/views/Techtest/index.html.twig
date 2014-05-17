@@ -32,6 +32,7 @@
                                     <th>Entretien</th>
                                     <th>Type</th>
                                     <th>Techno</th>
+                                    <th>Note</th>
                                     <th>View</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -44,6 +45,7 @@
                                         <td>{{ techtest.meeting.name }}</td>
                                         <td>{{ techtest.type }}</td>
                                         <td>{{ techtest.techno }}</td>
+                                        <td>{{ techtest.note }}</td>
                                         <td>
                                             <a href="{{ path('admin_techtest_view', {'id': techtest.id}) }}">View</a>
                                         </td>
