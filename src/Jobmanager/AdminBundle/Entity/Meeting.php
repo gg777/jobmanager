@@ -53,6 +53,7 @@ class Meeting
      * @var
      *
      * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\CandidateJob")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $candidate_job;
 
