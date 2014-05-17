@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class CandidateJobRepository extends EntityRepository
 {
+    public function getCandidateJobByDateInv()
+    {
+        $qb =$this->createQueryBuilder('cj');
+
+        $qb->orderBy('cj.createdDate', 'DESC');
+
+        return $qb->getQuery()->getResult();
+    }
 }

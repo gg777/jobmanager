@@ -30,7 +30,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Date</th>
-                                    <th>Candidature</th>
+                                    <th>Name</th>
+                                    <th>Applied</th>
                                     <th>Rejected</th>
                                     <th>View</th>
                                     <th>Edit</th>
@@ -40,19 +41,20 @@
                                 <tbody>
                                 {% for candidatejob in candidatejobs %}
                                     <tr>
-                                        {#<td>{{ candidatejob.id }}</td>#}
+                                        <td>{{ candidatejob.id }}</td>
                                         <td>{{ candidatejob.createdDate|date('d/m/Y') }}</td>
+                                        <td>{{ candidatejob.name }}</td>
                                         <td>{{ candidatejob.isApplied }}</td>
                                         <td>{{ candidatejob.isRejected }}</td>
-                                        {#<td>#}
-                                            {#<a href="{{ path('admin_candidatejob_view', {'id': candidatejob.id}) }}">View</a>#}
-                                        {#</td>#}
-                                        {#<td>#}
-                                            {#<a href="{{ path('admin_candidatejob_edit', {'id': candidatejob.id}) }}">Edit</a>#}
-                                        {#</td>#}
-                                        {#<td>#}
-                                            {#<a href="{{ path('admin_candidatejob_delete', {'id': candidatejob.id}) }}">Delete</a>#}
-                                        {#</td>#}
+                                        <td>
+                                            <a href="{{ path('admin_candidatejob_view', {'id': candidatejob.id}) }}">View</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_candidatejob_edit', {'id': candidatejob.id}) }}">Edit</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_candidatejob_delete', {'id': candidatejob.id}) }}">Delete</a>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

@@ -25,7 +25,7 @@ class CandidateJobController extends Controller
 
         // retrieve candidatejobs
         $candidatejobs = $em->getRepository('JobmanagerAdminBundle:CandidateJob')
-                            ->findAll();
+                            ->getCandidateJobByDateInv();
 
         // send view
         return $this->render('JobmanagerAdminBundle:CandidateJob:index.html.twig', array(
@@ -60,6 +60,7 @@ class CandidateJobController extends Controller
 //                print "<pre>"; \Doctrine\Common\Util\Debug::dump($candidatejob->getJob()->getCompany()->getName()); print "</pre>";
 //                die;
                 $candidatejob->setName($candidatejob->getJob()->getName().' - '.$candidatejob->getJob()->getCompany()->getName());
+                $candidatejob->setIsApplied(1);
                 $em->persist($candidatejob);
 
                 $em->flush();
