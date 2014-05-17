@@ -56,12 +56,14 @@ class MeetingController extends Controller
 
                 // save in db
                 $em = $this->getDoctrine()->getManager();
-                $meeting->setName($meeting->getDateBegin()->format('Y-m-d H:i:s').' - '.$meeting->getName());
+                $meeting->setName($meeting->getDateBegin()->format('Y-m-d H:i:s').' - '.$meeting->getCandidateJob()->getJob()->getCompany()->getName());
+//                print "<pre>"; \Doctrine\Common\Util\Debug::dump($meeting->getCandidateJob()->getJob()->getCompany()->getName()); print "</pre>";
+//                die;
                 $em->persist($meeting);
                 $em->flush();
 
                 // send message
-                $this->get('session')->getFlashBag()->add('notice', 'Rdv enregistrée');
+                $this->get('session')->getFlashBag()->add('notice', 'Entretien enregistré');
 
                 // redirect
                 return $this->redirect($this->generateUrl('admin_meeting_index'));

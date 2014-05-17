@@ -3,7 +3,7 @@
 {% extends "JobmanagerAdminBundle::layout.html.twig" %}
 
 {% block title %}
-Supprimer un rdv - {{ parent() }}
+Supprimer un entretien - {{ parent() }}
 {% endblock %}
 
 {% block content %}
@@ -29,13 +29,13 @@ Supprimer un rdv - {{ parent() }}
             <div class="col-md-6">
                 <div class="box box-warning">
                     <div class="box-header">
-                        <h3 class="box-title">Description du rdv</h3>
+                        <h3 class="box-title">Description de l'entretien</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
 
-                        <h2>Supprimer un compétence</h2>
+                        <h2>Supprimer un entretien</h2>
 
-                        <p>Etes vous certain de vouloir supprimer le rdv "{{ meeting.name }}" ?</p>
+                        <p>Etes vous certain de vouloir supprimer l'entretien "{{ meeting.name }}" ?</p>
 
                         <form action="{{ path('admin_meeting_delete', {'id': meeting.id}) }}" method="post">
                             <a href="{{ path('admin_meeting_view', {'id': meeting.id}) }}" class="btn">
