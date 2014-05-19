@@ -25,12 +25,16 @@ class AdminController extends Controller
         $candidatejobs = $em->getRepository('JobmanagerAdminBundle:CandidateJob')
                             ->getActualCandidateJobs();
 
-//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($jobs[0]); print "</pre>";
+        // count candidate_job
+        $countCandidateJobs = count($candidatejobs);
+
+//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($countCandidateJobs); print "</pre>";
 //        die('coucou');
 
         // send view
         return $this->render('JobmanagerAdminBundle:Admin:index.html.twig', array(
-            'candidatejobs' => $candidatejobs
+            'candidatejobs' => $candidatejobs,
+            'countCandidateJobs' => $countCandidateJobs
         ));
     }
 
