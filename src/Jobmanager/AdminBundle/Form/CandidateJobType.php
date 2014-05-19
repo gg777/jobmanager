@@ -19,6 +19,7 @@ class CandidateJobType extends AbstractType
             ->add('interest', 'textarea', array('required' => false))
             ->add('isApplied', 'checkbox', array('required' => false))
             ->add('isRejected', 'checkbox', array('required' => false))
+            ->add('isOutdated', 'checkbox', array('required' => false))
             ->add('job', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Job',
                 'property' => 'name'

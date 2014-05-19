@@ -45,6 +45,13 @@ class CandidateJob
     private $createdDate;
 
     /**
+     * @var
+     *
+     * @ORM\Column(name="updated_date", type="datetime", nullable=true)
+     */
+    private $updatedDate;
+
+    /**
      * @ORM\Column(name="interest", type="text", nullable=true)
      */
     private $interest;
@@ -58,6 +65,13 @@ class CandidateJob
      * @ORM\Column(name="is_rejected", type="boolean", nullable=true)
      */
     private $isRejected;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="is_outdated", type="boolean", nullable=true)
+     */
+    private $isOutdated;
 
 
     /**
@@ -229,5 +243,51 @@ class CandidateJob
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set updatedDate
+     *
+     * @param \DateTime $updatedDate
+     * @return CandidateJob
+     */
+    public function setUpdatedDate($updatedDate)
+    {
+        $this->updatedDate = $updatedDate;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedDate
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedDate()
+    {
+        return $this->updatedDate;
+    }
+
+    /**
+     * Set isOutdated
+     *
+     * @param boolean $isOutdated
+     * @return CandidateJob
+     */
+    public function setIsOutdated($isOutdated)
+    {
+        $this->isOutdated = $isOutdated;
+
+        return $this;
+    }
+
+    /**
+     * Get isOutdated
+     *
+     * @return boolean 
+     */
+    public function getIsOutdated()
+    {
+        return $this->isOutdated;
     }
 }

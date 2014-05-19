@@ -113,6 +113,9 @@ class CandidateJobController extends Controller
                 // call entity manager
                 $em = $this->getDoctrine()->getManager();
 
+                // insert modification date
+                $candidatejob->setUpdatedDate(new \DateTime());
+
                 // persist and flush
                 $em->persist($candidatejob);
                 $em->flush();
