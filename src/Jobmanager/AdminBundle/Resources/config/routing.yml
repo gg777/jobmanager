@@ -8,9 +8,17 @@ jobmanager_importdb:
     pattern: /import-db
     defaults: { _controller: JobmanagerAdminBundle:Admin:updateDb }
 
+# remixjobs ACTION
+
 jobmanager_getremixjobs:
     pattern: /get-remixjobs
     defaults: { _controller: JobmanagerAdminBundle:Admin:getRemixjobsNewJobs }
+
+jobmanager_importoneremixjobs:
+    pattern: /import-remixjobs/{id}
+    defaults: { _controller: JobmanagerAdminBundle:Admin:importOneRemixjobs }
+    requirements:
+            id: \d+
 
 
 # job CRUD

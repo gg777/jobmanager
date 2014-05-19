@@ -96,6 +96,9 @@ class AdminController extends Controller
         $json_datas = file_get_contents('https://remixjobs.com/api/jobs');
         $jobsImport = json_decode($json_datas);
 
+        // call entity manager
+        $em = $this->getDoctrine()->getManager();
+
         // set output array
         $outputArr = array();
 
@@ -111,48 +114,191 @@ class AdminController extends Controller
             'SF2'
         );
 
+        // for each job ...
         foreach ($jobsImport->jobs as $jobImport) {
 
-            foreach ($sf2_occurences as $sf2_occurence) {
+            $tempJob = $em->getRepository('JobmanagerAdminBundle:Job')->getJobByRemixjobsId($jobImport->id);
+//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($jobImport->id); print "</pre>";
+//            die('coucou');
 
-                // filter sf2 jobs
-                if (strpos($jobImport->title, $sf2_occurence) > 0) {
-                    $flagSfJob = true;
+            // check if job already imported
+            if ($em->getRepository('JobmanagerAdminBundle:Job')->getJobByRemixjobsId($jobImport->id) == null) {
+
+                // check if title contain sf2 occurences
+                foreach ($sf2_occurences as $sf2_occurence) {
+
+                    // filter sf2 jobs
+                    if (strpos($jobImport->title, $sf2_occurence) > 0) {
+                        $flagSfJob = true;
+                    }
+
                 }
-//
-            }
+
+                if (isset($flagSfJob)) {
+
+                    if ($flagSfJob === true) {
+
+                        // unset flag
+                        $flagSfJob = false;
+
+                        // Recruiter
+                        // parse postingJob to find recruiter contact
+                        $description = $jobImport->description;
+
+                        // instanciate new DOMDocument to parse HTML by tags as node
+                        $dom = new \DOMDocument();
+                        $dom->loadHTML($description);
+                        foreach ($dom->getElementsByTagName('p') as $node) {
+
+                            $arrayTag[] = $dom->saveHTML($node);
+
+                        }
+
+                        // check if has contact
+                        foreach ($arrayTag as $tag) {
+
+                            if (strpos($tag, 'Contact') == true) {
+
+                                // parse contact
+                                $contactArr = explode(' ', $tag);
+
+                                $recruiter = new Recruiter();
+                                $recruiter->setFirstName($contactArr[2]);
+                                $recruiter->setLastName($contactArr[3]);
+
+                                // check email string and clean
+                                $email = str_replace('(', '', $contactArr[4]);
+                                $email = str_replace(')', '', $email);
+                                $recruiter->setEmail($email);
+
+                                // reconstruct tel
+                                $tel = $contactArr[6].' '.$contactArr[7].' '.$contactArr[8].' '.$contactArr[9].' '.$contactArr[10];
+
+                                // check if is mobile tel
+                                if ($contactArr[6] == 06) {
+                                    $recruiter->setMobile($tel);
+                                } else {
+                                    $recruiter->setTel($tel);
+                                }
+
+                                //var_dump($recruiter); die;
+                                $flagRecruiter = true;
+
+                            } else {
+                                $flagRecruiter = false;
+                            }
+
+                        }
+
+                        // Company
+                        $company = new Company();
+                        $company->setName($jobImport->company_name);
+
+                        if (isset($jobImport->company_website))
+                            $company->setUrlCompany($jobImport->company_website);
+
+                        // parse address
+                        $addressArr = explode(',', $jobImport->geolocation->formatted_address);
+
+                        $cityArr = explode(' ', $addressArr[1]);
+
+                        $company->setAddress($addressArr[0]);
+                        $company->setZip($cityArr[1]);
+                        //$company->setCity($cityArr[2]);
+                        //$company->setCountry($addressArr[2]);
+                        $company->setLat($jobImport->geolocation->lat);
+                        $company->setLng($jobImport->geolocation->lng);
+
+                        if ($flagRecruiter == true) {
+                            $company->setRecruiter($recruiter);
+                        }
 
 
+                        // Job
+                        $job = new Job();
+                        $job->setCreatedDate($jobImport->validation_time);
+                        $job->setRemixjobsId($jobImport->id);
+                        $job->setName($jobImport->title);
+                        $job->setContractType($jobImport->contract_type);
+                        $job->statusRemixjobs = $jobImport->status;
+                        $job->setUrlJob($jobImport->_links->www->href);
+                        $job->setCompany($company);
+                        $job->setPostingJob($jobImport->description);
 
-            //if (isset($flagSfJob) && $flagSfJob == true) var_dump($flagSfJob); echo '<br/>';
-            if (isset($flagSfJob)) {
-
-                if ($flagSfJob === true) {
-
-                    // unset flag
-                    $flagSfJob = false;
-
-                    // Recruiter
-                    // parse postingJob to find recruiter contact
-                    $description = $jobImport->description;
-
-                    // instanciate new DOMDocument to parse HTML by tags as node
-                    $dom = new \DOMDocument();
-                    $dom->loadHTML($description);
-                    foreach ($dom->getElementsByTagName('p') as $node) {
-
-                        $arrayTag[] = $dom->saveHTML($node);
+                        $outputArr[] = $job;
 
                     }
 
-                    // check if has contact
-                    foreach ($arrayTag as $tag) {
+                }
 
-                        if (strpos($tag, 'Contact') == true) {
+            }
 
-                            // parse contact
-                            $contactArr = explode(' ', $tag);
+        }
 
+//        print '<pre>'; print_r($outputArr); print '</pre>';
+//        die('coucou');
+
+        // send view
+        return $this->render('JobmanagerAdminBundle:Admin:remixjobs-index.html.twig', array(
+            'jobs' => $outputArr
+        ));
+
+    }
+
+    public function importOneRemixjobsAction($id)
+    {
+        // retrieve jobs from api
+        $json_datas = file_get_contents('https://remixjobs.com/api/jobs');
+        $jobsImport = json_decode($json_datas);
+
+        // call entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // set filter sf2 jobs
+        $sf2_occurences = array(
+            'Symfony',
+            'symfony',
+            'Symfony 2',
+            'Symfony2',
+            'symfony 2',
+            'symfony2',
+            'sf2',
+            'SF2'
+        );
+
+
+        // retrieve job
+        foreach ($jobsImport->jobs as $jobImport) {
+
+//            print '<pre>'; print_r($jobImport); print'</pre>';
+
+            if ($jobImport->id == $id) {
+
+                // Recruiter
+                // parse postingJob to find recruiter contact
+                $description = $jobImport->description;
+
+                // instanciate new DOMDocument to parse HTML by tags as node
+                $dom = new \DOMDocument();
+                $dom->loadHTML($description);
+                foreach ($dom->getElementsByTagName('p') as $node) {
+
+                    $arrayTag[] = $dom->saveHTML($node);
+
+                }
+
+
+
+                // check if has contact
+                foreach ($arrayTag as $tag) {
+
+                    if (strpos($tag, 'Contact') == true) {
+
+                        // parse contact
+                        $contactArr = explode(' ', $tag);
+
+                        // check contact already exists
+                        if ($em->getRepository('JobmanagerAdminBundle:Recruiter')->findByFirstName($contactArr[2]) == null) {
                             $recruiter = new Recruiter();
                             $recruiter->setFirstName($contactArr[2]);
                             $recruiter->setLastName($contactArr[3]);
@@ -174,12 +320,18 @@ class AdminController extends Controller
 
                             //var_dump($recruiter); die;
                             $flagRecruiter = true;
-
                         } else {
-                            $flagRecruiter = false;
+                            $recruiter = $em->getRepository('JobmanagerAdminBundle:Recruiter')->findByFirstName($contactArr[2]);
                         }
 
+                    } else {
+                        $flagRecruiter = false;
                     }
+
+                }
+
+                // check if company exists
+                if ($em->getRepository('JobmanagerAdminBundle:Company')->findByName($jobImport->company_name) == null) {
 
                     // Company
                     $company = new Company();
@@ -204,36 +356,39 @@ class AdminController extends Controller
                         $company->setRecruiter($recruiter);
                     }
 
+                    $flagCompany = true;
 
-                    // Job
-                    $job = new Job();
-                    $job->setCreatedDate($jobImport->validation_time);
-                    $job->setRemixjobsId($jobImport->id);
-                    $job->setName($jobImport->title);
-                    $job->setContractType($jobImport->contract_type);
-                    $job->statusRemixjobs = $jobImport->status;
-                    $job->setUrlJob($jobImport->_links->www->href);
-                    $job->setCompany($company);
-                    $job->setPostingJob($jobImport->description);
-
-                    $outputArr[] = $job;
-
+                } else {
+                    $company = $em->getRepository('JobmanagerAdminBundle:Company')->findByName($jobImport->company_name);
+                    $flagCompany = false;
                 }
 
 
-            }
 
+
+                // Job
+                $job = new Job();
+                $job->setCreatedDate(new \DateTime());
+                $job->setRemixjobsId($jobImport->id);
+                $job->setName($jobImport->title);
+                $job->setContractType($jobImport->contract_type);
+                $job->statusRemixjobs = $jobImport->status;
+                $job->setUrlJob($jobImport->_links->www->href);
+                if ($flagCompany == true)
+                    $job->setCompany($company);
+                $job->setPostingJob($jobImport->description);
+
+                // persist
+                $em->persist($job);
+                $em->flush();
+
+            }
 
         }
 
-//        print '<pre>'; print_r($outputArr); print '</pre>';
-//        die('coucou');
-
-        // send view
-        return $this->render('JobmanagerAdminBundle:Admin:remixjobs-index.html.twig', array(
-            'jobs' => $outputArr
-        ));
-
+//        print "<pre>"; print_r($job); print "</pre>";
+        print "<pre>"; \Doctrine\Common\Util\Debug::dump($job); print "</pre>";
+        die('coucou');
     }
 
     public function updateDbAction()

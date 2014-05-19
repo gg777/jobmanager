@@ -30,4 +30,17 @@ class JobRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function getJobByRemixjobsId($id)
+    {
+        $qb = $this->createQueryBuilder('j');
+
+        $qb
+            ->addSelect('j')
+            ->where('j.remixjobs_id = :remixjobsId')
+            ->setParameter('remixjobsId', $id)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
 }
