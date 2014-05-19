@@ -18,7 +18,55 @@
 
         <!-- Main content -->
         <section class="content">
-
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Candidatures list</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body table-responsive">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Date de création</th>
+                                    <th>Date de modification</th>
+                                    <th>Name</th>
+                                    <th>Voir</th>
+                                    <th>Modifier</th>
+                                    <th>Supprimer</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for candidatejob in candidatejobs %}
+                                    <tr>
+                                        <td>{{ candidatejob.id }}</td>
+                                        <td>{{ candidatejob.createdDate|date('d/m/Y') }}</td>
+                                        <td>
+                                            {% if candidatejob.updatedDate %}
+                                                {{ candidatejob.updatedDate|date('d/m/Y') }}
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ candidatejob.name }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_candidatejob_view', {'id': candidatejob.id}) }}">Voir</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_candidatejob_edit', {'id': candidatejob.id}) }}">Modifier</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_candidatejob_delete', {'id': candidatejob.id}) }}">Supprimer</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+            </div>
         </section><!-- /.content -->
     </aside><!-- /.right-side -->
 {% endblock %}

@@ -20,4 +20,27 @@ class CandidateJobRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    public function getActualCandidateJobs()
+    {
+        $qb = $this->createQueryBuilder('cj');
+
+        $qb
+            ->addSelect('cj')
+            ->distinct('cj')
+            ->leftJoin('cj.job', 'j')
+            ->addSelect('j')
+            ->leftJoin('j.company', 'c')
+            ->addSelect('c')
+            ->leftJoin('c.recruiter', 'r')
+            ->addSelect('r')
+            ->where('cj.isRejected = :isRejected')
+            ->setParameter('isRejected', 0)
+            ->andWhere('cj.isOutdated = :isOutdated')
+            ->setParameter('isOutdated', 0)
+            ->orderBy('cj.createdDate', 'DESC')
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
 }

@@ -22,15 +22,15 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // retrieve last jobs
-        $jobs = $em->getRepository('JobmanagerAdminBundle:Job')
-                   ->getJobs();
+        $candidatejobs = $em->getRepository('JobmanagerAdminBundle:CandidateJob')
+                            ->getActualCandidateJobs();
 
 //        print "<pre>"; \Doctrine\Common\Util\Debug::dump($jobs[0]); print "</pre>";
 //        die('coucou');
 
         // send view
         return $this->render('JobmanagerAdminBundle:Admin:index.html.twig', array(
-            'jobs' => $jobs
+            'candidatejobs' => $candidatejobs
         ));
     }
 
