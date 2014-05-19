@@ -166,10 +166,10 @@ class CheckRemixjobsCommand extends ContainerAwareCommand
                             ->setSubject('Nouveau poste Symfony 2 - Remixjobs')
                             ->setFrom('pa@foulquier.info')
                             ->setTo('pa@foulquier.info')
-                            ->setBody($this->renderView('JobmanagerAdminBundle:Admin:remixjobsEmail.txt.twig', array(
+                            ->setBody($this->getContainer()->get('templating')->render('JobmanagerAdminBundle:Admin:remixjobsEmail.txt.twig', array(
                                 'postingJob' => $jobImport->description
                             )));
-                        $this->get('mailer')->send($message);
+                        $this->getContainer()->get('mailer')->send($message);
 
                         // send output cmd
                         $output->writeln($jobImport->title);
