@@ -117,10 +117,6 @@ class AdminController extends Controller
         // for each job ...
         foreach ($jobsImport->jobs as $jobImport) {
 
-            $tempJob = $em->getRepository('JobmanagerAdminBundle:Job')->getJobByRemixjobsId($jobImport->id);
-//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($jobImport->id); print "</pre>";
-//            die('coucou');
-
             // check if job already imported
             if ($em->getRepository('JobmanagerAdminBundle:Job')->getJobByRemixjobsId($jobImport->id) == null) {
 
