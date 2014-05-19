@@ -92,10 +92,16 @@ class AdminController extends Controller
 
     public function getRemixjobsNewJobsAction()
     {
+        // retrieve jobs from api
         $json_datas = file_get_contents('https://remixjobs.com/api/jobs');
-        $jobs = json_decode($json_datas);
-        foreach ($jobs->jobs as $job) {
-            // filter sf2 jobs
+        $jobsImport = json_decode($json_datas);
+
+        // set output array
+        $outputArr = array();
+
+        foreach ($jobsImport->jobs as $jobImport) {
+
+            // set filter sf2 jobs
             $sf2_occurences = array(
                 'Symfony 2',
                 'Symfony2',
@@ -104,30 +110,80 @@ class AdminController extends Controller
                 'sf2',
                 'SF2'
             );
+
+
+
             foreach ($sf2_occurences as $sf2_occurence) {
-                if (strpos($job->title, $sf2_occurence) !== false) {
-                    print '<pre>id :'; print_r($job->id); print '</pre>';
-                    print '<pre>title :'; print_r($job->title); print '</pre>';
-                    print '<pre>contract_type :'; print_r($job->contract_type); print '</pre>';
-                    print '<pre>company_name :'; print_r($job->company_name); print '</pre>';
-                    print '<pre>company_website :'; print_r($job->company_website); print '</pre>';
-                    print '<pre>status :'; print_r($job->status); print '</pre>';
-                    print '<pre>soldout :'; print_r($job->soldout); print '</pre>';
-                    print '<pre>short_formatted_address :'; print_r($job->geolocation->short_formatted_address); print '</pre>';
-                    print '<pre>formatted_address :'; print_r($job->geolocation->formatted_address); print '</pre>';
-                    print '<pre>lat :'; print_r($job->geolocation->lat); print '</pre>';
-                    print '<pre>lng :'; print_r($job->geolocation->lng); print '</pre>';
-                    print '<pre>href :'; print_r($job->_links->www->href); print '</pre>';
+
+                // filter sf2 jobs
+                if (strpos($jobImport->title, $sf2_occurence) !== false && empty($jobImport->soldout)) {
+
+                    // Company
+
+//                    print '<pre>company_name :'; print_r($jobImport->company_name); print '</pre>';
+//                    print '<pre>company_website :'; print_r($jobImport->company_website); print '</pre>';
+//                    print '<pre>short_formatted_address :'; print_r($jobImport->geolocation->short_formatted_address); print '</pre>';
+//                    print '<pre>formatted_address :'; print_r($jobImport->geolocation->formatted_address); print '</pre>';
+//                    print '<pre>lat :'; print_r($jobImport->geolocation->lat); print '</pre>';
+//                    print '<pre>lng :'; print_r($jobImport->geolocation->lng); print '</pre>';
+                    $company = new Company();
+                    $company->setName($jobImport->company_name);
+                    $company->setUrlCompany($jobImport->company_website);
+
+                    // parse address
+                    $addressArr = explode(',', $jobImport->geolocation->formatted_address);
+
+                    $cityArr = explode(' ', $addressArr[1]);
+
+//                    print '<pre>'; print_r($addressArr); print '</pre>';
+//                    print '<pre>'; print_r($cityArr); print '</pre>';
+//                    die;
+
+                    $company->setAddress($addressArr[0]);
+                    $company->setZip($cityArr[1]);
+                    $company->setCity($cityArr[2]);
+                    $company->setCountry($addressArr[2]);
+                    $company->setLat($jobImport->geolocation->lat);
+                    $company->setLng($jobImport->geolocation->lng);
+
+
+                    // Job
+//                    print '<pre>id :'; print_r($jobImport->id); print '</pre>';
+//                    print '<pre>title :'; print_r($jobImport->title); print '</pre>';
+//                    print '<pre>contract_type :'; print_r($jobImport->contract_type); print '</pre>';
+//                    print '<pre>status :'; print_r($jobImport->status); print '</pre>';
+//                    print '<pre>soldout :'; print_r($jobImport->soldout); print '</pre>';
+//                    print '<pre>href :'; print_r($jobImport->_links->www->href); print '</pre>';
+                    //die('couc');
+
+                    $job = new Job();
+                    $job->setCreatedDate($jobImport->validation_time);
+                    $job->setRemixjobsId($jobImport->id);
+                    $job->setName($jobImport->title);
+                    $job->setContractType($jobImport->contract_type);
+                    $job->statusRemixjobs = $jobImport->status;
+                    $job->setUrlJob($jobImport->_links->www->href);
+                    $job->setCompany($company);
+
+                    $outputArr[] = $job;
+
+
                 }
+
             }
 
 
 
 
         }
-        //print '<pre>'; print_r($jobs->jobs[0]); print '</pre>';
 
-        return new Response('OUESH');
+//        print '<pre>href :'; print_r($outputArr); print '</pre>';
+//        die;
+
+        // send view
+        return $this->render('JobmanagerAdminBundle:Admin:remixjobs-index.html.twig', array(
+            'jobs' => $outputArr
+        ));
 
     }
 
