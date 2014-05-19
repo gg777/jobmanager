@@ -24,6 +24,14 @@
                         <div class="box-header">
                             <h3 class="box-title">Résumé</h3>
                             <p style="clear: both; padding-left: 10px;">Nombre de candidatures en cours : {{ countCandidateJobs }}</p>
+                            <span style="display: inline-block; height: 10px; width: 10px; margin: 0 10px; background-color: deepskyblue;"></span>
+                            <span>Entretien tel. effectué</span>
+                            <span style="display: inline-block; height: 10px; width: 10px; margin: 0 10px; background-color: #ffff00;"></span>
+                            <span>Entretien effectué</span>
+                            <span style="display: inline-block; height: 10px; width: 10px; margin: 0 10px; background-color: greenyellow;"></span>
+                            <span>Test effectué et validé</span>
+                            <span style="display: inline-block; height: 10px; width: 10px; margin: 0 10px; background-color: orange;"></span>
+                            <span>Test effectué et insuffisant</span>
                         </div>
 
                     </div>
@@ -36,13 +44,14 @@
                             <h3 class="box-title">Candidatures en cours</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body table-responsive">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Date de création</th>
                                     <th>Date de modification</th>
                                     <th>Name</th>
+                                    <th>Note</th>
                                     <th>Voir</th>
                                     <th>Modifier</th>
                                     <th>Supprimer</th>
@@ -50,7 +59,23 @@
                                 </thead>
                                 <tbody>
                                 {% for candidatejob in candidatejobs %}
-                                    <tr>
+                                    <tr
+                                        {% if candidatejob.hasFonecall == true %}
+                                            {% if candidatejob.hasMeeting == true %}
+                                                {% if candidatejob.meanNote is not empty %}
+                                                    {% if candidatejob.meanNote < 5 %}
+                                                        style="background-color: orange; !important"
+                                                    {% else %}
+                                                        style="background-color: greenyellow; !important"
+                                                    {% endif %}
+                                                {% else %}
+                                                    style="background-color: #ffff00; !important"
+                                                {% endif %}
+                                            {% else %}
+                                                style="background-color: deepskyblue; !important"
+                                            {% endif %}
+                                        {% endif %}
+                                    >
                                         <td>{{ candidatejob.id }}</td>
                                         <td>{{ candidatejob.createdDate|date('d/m/Y') }}</td>
                                         <td>
@@ -59,6 +84,7 @@
                                             {% endif %}
                                         </td>
                                         <td>{{ candidatejob.name }}</td>
+                                        <td>{{ candidatejob.meanNote }}</td>
                                         <td>
                                             <a href="{{ path('admin_candidatejob_view', {'id': candidatejob.id}) }}">Voir</a>
                                         </td>

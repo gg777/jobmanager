@@ -20,4 +20,26 @@ class FonecallRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    public function checkIfCandidateJobHasFonecall($candidateJob)
+    {
+        $qb = $this->createQueryBuilder('f');
+
+        $qb
+            ->addSelect('f')
+            ->where('f.candidate_job = :id')
+            ->setParameter('id', $candidateJob)
+        ;
+
+        $result = $qb->getQuery()->getResult();
+
+        // check if result
+        if ($result != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 }

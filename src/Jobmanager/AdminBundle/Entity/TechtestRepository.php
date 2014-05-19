@@ -4,6 +4,7 @@ namespace Jobmanager\AdminBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+
 /**
  * TechtestRepository
  *
@@ -17,6 +18,19 @@ class TechtestRepository extends EntityRepository
         $qb = $this->createQueryBuilder('t');
 
         $qb->orderBy('t.id', 'DESC');
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getTestsForMeeting(Meeting $meeting)
+    {
+        $qb = $this->createQueryBuilder('t');
+
+        $qb
+            ->addSelect('t')
+            ->where('t.meeting = :meeting')
+            ->setParameter('meeting', $meeting)
+        ;
 
         return $qb->getQuery()->getResult();
     }

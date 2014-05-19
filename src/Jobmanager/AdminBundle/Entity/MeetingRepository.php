@@ -42,4 +42,37 @@ class MeetingRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    public function checkIfCandidateJobHasMeeting($candidateJob)
+    {
+        $qb = $this->createQueryBuilder('m');
+
+        $qb
+            ->addSelect('m')
+            ->where('m.candidate_job = :id')
+            ->setParameter('id', $candidateJob)
+        ;
+
+        $result = $qb->getQuery()->getResult();
+
+        // check if result
+        if ($result != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getMeetingsForCandidateJob(CandidateJob $candidateJob)
+    {
+        $qb = $this->createQueryBuilder('m');
+
+        $qb
+            ->addSelect('m')
+            ->where('m.candidate_job = :candidateJob')
+            ->setParameter('candidateJob', $candidateJob)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
 }
