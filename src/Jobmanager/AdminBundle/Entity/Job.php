@@ -78,6 +78,13 @@ class Job
     private $jobSource;
 
     /**
+     * @var
+     *
+     * @ORM\Column(name="posting_job", type="text", nullable=true)
+     */
+    private $postingJob;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -277,5 +284,28 @@ class Job
     public function getJobSource()
     {
         return $this->jobSource;
+    }
+
+    /**
+     * Set postingJob
+     *
+     * @param string $postingJob
+     * @return Job
+     */
+    public function setPostingJob($postingJob)
+    {
+        $this->postingJob = $postingJob;
+
+        return $this;
+    }
+
+    /**
+     * Get postingJob
+     *
+     * @return string 
+     */
+    public function getPostingJob()
+    {
+        return $this->postingJob;
     }
 }

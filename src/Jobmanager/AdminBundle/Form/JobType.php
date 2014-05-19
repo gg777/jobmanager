@@ -32,6 +32,9 @@ class JobType extends AbstractType
                 'required' => false,
                 'empty_data' => null
             ))
+            ->add('postingJob', 'textarea', array(
+                'required' => false
+            ))
         ;
 
 
