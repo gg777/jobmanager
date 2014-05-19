@@ -31,9 +31,9 @@
                                     <th>ID</th>
                                     <th>name</th>
                                     <th>level</th>
-                                    <th>View</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    <th>Voir</th>
+                                    <th>Modifier</th>
+                                    <th>Supprimer</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -43,13 +43,13 @@
                                         <td>{{ diploma.name }}</td>
                                         <td>{{ diploma.level }}</td>
                                         <td>
-                                            <a href="{{ path('admin_diploma_view', {'id': diploma.id}) }}">View</a>
+                                            <a href="{{ path('admin_diploma_view', {'id': diploma.id}) }}">Voir</a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('admin_diploma_edit', {'id': diploma.id}) }}">Edit</a>
+                                            <a href="{{ path('admin_diploma_edit', {'id': diploma.id}) }}">Modifier</a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('admin_diploma_delete', {'id': diploma.id}) }}">Delete</a>
+                                            <a href="{{ path('admin_diploma_delete', {'id': diploma.id}) }}">Supprimer</a>
                                         </td>
                                     </tr>
                                 {% endfor %}

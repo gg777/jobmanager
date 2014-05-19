@@ -32,9 +32,11 @@
                             <h3 class="box-title">Description du rappel</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
-                            <h1>{{ recall.name }}</h1>
+                            <h1>Rappel du : {{ recall.createdDate|date('Y-m-d H:i') }}</h1>
                             <h2>Infos</h2>
-                            <p>Level : {{ recall.level }}</p>
+                            <p>Gender : {{ recall.recruiter.gender }}</p>
+                            <p>Firstname : {{ recall.recruiter.firstName }}</p>
+                            <p>Lastname : {{ recall.recruiter.lastName }}</p>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
                 </div>

@@ -52,6 +52,13 @@ class Recall
     /**
      * @var
      *
+     * @ORM\Column(name="recall_date", type="datetime", nullable=true)
+     */
+    private $recallDate;
+
+    /**
+     * @var
+     *
      * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\JobSource")
      */
     private $jobSource;
@@ -210,5 +217,28 @@ class Recall
     public function getIsRecalled()
     {
         return $this->isRecalled;
+    }
+
+    /**
+     * Set recallDate
+     *
+     * @param \DateTime $recallDate
+     * @return Recall
+     */
+    public function setRecallDate($recallDate)
+    {
+        $this->recallDate = $recallDate;
+
+        return $this;
+    }
+
+    /**
+     * Get recallDate
+     *
+     * @return \DateTime 
+     */
+    public function getRecallDate()
+    {
+        return $this->recallDate;
     }
 }

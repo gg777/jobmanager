@@ -42,25 +42,4 @@ class MeetingRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
-
-//    public function getRecruiterByMeeting($meetingId)
-//    {
-//        $qb = $this->createQueryBuilder('m');
-//        $qb
-//            ->select('m')
-//            ->distinct('m')
-//            ->where('m.id = :id')
-//            ->setParameter('id', $meetingId)
-//            ->leftJoin('m.candidate_job', 'cj')
-//            ->addSelect('cj')
-//            ->leftJoin('cj.job', 'j')
-//            ->addSelect('j')
-//            ->leftJoin('j.company', 'c')
-//            ->addSelect('c')
-//            ->leftJoin('c.recruiter', 'r')
-//            ->addSelect('r')
-//        ;
-//
-//        return $qb->getQuery()->getResult();
-//    }
 }

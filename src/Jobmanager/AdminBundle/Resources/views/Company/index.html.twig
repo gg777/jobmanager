@@ -34,9 +34,9 @@
                                     <th>Gender</th>
                                     <th>Firstname</th>
                                     <th>Lastname</th>
-                                    <th>View</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    <th>Voir</th>
+                                    <th>Modifier</th>
+                                    <th>Supprimer</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -61,13 +61,13 @@
                                             {% endif %}
                                         </td>
                                         <td>
-                                            <a href="{{ path('admin_company_view', {'id': company.id}) }}">View</a>
+                                            <a href="{{ path('admin_company_view', {'id': company.id}) }}">Voir</a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('admin_company_edit', {'id': company.id}) }}">Edit</a>
+                                            <a href="{{ path('admin_company_edit', {'id': company.id}) }}">Modifier</a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('admin_company_delete', {'id': company.id}) }}">Delete</a>
+                                            <a href="{{ path('admin_company_delete', {'id': company.id}) }}">Supprimer</a>
                                         </td>
                                     </tr>
                                 {% endfor %}

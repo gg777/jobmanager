@@ -33,9 +33,9 @@
                                     <th>Name</th>
                                     <th>Applied</th>
                                     <th>Rejected</th>
-                                    <th>View</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    <th>Voir</th>
+                                    <th>Modifier</th>
+                                    <th>Supprimer</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -47,13 +47,13 @@
                                         <td>{{ candidatejob.isApplied }}</td>
                                         <td>{{ candidatejob.isRejected }}</td>
                                         <td>
-                                            <a href="{{ path('admin_candidatejob_view', {'id': candidatejob.id}) }}">View</a>
+                                            <a href="{{ path('admin_candidatejob_view', {'id': candidatejob.id}) }}">Voir</a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('admin_candidatejob_edit', {'id': candidatejob.id}) }}">Edit</a>
+                                            <a href="{{ path('admin_candidatejob_edit', {'id': candidatejob.id}) }}">Modifier</a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('admin_candidatejob_delete', {'id': candidatejob.id}) }}">Delete</a>
+                                            <a href="{{ path('admin_candidatejob_delete', {'id': candidatejob.id}) }}">Supprimer</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
