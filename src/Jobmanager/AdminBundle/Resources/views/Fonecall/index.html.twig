@@ -30,7 +30,6 @@
                                 <tr>
                                     <th>ID</th>
                                     <td>Date</td>
-                                    <td>Name Job</td>
                                     <th>Voir</th>
                                     <th>Modifier</th>
                                     <th>Supprimer</th>
@@ -41,7 +40,6 @@
                                     <tr>
                                         <td>{{ fonecall.id }}</td>
                                         <td>{{ fonecall.dateBegin|date('Y-m-d H:s') }}</td>
-                                        <td>{{ fonecall.candidateJob.name }}</td>
                                         <td>
                                             <a href="{{ path('admin_fonecall_view', {'id': fonecall.id}) }}">Voir</a>
                                         </td>

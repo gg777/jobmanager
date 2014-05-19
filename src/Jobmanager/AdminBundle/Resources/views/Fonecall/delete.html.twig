@@ -35,7 +35,7 @@ Supprimer un appel tel. - {{ parent() }}
 
                         <h2>Supprimer un compétence</h2>
 
-                        <p>Etes vous certain de vouloir supprimer l'appel "{{ fonecall.name }}" ?</p>
+                        <p>Etes vous certain de vouloir supprimer l'appel "{{ fonecall.id }}" ?</p>
 
                         <form action="{{ path('admin_fonecall_delete', {'id': fonecall.id}) }}" method="post">
                             <a href="{{ path('admin_fonecall_view', {'id': fonecall.id}) }}" class="btn">

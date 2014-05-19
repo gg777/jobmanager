@@ -51,6 +51,9 @@
                                     <th>Date de création</th>
                                     <th>Date de modification</th>
                                     <th>Name</th>
+                                    {#<th>Has Fonecall</th>#}
+                                    {#<th>Has Meeting</th>#}
+                                    <th>Note</th>
                                     <th>Note</th>
                                     <th>Voir</th>
                                     <th>Modifier</th>
@@ -84,6 +87,8 @@
                                             {% endif %}
                                         </td>
                                         <td>{{ candidatejob.name }}</td>
+                                        {#<td>{{ candidatejob.hasFonecall }}</td>#}
+                                        {#<td>{{ candidatejob.hasMeeting }}</td>#}
                                         <td>{{ candidatejob.meanNote }}</td>
                                         <td>
                                             <a href="{{ path('admin_candidatejob_view', {'id': candidatejob.id}) }}">Voir</a>
