@@ -57,11 +57,6 @@ class CandidateJob
     private $interest;
 
     /**
-     * @ORM\Column(name="is_applied", type="boolean", nullable=true)
-     */
-    private $isApplied;
-
-    /**
      * @ORM\Column(name="is_rejected", type="boolean", nullable=true)
      */
     private $isRejected;
@@ -118,29 +113,6 @@ class CandidateJob
     public function getInterest()
     {
         return $this->interest;
-    }
-
-    /**
-     * Set isApplied
-     *
-     * @param boolean $isApplied
-     * @return CandidateJob
-     */
-    public function setIsApplied($isApplied)
-    {
-        $this->isApplied = $isApplied;
-
-        return $this;
-    }
-
-    /**
-     * Get isApplied
-     *
-     * @return boolean 
-     */
-    public function getIsApplied()
-    {
-        return $this->isApplied;
     }
 
     /**

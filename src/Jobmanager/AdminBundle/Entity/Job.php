@@ -65,6 +65,7 @@ class Job
 
     /**
      * @var
+     *
      * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Company", cascade="persist")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -72,6 +73,7 @@ class Job
 
     /**
      * @var
+     * 
      * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\JobSource", cascade="persist")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -83,6 +85,13 @@ class Job
      * @ORM\Column(name="posting_job", type="text", nullable=true)
      */
     private $postingJob;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="is_applied", type="boolean", nullable=true)
+     */
+    private $isApplied;
 
     /**
      * Constructor
@@ -307,5 +316,28 @@ class Job
     public function getPostingJob()
     {
         return $this->postingJob;
+    }
+
+    /**
+     * Set isApplied
+     *
+     * @param boolean $isApplied
+     * @return Job
+     */
+    public function setIsApplied($isApplied)
+    {
+        $this->isApplied = $isApplied;
+
+        return $this;
+    }
+
+    /**
+     * Get isApplied
+     *
+     * @return boolean 
+     */
+    public function getIsApplied()
+    {
+        return $this->isApplied;
     }
 }

@@ -60,7 +60,6 @@ class CandidateJobController extends Controller
 //                print "<pre>"; \Doctrine\Common\Util\Debug::dump($candidatejob->getJob()->getCompany()->getName()); print "</pre>";
 //                die;
                 $candidatejob->setName($candidatejob->getJob()->getName().' - '.$candidatejob->getJob()->getCompany()->getName());
-                $candidatejob->setIsApplied(1);
                 $em->persist($candidatejob);
 
                 $em->flush();
