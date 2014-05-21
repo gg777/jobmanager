@@ -19,7 +19,7 @@ class FormationType extends AbstractType
             ->add('schoolName', 'text', array('required' => false))
             ->add('dateBegin', 'date', array('required' => false))
             ->add('dateEnd', 'date', array('required' => false))
-            ->add('candidates', 'entity', array(
+            ->add('candidate', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Candidate',
                 'property' => 'lastname',
                 'required' => false

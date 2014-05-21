@@ -15,13 +15,11 @@ class DiplomaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', array('required' => false))
-            ->add('schoolName', array('required' => false))
-            ->add('date', array('required' => false))
-            ->add('candidates', 'entity', array(
-                'class' => 'JobmanagerAdminBundle:Candidate',
-                'property' => 'lastname',
-                'required' => false
+            ->add('name', 'text', array('required' => false))
+            ->add('date', 'date', array('required' => false))
+            ->add('formation', 'entity', array(
+                'class' => 'JobmanagerAdminBundle:Formation',
+                'property' => 'name'
             ))
         ;
     }

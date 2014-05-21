@@ -24,6 +24,13 @@ class Project
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="string", nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="domain_intervention", type="text", nullable=true)
      */
     private $domainIntervention;
@@ -41,6 +48,13 @@ class Project
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255, nullable=true)
+     */
+    private $url;
 
     /**
      * @var
@@ -149,5 +163,51 @@ class Project
     public function getJobExperience()
     {
         return $this->jobExperience;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Project
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     * @return Project
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string 
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 }

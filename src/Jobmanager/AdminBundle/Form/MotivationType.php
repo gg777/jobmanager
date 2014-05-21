@@ -18,7 +18,7 @@ class MotivationType extends AbstractType
             ->add('name', 'text', array('required' => false))
             ->add('createdDate', 'date', array('required' => false))
             ->add('text', 'textarea', array('required' => false))
-            ->add('candidates', 'entity', array(
+            ->add('candidate', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Candidate',
                 'property' => 'lastname',
                 'required' => false

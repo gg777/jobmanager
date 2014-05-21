@@ -105,13 +105,13 @@
                                         <td>{{ newjob.createdDate|date('d/m/Y') }}</td>
                                         <td>{{ newjob.name }}</td>
                                         <td>
-                                            <a href="{{ path('admin_candidatejob_view', {'id': newjob.id}) }}">Voir</a>
+                                            <a href="{{ path('admin_job_view', {'id': newjob.id}) }}">Voir</a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('admin_candidatejob_edit', {'id': newjob.id}) }}">Modifier</a>
+                                            <a href="{{ path('admin_job_edit', {'id': newjob.id}) }}">Modifier</a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('admin_candidatejob_delete', {'id': newjob.id}) }}">Supprimer</a>
+                                            <a href="{{ path('admin_job_delete', {'id': newjob.id}) }}">Supprimer</a>
                                         </td>
                                     </tr>
                                 {% endfor %}

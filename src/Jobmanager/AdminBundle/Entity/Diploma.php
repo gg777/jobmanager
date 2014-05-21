@@ -24,30 +24,23 @@ class Diploma
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="school_name", type="string", length=255)
-     */
-    private $schoolName;
-
-    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
 
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Candidate")
+     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Formation")
      */
-    private $candidate;
+    private $formation;
 
 
     /**
@@ -84,29 +77,6 @@ class Diploma
     }
 
     /**
-     * Set schoolName
-     *
-     * @param string $schoolName
-     * @return Diploma
-     */
-    public function setSchoolName($schoolName)
-    {
-        $this->schoolName = $schoolName;
-
-        return $this;
-    }
-
-    /**
-     * Get schoolName
-     *
-     * @return string 
-     */
-    public function getSchoolName()
-    {
-        return $this->schoolName;
-    }
-
-    /**
      * Set date
      *
      * @param \DateTime $date
@@ -131,25 +101,25 @@ class Diploma
 
 
     /**
-     * Set candidate
+     * Set formation
      *
-     * @param \Jobmanager\AdminBundle\Entity\Candidate $candidate
+     * @param \Jobmanager\AdminBundle\Entity\Formation $formation
      * @return Diploma
      */
-    public function setCandidate(\Jobmanager\AdminBundle\Entity\Candidate $candidate = null)
+    public function setFormation(\Jobmanager\AdminBundle\Entity\Formation $formation = null)
     {
-        $this->candidate = $candidate;
+        $this->formation = $formation;
 
         return $this;
     }
 
     /**
-     * Get candidate
+     * Get formation
      *
-     * @return \Jobmanager\AdminBundle\Entity\Candidate 
+     * @return \Jobmanager\AdminBundle\Entity\Formation 
      */
-    public function getCandidate()
+    public function getFormation()
     {
-        return $this->candidate;
+        return $this->formation;
     }
 }
