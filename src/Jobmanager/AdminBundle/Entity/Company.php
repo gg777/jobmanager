@@ -29,6 +29,20 @@ class Company
     private $name;
 
     /**
+     * @var
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable=false)
+     */
+    private $type;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="sector", type="string", length=255, nullable=false)
+     */
+    private $sector;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255, nullable=true)
@@ -337,5 +351,51 @@ class Company
     public function getRecruiter()
     {
         return $this->recruiter;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return Company
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set sector
+     *
+     * @param string $sector
+     * @return Company
+     */
+    public function setSector($sector)
+    {
+        $this->sector = $sector;
+
+        return $this;
+    }
+
+    /**
+     * Get sector
+     *
+     * @return string 
+     */
+    public function getSector()
+    {
+        return $this->sector;
     }
 }

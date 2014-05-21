@@ -16,6 +16,8 @@ class CompanyType extends AbstractType
     {
         $builder
             ->add('name', 'text', array('required' => false))
+            ->add('type', 'text', array('required' => false))
+            ->add('sector', 'text', array('required' => false))
             ->add('address', 'textarea', array('required' => false))
             ->add('zip', 'text', array('required' => false))
             ->add('city', 'text', array('required' => false))
