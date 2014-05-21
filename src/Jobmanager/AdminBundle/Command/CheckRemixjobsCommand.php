@@ -52,6 +52,9 @@ class CheckRemixjobsCommand extends ContainerAwareCommand
             'SF2'
         );
 
+        // init job counter
+        $jobCount = 0;
+
         // for each job ...
         foreach ($jobsImport->jobs as $jobImport) {
 
@@ -71,6 +74,8 @@ class CheckRemixjobsCommand extends ContainerAwareCommand
                 if (isset($flagSfJob)) {
 
                     if ($flagSfJob === true) {
+
+                        $jobCount++;
 
                         // unset flag
                         $flagSfJob = false;
@@ -180,6 +185,22 @@ class CheckRemixjobsCommand extends ContainerAwareCommand
 
             }
 
+        }
+
+        // check if no job
+        if ($jobCount <= 0) {
+            // send email
+            $message = \Swift_Message::newInstance()
+                ->setSubject('No new job')
+                ->setFrom('pa@foulquier.info')
+                ->setTo('pa@foulquier.info')
+                ->setBody($this->getContainer()->get('templating')->render('JobmanagerAdminBundle:Admin:remixjobsEmail.txt.twig', array(
+                    'postingJob' => $jobImport->description
+                )));
+            $this->getContainer()->get('mailer')->send($message);
+
+            // send output cmd
+            $output->writeln($jobImport->title);
         }
 
     }
