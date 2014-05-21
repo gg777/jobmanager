@@ -200,7 +200,7 @@ class CheckRemixjobsCommand extends ContainerAwareCommand
             $this->getContainer()->get('mailer')->send($message);
 
             // send output cmd
-            $output->writeln($jobImport->title);
+            $output->writeln('no new jobs');
         }
 
     }
