@@ -155,7 +155,7 @@ class CheckRemixjobsCommand extends ContainerAwareCommand
 
                         // Job
                         $job = new Job();
-                        $job->setCreatedDate($jobImport->validation_time);
+                        $job->setCreatedDate(new \DateTime());
                         $job->setRemixjobsId($jobImport->id);
                         $job->setName($jobImport->title);
                         $job->setContractType($jobImport->contract_type);
