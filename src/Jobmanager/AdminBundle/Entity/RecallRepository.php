@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class RecallRepository extends EntityRepository
 {
+    public function getNewRecalls()
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        $qb
+            ->addSelect('r')
+            ->where('r.isRecalled = :isRecalled')
+            ->setParameter('isRecalled', 0)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
 }

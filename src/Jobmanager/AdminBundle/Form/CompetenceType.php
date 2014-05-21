@@ -17,7 +17,7 @@ class CompetenceType extends AbstractType
         $builder
             ->add('name', 'text', array('required' => false))
             ->add('level', 'text', array('required' => false))
-            ->add('candidates', 'entity', array(
+            ->add('candidate', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Candidate',
                 'property' => 'lastname',
                 'required' => false

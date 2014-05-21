@@ -87,11 +87,16 @@ class AdminController extends Controller
         $newJobs = $em->getRepository('JobmanagerAdminBundle:Job')
                       ->getNewJobs();
 
+        // retrive recalls
+        $recalls = $em->getRepository('JobmanagerAdminBundle:Recall')
+                      ->getNewRecalls();
+
         // send view
         return $this->render('JobmanagerAdminBundle:Admin:index.html.twig', array(
             'candidatejobs' => $candidateJobs,
             'countCandidateJobs' => $countCandidateJobs,
-            'newjobs' => $newJobs
+            'newjobs' => $newJobs,
+            'recalls' => $recalls
         ));
     }
 

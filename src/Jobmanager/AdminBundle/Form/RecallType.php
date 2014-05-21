@@ -25,7 +25,8 @@ class RecallType extends AbstractType
             ))
             ->add('jobSource', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:JobSource',
-                'property' => 'name'
+                'property' => 'name',
+                'required' => false
             ))
         ;
     }
