@@ -24,21 +24,21 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
      * @var
      *
-     * @ORM\Column(name="type", type="string", length=255, nullable=false)
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
     private $type;
 
     /**
      * @var
      *
-     * @ORM\Column(name="sector", type="string", length=255, nullable=false)
+     * @ORM\Column(name="sector", type="string", length=255, nullable=true)
      */
     private $sector;
 
