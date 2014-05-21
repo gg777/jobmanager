@@ -166,6 +166,10 @@ class CheckRemixjobsCommand extends ContainerAwareCommand
 
                         $outputArr[] = $job;
 
+                        // persist job
+                        $em->persist($job);
+                        $em->flush();
+
                         // send email
                         $message = \Swift_Message::newInstance()
                             ->setSubject('Nouveau poste Symfony 2 - Remixjobs')
