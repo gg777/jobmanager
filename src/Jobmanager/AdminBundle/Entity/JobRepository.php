@@ -43,4 +43,17 @@ class JobRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function getNewJobs()
+    {
+        $qb = $this->createQueryBuilder('j');
+
+        $qb
+            ->addSelect('j')
+            ->where('j.isApplied = :isApplied')
+            ->setParameter('isApplied', 0)
+            ->orderBy('j.createdDate', 'DESC')
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
 }

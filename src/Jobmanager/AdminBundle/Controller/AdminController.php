@@ -21,7 +21,7 @@ class AdminController extends Controller
         // call entity manager
         $em = $this->getDoctrine()->getManager();
 
-        // retrieve last jobs
+        // retrieve candidate_job
         $candidateJobs = $em->getRepository('JobmanagerAdminBundle:CandidateJob')
                             ->getActualCandidateJobs();
 
@@ -83,10 +83,15 @@ class AdminController extends Controller
 //        print "<pre>"; \Doctrine\Common\Util\Debug::dump($candidateJob); print "</pre>";
 //        die('coucou');
 
+        // retrieve new jobs
+        $newJobs = $em->getRepository('JobmanagerAdminBundle:Job')
+                      ->getNewJobs();
+
         // send view
         return $this->render('JobmanagerAdminBundle:Admin:index.html.twig', array(
             'candidatejobs' => $candidateJobs,
-            'countCandidateJobs' => $countCandidateJobs
+            'countCandidateJobs' => $countCandidateJobs,
+            'newjobs' => $newJobs
         ));
     }
 
