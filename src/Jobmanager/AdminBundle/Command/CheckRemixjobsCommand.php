@@ -163,6 +163,7 @@ class CheckRemixjobsCommand extends ContainerAwareCommand
                         $job->setUrlJob($jobImport->_links->www->href);
                         $job->setCompany($company);
                         $job->setPostingJob($jobImport->description);
+                        $job->setIsApplied(0);
 
                         $outputArr[] = $job;
 
