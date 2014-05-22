@@ -221,15 +221,7 @@ class SuperJobController extends Controller
 //            print "<pre>"; \Doctrine\Common\Util\Debug::dump($data_form); print "</pre>";
 //            die;
 
-            // create new recruiter
-            $recruiter = new Recruiter();
 
-            // bind data
-            $recruiter->setGender($data_form['recruiter']['gender']);
-            $recruiter->setFirstName($data_form['recruiter']['firstName']);
-            $recruiter->setLastName($data_form['recruiter']['lastName']);
-            $recruiter->setTel($data_form['recruiter']['tel']);
-            $recruiter->setEmail($data_form['recruiter']['email']);
 
             // create new company
             $company = new Company();
@@ -244,7 +236,22 @@ class SuperJobController extends Controller
             $company->setLng($data_form['company']['lng']);
             $company->setIsHeadHunter($data_form['company']['isHeadHunter']);
             $company->setUrlCompany($data_form['company']['urlCompany']);
-            $company->setRecruiter($recruiter);
+            //$company->setRecruiter($recruiter);
+
+            // create new recruiter
+            $recruiter = new Recruiter();
+
+
+            // bind data
+            $recruiter->setGender($data_form['recruiter']['gender']);
+            $recruiter->setFirstName($data_form['recruiter']['firstName']);
+            $recruiter->setLastName($data_form['recruiter']['lastName']);
+            $recruiter->setTel($data_form['recruiter']['tel']);
+            $recruiter->setEmail($data_form['recruiter']['email']);
+            $recruiter->setCompany($company);
+
+//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($recruiter); print "</pre>";
+//            die;
 
             // create new job
             $job = new Job();
@@ -259,6 +266,7 @@ class SuperJobController extends Controller
 
             // save db
             $em = $this->getDoctrine()->getManager();
+            $em->persist($recruiter);
             $em->persist($job);
             $em->flush();
 

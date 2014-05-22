@@ -26,11 +26,6 @@ class CompanyType extends AbstractType
             ->add('lng', 'text', array('required' => false))
             ->add('is_head_hunter', 'checkbox', array('required' => false))
             ->add('urlCompany', 'text', array('required' => false))
-            ->add('recruiter', 'entity', array(
-                'class' => 'JobmanagerAdminBundle:Recruiter',
-                'property' => 'lastname',
-                'required' => false
-            ))
         ;
     }
     

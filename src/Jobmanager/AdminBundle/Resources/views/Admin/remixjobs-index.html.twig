@@ -36,9 +36,6 @@
                                     <th>Adresse</th>
                                     <th>CP</th>
                                     <th>Ville</th>
-                                    <th>Prénom</th>
-                                    <th>Nom</th>
-                                    <th>Importer</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -52,20 +49,6 @@
                                         <td>{{ job.company.address }}</td>
                                         <td>{{ job.company.zip }}</td>
                                         <td>{{ job.company.city }}</td>
-                                        <td>
-                                            {% if job.company.recruiter %}
-                                                {{ job.company.recruiter.firstName }}
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            {% if job.company.recruiter %}
-                                                {{ job.company.recruiter.lastName }}
-                                            {% endif %}
-                                            </td>
-                                        <td>
-                                            <a href="{{ path('jobmanager_importoneremixjobs', {'id': job.remixjobsId}) }}">Importer</a>
-                                        </td>
-
                                     </tr>
                                 {% endfor %}
                                 </tbody>

@@ -99,13 +99,6 @@ class Company
     private $urlCompany;
 
     /**
-     * @var
-     *
-     * @ORM\OneToOne(targetEntity="Jobmanager\AdminBundle\Entity\Recruiter", cascade={"persist"})
-     */
-    private $recruiter;
-
-    /**
      * Get id
      *
      * @return integer 
@@ -331,29 +324,6 @@ class Company
     }
 
     /**
-     * Set recruiter
-     *
-     * @param \Jobmanager\AdminBundle\Entity\Recruiter $recruiter
-     * @return Company
-     */
-    public function setRecruiter(\Jobmanager\AdminBundle\Entity\Recruiter $recruiter = null)
-    {
-        $this->recruiter = $recruiter;
-
-        return $this;
-    }
-
-    /**
-     * Get recruiter
-     *
-     * @return \Jobmanager\AdminBundle\Entity\Recruiter 
-     */
-    public function getRecruiter()
-    {
-        return $this->recruiter;
-    }
-
-    /**
      * Set type
      *
      * @param string $type
@@ -397,5 +367,38 @@ class Company
     public function getSector()
     {
         return $this->sector;
+    }
+
+    /**
+     * Add recruiters
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Recruiter $recruiters
+     * @return Company
+     */
+    public function addRecruiter(\Jobmanager\AdminBundle\Entity\Recruiter $recruiters)
+    {
+        $this->recruiters[] = $recruiters;
+
+        return $this;
+    }
+
+    /**
+     * Remove recruiters
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Recruiter $recruiters
+     */
+    public function removeRecruiter(\Jobmanager\AdminBundle\Entity\Recruiter $recruiters)
+    {
+        $this->recruiters->removeElement($recruiters);
+    }
+
+    /**
+     * Get recruiters
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRecruiters()
+    {
+        return $this->recruiters;
     }
 }

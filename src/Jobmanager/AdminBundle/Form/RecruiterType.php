@@ -21,6 +21,11 @@ class RecruiterType extends AbstractType
             ->add('tel', 'text', array('required' => false))
             ->add('mobile', 'text', array('required' => false))
             ->add('email', 'text', array('required' => false))
+            ->add('company', 'entity', array(
+                'class' => 'JobmanagerAdminBundle:Company',
+                'property' => 'name',
+                'required' => false
+            ))
         ;
     }
     
