@@ -24,7 +24,7 @@ class MeetingController extends Controller
 
         // retrieve meetings
         $meetings = $em->getRepository('JobmanagerAdminBundle:Meeting')
-                       ->getRecruiterByMeeting();
+                       ->getMeetingAndCompany();
 
         // send view
         return $this->render('JobmanagerAdminBundle:Meeting:index.html.twig', array(

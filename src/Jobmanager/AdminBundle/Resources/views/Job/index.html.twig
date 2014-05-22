@@ -33,9 +33,6 @@
                                     <th>Job title</th>
                                     <th>Company</th>
                                     <th>City</th>
-                                    <th>Gender</th>
-                                    <th>Firstname</th>
-                                    <th>Lastname</th>
                                     <th>Voir</th>
                                     <th>Modifier</th>
                                     <th>Supprimer</th>
@@ -55,27 +52,6 @@
                                         <td>
                                             {% if job.company %}
                                                 {{ job.company.city }}
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            {% if job.company %}
-                                                {% if job.company.recruiter %}
-                                                    {{ job.company.recruiter.gender }}
-                                                {% endif %}
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            {% if job.company %}
-                                                {% if job.company.recruiter %}
-                                                    {{ job.company.recruiter.firstname }}
-                                                {% endif %}
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            {% if job.company %}
-                                                {% if job.company.recruiter %}
-                                                    {{ job.company.recruiter.lastname }}
-                                                {% endif %}
                                             {% endif %}
                                         </td>
                                         <td>

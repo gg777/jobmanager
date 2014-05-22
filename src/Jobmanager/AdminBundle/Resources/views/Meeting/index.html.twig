@@ -34,9 +34,9 @@
                                     <th>Begin</th>
                                     <th>End</th>
                                     <th>Job</th>
-                                    <th>Gender</th>
-                                    <th>Firstname</th>
-                                    <th>Lastname</th>
+                                    {#<th>Gender</th>#}
+                                    {#<th>Firstname</th>#}
+                                    {#<th>Lastname</th>#}
                                     <th>View</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -58,21 +58,21 @@
                                             {% endif %}
                                         </td>
                                         <td>{{ meeting.candidateJob.name }}</td>
-                                        <td>
-                                            {% if meeting.candidateJob.job.company.recruiter %}
-                                                {{ meeting.candidateJob.job.company.recruiter.gender }}
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            {% if meeting.candidateJob.job.company.recruiter %}
-                                                {{ meeting.candidateJob.job.company.recruiter.firstName }}
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            {% if meeting.candidateJob.job.company.recruiter %}
-                                                {{ meeting.candidateJob.job.company.recruiter.lastName }}
-                                            {% endif %}
-                                        </td>
+                                        {#<td>#}
+                                            {#{% if meeting.candidateJob.job.company.recruiter %}#}
+                                                {#{{ meeting.candidateJob.job.company.recruiter.gender }}#}
+                                            {#{% endif %}#}
+                                        {#</td>#}
+                                        {#<td>#}
+                                            {#{% if meeting.candidateJob.job.company.recruiter %}#}
+                                                {#{{ meeting.candidateJob.job.company.recruiter.firstName }}#}
+                                            {#{% endif %}#}
+                                        {#</td>#}
+                                        {#<td>#}
+                                            {#{% if meeting.candidateJob.job.company.recruiter %}#}
+                                                {#{{ meeting.candidateJob.job.company.recruiter.lastName }}#}
+                                            {#{% endif %}#}
+                                        {#</td>#}
                                         <td>
                                             <a href="{{ path('admin_meeting_view', {'id': meeting.id}) }}">View</a>
                                         </td>

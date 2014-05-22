@@ -22,7 +22,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Candidatures list</h3>
+                            <h3 class="box-title">Candidatures</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body table-responsive">
                             <table id="example1" class="table table-bordered table-striped">
@@ -32,7 +32,6 @@
                                     <th>Date de création</th>
                                     <th>Date de modification</th>
                                     <th>Name</th>
-                                    <th>Applied</th>
                                     <th>Rejected</th>
                                     <th>Voir</th>
                                     <th>Modifier</th>
@@ -46,7 +45,6 @@
                                         <td>{{ candidatejob.createdDate|date('d/m/Y') }}</td>
                                         <td>{{ candidatejob.updatedDate|date('d/m/Y') }}</td>
                                         <td>{{ candidatejob.name }}</td>
-                                        <td>{{ candidatejob.isApplied }}</td>
                                         <td>{{ candidatejob.isRejected }}</td>
                                         <td>
                                             <a href="{{ path('admin_candidatejob_view', {'id': candidatejob.id}) }}">Voir</a>

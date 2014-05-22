@@ -23,7 +23,7 @@ class MeetingRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function getRecruiterByMeeting()
+    public function getMeetingAndCompany()
     {
         $qb = $this->createQueryBuilder('m');
         $qb
@@ -35,8 +35,6 @@ class MeetingRepository extends EntityRepository
             ->addSelect('j')
             ->leftJoin('j.company', 'c')
             ->addSelect('c')
-            ->leftJoin('c.recruiter', 'r')
-            ->addSelect('r')
             ->orderBy('m.dateBegin', 'DESC')
         ;
 

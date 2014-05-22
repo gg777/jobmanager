@@ -22,8 +22,6 @@ class JobRepository extends EntityRepository
             ->distinct('j')
             ->leftJoin('j.company', 'c')
             ->addSelect('c')
-            ->leftJoin('c.recruiter', 'r')
-            ->addSelect('r')
             ->orderBy('j.createdDate', 'DESC')
         ;
 
