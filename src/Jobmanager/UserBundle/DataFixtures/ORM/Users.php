@@ -25,26 +25,26 @@ class Users implements FixtureInterface, ContainerAwareInterface
 
     public function load(ObjectManager $manager)
     {
-        $noms = array('gerard');
+        $logins = array('gerard');
 
-        foreach ($noms as $i => $nom) {
-            $users[$i] = new User();
-            $users[$i]->setUsername($nom);
-            $users[$i]->setSalt(uniqid(mt_rand()));
+        foreach ($logins as $k => $login) {
+            $users[$k] = new User();
+            $users[$k]->setUsername($login);
+            $users[$k]->setSalt(uniqid(mt_rand()));
 
             // call encoder service
             $encoder = $this->container
                 ->get('security.encoder_factory')
-                ->getEncoder($users[$i])
+                ->getEncoder($users[$k])
             ;
 
-            $password = $encoder->encodePassword('137paf6', $users[$i]->getSalt());
+            $password = $encoder->encodePassword('137paf6', $users[$k]->getSalt());
 
-            $users[$i]->setPassword($password);
+            $users[$k]->setPassword($password);
 
-            $users[$i]->setRoles(array('ROLE_ADMIN'));
+            $users[$k]->setRoles(array('ROLE_ADMIN'));
 
-            $manager->persist($users[$i]);
+            $manager->persist($users[$k]);
         }
 
         $manager->flush();
