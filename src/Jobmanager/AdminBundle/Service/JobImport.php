@@ -202,7 +202,7 @@ class JobImport
     }
 
     /**
-     * Set new recruiter
+     * Parse posting job and set new recruiter
      * @param $jobImport
      * @param Company $company
      * @return Recruiter|null
