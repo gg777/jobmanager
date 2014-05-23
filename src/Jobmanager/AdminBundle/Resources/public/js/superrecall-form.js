@@ -73,9 +73,31 @@ $(document).ready(function(){
                                 Recall.recallDateDay = $('#jobmanager_adminbundle_recall_recallDate_date_year').val();
                                 Recall.recallDateTimeHour = $('#jobmanager_adminbundle_recall_recallDate_time_hour').val();
                                 Recall.recallDateTimeMinute = $('#jobmanager_adminbundle_recall_recallDate_time_minute').val();
-                                Recall.isFirstContact = $('#jobmanager_adminbundle_recall_isFirstContact').val();
-                                Recall.isRecalled = $('#jobmanager_adminbundle_recall_isRecalled').val();
-                                Recall.isMail = $('#jobmanager_adminbundle_recall_isMail').val();
+
+                                if ($('#jobmanager_adminbundle_recall_isRecalled').parent().hasClass('checked') == true) {
+                                    Recall.isFirstContact = 1;
+                                } else {
+                                    Recall.isFirstContact = 0;
+                                }
+
+                                if ($('#jobmanager_adminbundle_recall_isFirstContact').parent().hasClass('checked') == true) {
+                                    Recall.isFirstContact = 1;
+                                } else {
+                                    Recall.isFirstContact = 0;
+                                }
+
+                                if ($('#jobmanager_adminbundle_recall_isRecalled').parent().hasClass('checked') == true) {
+                                    Recall.isRecalled = 1;
+                                } else {
+                                    Recall.isRecalled = 0;
+                                }
+
+                                if ($('#jobmanager_adminbundle_recall_isMail').parent().hasClass('checked') == true) {
+                                    Recall.isMail = 1;
+                                } else {
+                                    Recall.isMail = 0;
+                                }
+
                                 Recall.description = $('#jobmanager_adminbundle_recall_description').val();
                                 Recall.jobSource = $('#jobmanager_adminbundle_recall_jobSource').val();
 
@@ -149,9 +171,31 @@ $(document).ready(function(){
                     Recall.recallDateDay = $('#jobmanager_adminbundle_recall_recallDate_date_year').val();
                     Recall.recallDateTimeHour = $('#jobmanager_adminbundle_recall_recallDate_time_hour').val();
                     Recall.recallDateTimeMinute = $('#jobmanager_adminbundle_recall_recallDate_time_minute').val();
-                    Recall.isFirstContact = $('#jobmanager_adminbundle_recall_isFirstContact').val();
-                    Recall.isRecalled = $('#jobmanager_adminbundle_recall_isRecalled').val();
-                    Recall.isMail = $('#jobmanager_adminbundle_recall_isMail').val();
+
+                    if ($('#jobmanager_adminbundle_recall_isRecalled').parent().hasClass('checked') == true) {
+                        Recall.isFirstContact = 1;
+                    } else {
+                        Recall.isFirstContact = 0;
+                    }
+
+                    if ($('#jobmanager_adminbundle_recall_isFirstContact').parent().hasClass('checked') == true) {
+                        Recall.isFirstContact = 1;
+                    } else {
+                        Recall.isFirstContact = 0;
+                    }
+
+                    if ($('#jobmanager_adminbundle_recall_isRecalled').parent().hasClass('checked') == true) {
+                        Recall.isRecalled = 1;
+                    } else {
+                        Recall.isRecalled = 0;
+                    }
+
+                    if ($('#jobmanager_adminbundle_recall_isMail').parent().hasClass('checked') == true) {
+                        Recall.isMail = 1;
+                    } else {
+                        Recall.isMail = 0;
+                    }
+
                     Recall.description = $('#jobmanager_adminbundle_recall_description').val();
                     Recall.jobSource = $('#jobmanager_adminbundle_recall_jobSource').val();
 

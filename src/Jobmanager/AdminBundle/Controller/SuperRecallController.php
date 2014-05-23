@@ -259,10 +259,11 @@ class SuperRecallController extends Controller
             $recall->setIsFirstContact($data_form['recall']['isFirstContact']);
             $recall->setIsRecalled($data_form['recall']['isRecalled']);
 
-//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($data_form); print "</pre>";
+//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($data_form['recall']['isRecalled']); print "</pre>";
 //            die;
 
             $recall->setIsMail($data_form['recall']['isMail']);
+
             if (!empty($data_form['recall']['jobsource'])) {
 
                 $jobSourceId = $data_form['recall']['jobSource'];
