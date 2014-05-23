@@ -83,8 +83,8 @@ class JobImport
                         $outputArr[] = $job;
 
                         // persist job
-//                        $em->persist($job);
-//                        $em->flush();
+                        $em->persist($job);
+                        $em->flush();
 
                     }
 
