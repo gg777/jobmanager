@@ -217,6 +217,9 @@ class SuperRecallController extends Controller
             // get ajax post data
             $data_form = $request->request->get('data_form');
 
+            // call enity manager
+            $em = $this->getDoctrine()->getManager();
+
             // create new company
             $company = new Company();
 
@@ -234,8 +237,7 @@ class SuperRecallController extends Controller
             // create new recruiter
             $recruiter = new Recruiter();
 
-//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($data_form); print "</pre>";
-//            die;
+
 
             // bind data
             $recruiter->setCompany($company);
@@ -256,12 +258,24 @@ class SuperRecallController extends Controller
             $recall->setDescription($data_form['recall']['description']);
             $recall->setIsFirstContact($data_form['recall']['isFirstContact']);
             $recall->setIsRecalled($data_form['recall']['isRecalled']);
+
+//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($data_form); print "</pre>";
+//            die;
+
             $recall->setIsMail($data_form['recall']['isMail']);
-            $recall->setJobSource($data_form['recall']['jobSource']);
+            if (!empty($data_form['recall']['jobsource'])) {
+
+                $jobSourceId = $data_form['recall']['jobSource'];
+                $jobSource = $em->getRepository('JobmanagerAdminBundle:JobSource')
+                                ->findById($jobSourceId);
+
+                $recall->setJobSource($jobSource);
+
+            }
+
 
 
             // save db
-            $em = $this->getDoctrine()->getManager();
             $em->persist($recall);
             $em->flush();
 
