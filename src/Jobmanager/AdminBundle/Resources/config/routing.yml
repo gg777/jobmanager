@@ -441,6 +441,28 @@ admin_recall_delete:
     defaults: { _controller: JobmanagerAdminBundle:Recall:delete }
     requirements:
         id: \d+
+
+
+# Super Recall CRUD
+admin_superrecall_create:
+    pattern: /super-recall-create
+    defaults: { _controller: JobmanagerAdminBundle:SuperRecall:create }
+
+admin_superrecall_create_newcompanyform:
+    pattern: /superrecall-create-new-company-form
+    defaults: { _controller: JobmanagerAdminBundle:SuperRecall:createNewCompanyForm }
+
+admin_superrecall_create_newcompany:
+    pattern: /superrecall-create-new-company
+    defaults: { _controller: JobmanagerAdminBundle:SuperRecall:createNewCompany }
+
+admin_superrecall_create_newrecruiterform:
+    pattern: /superrecall-create-new-recruiter-form
+    defaults: { _controller: JobmanagerAdminBundle:SuperRecall:createNewRecruiterForm }
+
+admin_superrecall_create_newrecruiter:
+    pattern: /superrecall-create-new-recruiter
+    defaults: { _controller: JobmanagerAdminBundle:SuperRecall:createNewRecruiter }
         
         
 # Techtest CRUD

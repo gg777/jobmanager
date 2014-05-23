@@ -66,7 +66,7 @@ class Recruiter
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Company")
+     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Company", cascade={"persist"})
      */
     private $company;
 

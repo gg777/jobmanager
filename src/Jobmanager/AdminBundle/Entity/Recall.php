@@ -38,13 +38,6 @@ class Recall
     /**
      * @var
      *
-     * @ORM\Column(name="source", type="string", length=255, nullable=true)
-     */
-    private $source;
-
-    /**
-     * @var
-     *
      * @ORM\Column(name="is_recalled", type="boolean", nullable=true)
      */
     private $isRecalled;
@@ -59,6 +52,13 @@ class Recall
     /**
      * @var
      *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var
+     *
      * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\JobSource")
      */
     private $jobSource;
@@ -66,7 +66,7 @@ class Recall
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Recruiter")
+     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Recruiter", cascade={"persist"})
      */
     private $recruiter;
 
@@ -151,29 +151,6 @@ class Recall
     }
 
     /**
-     * Set source
-     *
-     * @param string $source
-     * @return Recall
-     */
-    public function setSource($source)
-    {
-        $this->source = $source;
-
-        return $this;
-    }
-
-    /**
-     * Get source
-     *
-     * @return string 
-     */
-    public function getSource()
-    {
-        return $this->source;
-    }
-
-    /**
      * Set jobSource
      *
      * @param \Jobmanager\AdminBundle\Entity\JobSource $jobSource
@@ -240,5 +217,28 @@ class Recall
     public function getRecallDate()
     {
         return $this->recallDate;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Recall
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

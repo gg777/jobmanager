@@ -1,0 +1,15 @@
+{# src/Jobmanager/AdminBundle/Resources/views/Recall/recall-form.html.twig #}
+
+{% form_theme form "JobmanagerAdminBundle:Form:fields.html.twig" %}
+
+<div id="recall-form-wrapper">
+
+    {# error messages #}
+    {{ form_errors(form) }}
+
+
+    {{ form_rest(form) }}
+    <div class="btn btn-primary" id="superrecall-create-recruiter">New Recruiter</div>
+    <button class="btn btn-primary" type="submit" id="superrecall-create-recall">Submit</button>
+
+</div>

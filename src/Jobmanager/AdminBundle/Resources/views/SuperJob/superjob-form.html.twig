@@ -2,40 +2,43 @@
 
 {% form_theme form "JobmanagerAdminBundle:Form:fields.html.twig" %}
 
-{# error messages #}
-{{ form_errors(form) }}
+<div id="job-form-wrapper">
 
-<div>
-    {{ form_label(form.name, "Titre") }}
-    {{ form_errors(form.name) }}
-    {{ form_widget(form.name) }}
-</div>
-<div>
-    {{ form_label(form.urlJob, "Lien annonce") }}
-    {{ form_errors(form.urlJob) }}
-    {{ form_widget(form.urlJob) }}
-</div>
-<div>
-    {{ form_label(form.remixjobs_id, "ID Remixjob") }}
-    {{ form_errors(form.remixjobs_id) }}
-    {{ form_widget(form.remixjobs_id) }}
-</div>
-<div>
-    {{ form_label(form.contract_type, "Type de contrat") }}
-    {{ form_errors(form.contract_type) }}
-    {{ form_widget(form.contract_type) }}
-</div>
-<div>
-    {{ form_label(form.is_soldout, "Pourvu") }}
-    {{ form_errors(form.is_soldout) }}
-    {{ form_widget(form.is_soldout) }}
-</div>
+    {# error messages #}
+    {{ form_errors(form) }}
 
-{#<ul class="form-company" data-prototype="{{ form_widget(form.company.vars.prototype)|escape }}">#}
-    {#<input id="form-company-btn" type="button" value="Add"/>#}
-{#</ul>#}
+    <div>
+        {{ form_label(form.name, "Titre") }}
+        {{ form_errors(form.name) }}
+        {{ form_widget(form.name) }}
+    </div>
+    <div>
+        {{ form_label(form.urlJob, "Lien annonce") }}
+        {{ form_errors(form.urlJob) }}
+        {{ form_widget(form.urlJob) }}
+    </div>
+    <div>
+        {{ form_label(form.remixjobs_id, "ID Remixjob") }}
+        {{ form_errors(form.remixjobs_id) }}
+        {{ form_widget(form.remixjobs_id) }}
+    </div>
+    <div>
+        {{ form_label(form.contract_type, "Type de contrat") }}
+        {{ form_errors(form.contract_type) }}
+        {{ form_widget(form.contract_type) }}
+    </div>
+    <div>
+        {{ form_label(form.is_soldout, "Pourvu") }}
+        {{ form_errors(form.is_soldout) }}
+        {{ form_widget(form.is_soldout) }}
+    </div>
 
-{{ form_rest(form) }}
-<button class="btn btn-primary" type="submit">Submit</button>
-<div class="btn btn-primary" id="create-company">New Company</div>
+    {#<ul class="form-company" data-prototype="{{ form_widget(form.company.vars.prototype)|escape }}">#}
+        {#<input id="form-company-btn" type="button" value="Add"/>#}
+    {#</ul>#}
 
+    {{ form_rest(form) }}
+    <button class="btn btn-primary" type="submit">Submit</button>
+    <div class="btn btn-primary" id="superjob-create-company">New Company</div>
+
+</div>
