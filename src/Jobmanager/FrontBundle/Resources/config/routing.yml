@@ -1,0 +1,5 @@
+JobmanagerFrontBundle_homepage:
+    pattern: /
+    defaults: { _controller: JobmanagerFrontBundle:Page:index }
+    requirements:
+        _method: GET

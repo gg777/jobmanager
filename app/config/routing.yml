@@ -1,4 +1,22 @@
+jobmanager_front:
+    resource: "@JobmanagerFrontBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jobmanager_user:
+    resource: "@JobmanagerUserBundle/Resources/config/routing.yml"
+    prefix:   /user
+
 jobmanager_admin:
     resource: "@JobmanagerAdminBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /admin
+
+login:
+    pattern: /login
+    defaults: { _controller: JobmanagerUserBundle:Security:login }
+
+login_check:
+    pattern: /login_check
+
+logout:
+    pattern: /logout
 

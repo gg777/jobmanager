@@ -17,6 +17,11 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Jobmanager\AdminBundle\JobmanagerAdminBundle(),
+            new JMS\AopBundle\JMSAopBundle(),
+            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
+            new Jobmanager\UserBundle\JobmanagerUserBundle(),
+            new Jobmanager\FrontBundle\JobmanagerFrontBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

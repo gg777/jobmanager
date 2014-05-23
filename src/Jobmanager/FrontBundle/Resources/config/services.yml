@@ -1,0 +1,7 @@
+parameters:
+#    jobmanager_front.example.class: Jobmanager\FrontBundle\Example
+
+services:
+#    jobmanager_front.example:
+#        class: %jobmanager_front.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
