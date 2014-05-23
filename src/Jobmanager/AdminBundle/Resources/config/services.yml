@@ -2,6 +2,6 @@ parameters:
 #    jobmanager_admin.example.class: Jobmanager\AdminBundle\Example
 
 services:
-#    jobmanager_admin.example:
-#        class: %jobmanager_admin.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    jobmanager_admin.jobimport:
+        class: Jobmanager\AdminBundle\Service\JobImport
+        arguments: [ @doctrine.orm.entity_manager ]

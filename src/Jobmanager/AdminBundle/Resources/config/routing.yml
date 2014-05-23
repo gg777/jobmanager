@@ -11,7 +11,9 @@ jobmanager_getremixjobs:
     pattern: /get-remixjobs
     defaults: { _controller: JobmanagerAdminBundle:Admin:getRemixjobsNewJobs }
 
-
+jobmanager_importjobs:
+    pattern: /import-jobs
+    defaults: { _controller: JobmanagerAdminBundle:Admin:importJobs }
 
 # job CRUD
 
