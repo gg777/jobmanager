@@ -15,6 +15,6 @@ class PageController extends Controller
 {
     public function indexAction()
     {
-        return new Response('YEAH');
+        return $this->render('JobmanagerFrontBundle:Page:index.html.twig');
     }
 } 
