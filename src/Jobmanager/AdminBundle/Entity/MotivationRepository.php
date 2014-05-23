@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class MotivationRepository extends EntityRepository
 {
+    public function getLastMotivationFromCandidate($id)
+    {
+        $qb = $this->createQueryBuilder('m');
+
+        $qb
+            ->addSelect('m')
+            ->join('m.candidate', 'c')
+            ->where('c.id = :id')
+            ->setParameter('id', $id)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
 }

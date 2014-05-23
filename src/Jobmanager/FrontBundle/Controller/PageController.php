@@ -15,6 +15,20 @@ class PageController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('JobmanagerFrontBundle:Page:index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $candidate = $em->getRepository('JobmanagerAdminBundle:Candidate')
+                        ->find(1);
+
+        $motivation = $em->getRepository('JobmanagerAdminBundle:Motivation')
+                         ->getLastMotivationFromCandidate(1);
+
+//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($motivation[0]); print "</pre>";
+//        die('coucou');
+
+        return $this->render('JobmanagerFrontBundle:Page:index.html.twig', array(
+            'candidate' => $candidate,
+            'motivation' => $motivation[0]
+        ));
     }
 } 
