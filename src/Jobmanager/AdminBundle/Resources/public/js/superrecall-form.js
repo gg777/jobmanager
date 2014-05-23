@@ -75,6 +75,7 @@ $(document).ready(function(){
                                 Recall.recallDateTimeMinute = $('#jobmanager_adminbundle_recall_recallDate_time_minute').val();
                                 Recall.isFirstContact = $('#jobmanager_adminbundle_recall_isFirstContact').val();
                                 Recall.isRecalled = $('#jobmanager_adminbundle_recall_isRecalled').val();
+                                Recall.isMail = $('#jobmanager_adminbundle_recall_isMail').val();
                                 Recall.description = $('#jobmanager_adminbundle_recall_description').val();
                                 Recall.jobSource = $('#jobmanager_adminbundle_recall_jobSource').val();
 
@@ -150,6 +151,7 @@ $(document).ready(function(){
                     Recall.recallDateTimeMinute = $('#jobmanager_adminbundle_recall_recallDate_time_minute').val();
                     Recall.isFirstContact = $('#jobmanager_adminbundle_recall_isFirstContact').val();
                     Recall.isRecalled = $('#jobmanager_adminbundle_recall_isRecalled').val();
+                    Recall.isMail = $('#jobmanager_adminbundle_recall_isMail').val();
                     Recall.description = $('#jobmanager_adminbundle_recall_description').val();
                     Recall.jobSource = $('#jobmanager_adminbundle_recall_jobSource').val();
 

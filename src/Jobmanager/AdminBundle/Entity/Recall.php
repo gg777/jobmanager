@@ -36,6 +36,13 @@ class Recall
     private $isFirstContact;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_mail", type="boolean", nullable=true)
+     */
+    private $isMail;
+
+    /**
      * @var
      *
      * @ORM\Column(name="is_recalled", type="boolean", nullable=true)
@@ -240,5 +247,28 @@ class Recall
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set isMail
+     *
+     * @param boolean $isMail
+     * @return Recall
+     */
+    public function setIsMail($isMail)
+    {
+        $this->isMail = $isMail;
+
+        return $this;
+    }
+
+    /**
+     * Get isMail
+     *
+     * @return boolean 
+     */
+    public function getIsMail()
+    {
+        return $this->isMail;
     }
 }

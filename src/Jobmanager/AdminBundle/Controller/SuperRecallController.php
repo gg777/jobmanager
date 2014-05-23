@@ -256,7 +256,8 @@ class SuperRecallController extends Controller
             $recall->setDescription($data_form['recall']['description']);
             $recall->setIsFirstContact($data_form['recall']['isFirstContact']);
             $recall->setIsRecalled($data_form['recall']['isRecalled']);
-            //$recall->setJobSource()
+            $recall->setIsMail($data_form['recall']['isMail']);
+            $recall->setJobSource($data_form['recall']['jobSource']);
 
 
             // save db
