@@ -61,12 +61,12 @@ class CheckRemixjobsCommand extends ContainerAwareCommand
                     ->setFrom('pa@foulquier.info')
                     ->setTo('pa@foulquier.info')
                     ->setBody($this->getContainer()->get('templating')->render('JobmanagerAdminBundle:Admin:remixjobsEmail.txt.twig', array(
-                        'postingJob' => $job->description
+                        'postingJob' => $job->getPostingJob()
                     )));
                 $this->getContainer()->get('mailer')->send($message);
 
                 // send output cmd
-                $output->writeln($job->title);
+                $output->writeln($job->getName());
             }
 
         }
