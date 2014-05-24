@@ -1,9 +1,19 @@
 {% extends "JobmanagerFrontBundle::layout.html.twig" %}
 
 {% block content %}
-    <h4>En recherche d'un poste de développeur PHP backend Symfony 2</h4>
+    <h4 xmlns="http://www.w3.org/1999/html">En recherche d'un poste de développeur PHP backend Symfony 2</h4>
     <p>{{ motivation.text }}</p>
-    <h4>
+    <p>
         <a href="/docs/cv_paf.pdf">Voir mon CV</a>
-    </h4>
+    </p>
+    <h4>Prise de contact</h4>
+    <div>
+        <form method="post">
+            {{ form_errors(form) }}
+            {{ form_rest(form) }}
+
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+
+    </div>
 {% endblock %}

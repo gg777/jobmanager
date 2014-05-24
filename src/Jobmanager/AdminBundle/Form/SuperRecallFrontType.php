@@ -2,11 +2,12 @@
 
 namespace Jobmanager\AdminBundle\Form;
 
+use Jobmanager\AdminBundle\Entity\Recruiter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class SuperRecallType extends AbstractType
+class SuperRecallFrontType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,20 +16,8 @@ class SuperRecallType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('createdDate', 'datetime', array('required' => false))
-            ->add('recallDate', 'datetime', array('required' => false))
-            ->add('isFirstContact', 'checkbox', array('required' => false))
-            ->add('isRecalled', 'checkbox', array('required' => false))
-            ->add('isMail', 'checkbox', array('required' => false))
-            ->add('recruiter', 'entity', array(
-                'class' => 'JobmanagerAdminBundle:Recruiter',
-                'property' => 'lastname'
-            ))
-            ->add('jobSource', 'entity', array(
-                'class' => 'JobmanagerAdminBundle:JobSource',
-                'property' => 'name',
-                'required' => false
-            ))
+            ->add('recruiter', new RecruiterFrontType())
+
             ->add('description', 'textarea', array('required' => false))
         ;
     }
@@ -48,6 +37,6 @@ class SuperRecallType extends AbstractType
      */
     public function getName()
     {
-        return 'jobmanager_adminbundle_superrecall';
+        return 'jobmanager_adminbundle_superrecallfront';
     }
 }

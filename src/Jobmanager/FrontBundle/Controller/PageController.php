@@ -8,8 +8,12 @@
 
 namespace Jobmanager\FrontBundle\Controller;
 
+use Jobmanager\AdminBundle\Entity\Recall;
+use Jobmanager\AdminBundle\Form\SuperRecallFrontType;
+use Jobmanager\AdminBundle\Form\SuperRecallType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class PageController extends Controller
 {
@@ -23,12 +27,41 @@ class PageController extends Controller
         $motivation = $em->getRepository('JobmanagerAdminBundle:Motivation')
                          ->getLastMotivationFromCandidate(1);
 
-//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($motivation[0]); print "</pre>";
-//        die('coucou');
+
+        $recall = new Recall();
+        $form = $this->createForm(new SuperRecallFrontType, $recall);
+
+        $request = $this->get('request');
+
+        if ($request->getMethod() == 'POST') {
+
+            $form->handleRequest($request);
+
+//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($form->getData()); print "</pre>";
+//            die('coucou');
+
+            if ($form->isValid()) {
+
+                $recall->setCreatedDate(new \DateTime());
+                $recall->setIsFirstContact(1);
+                $recall->setIsRecalled(0);
+
+                $em->persist($recall);
+                $em->flush();
+
+                $this->get('session')->getFlashBag()->add('infos', 'Message envoyé.');
+
+                $this->redirect($this->generateUrl('JobmanagerFrontBundle_homepage'));
+
+            }
+
+        }
+
 
         return $this->render('JobmanagerFrontBundle:Page:index.html.twig', array(
             'candidate' => $candidate,
-            'motivation' => $motivation[0]
+            'motivation' => $motivation[0],
+            'form' => $form->createView(),
         ));
     }
 } 
