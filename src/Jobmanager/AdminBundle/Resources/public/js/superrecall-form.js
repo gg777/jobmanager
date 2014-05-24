@@ -12,7 +12,7 @@ $(document).ready(function(){
 
         // call ajax recruiter form
         $.ajax({
-            url: '/superrecall-create-new-recruiter-form',
+            url: '/admin/superrecall-create-new-recruiter-form',
             data: {data : data},
             method: 'post',
             dataType: 'json',
@@ -31,7 +31,7 @@ $(document).ready(function(){
 
                     // ajax call create new company
                     $.ajax({
-                        url: '/superrecall-create-new-company-form',
+                        url: '/admin/superrecall-create-new-company-form',
                         data: {data : data},
                         method: 'post',
                         dataType: 'json',
@@ -124,7 +124,7 @@ $(document).ready(function(){
 
                                 // call ajax
                                 $.ajax({
-                                    url: '/superrecall-create-new-company',
+                                    url: '/admin/superrecall-create-new-company',
                                     data: { data_form: Output},
                                     method: 'post',
                                     dataType: 'json',
@@ -222,7 +222,7 @@ $(document).ready(function(){
 
                     // call ajax
                     $.ajax({
-                        url: '/superrecall-create-new-recruiter',
+                        url: '/admin/superrecall-create-new-recruiter',
                         data: { data_form: Output},
                         method: 'post',
                         dataType: 'json',
