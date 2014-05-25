@@ -213,6 +213,7 @@ _____________________________*/
 p
 {
     line-height: 22px;
+    padding-bottom: 10px;
 }
 
 
@@ -307,6 +308,22 @@ ____________________________________________*/
 ____________________________________________*/
 
 
+.motivation
+{
+    padding-bottom: 40px;
+}
+
+.bloc-cv
+{
+    padding-bottom: 40px;
+}
+
+.title-job-contact-4
+{
+    padding-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
 
 /* Layout bloc content 01
 ____________________________________________*/
@@ -741,90 +758,31 @@ ________________________*/
 }
 
 
-/* Bloc Formulaire
+/* Form front recall
 _____________________________*/
 
-#formulaire {
-    margin-top: 20px;
-}
 
-#form1 select#gender
+form
+{}
+
+form div label.required
 {
-    height: 24px;
-    padding-top: 2px;
+    display: block;
+    padding-bottom: 10px;
 }
 
-#form1 select#gender option
+form div input
 {
-    font-size: 12px;
+    display: block;
+    margin-bottom: 10px;
 }
 
-#formulaire p
-{
-    margin: 0 0 12px 0;
-    padding:0;
-}
+label[for=jobmanager_adminbundle_superrecallfront_recruiter_gender]
+{}
 
-#formulaire p.comment
-{
-    color: #fff;
-    line-height: 18px;
-    font-size: 12px;
-    width: 375px;
-    margin-bottom: 15px;
-}
+input#jobmanager_adminbundle_superrecallfront_recruiter_gender
+{}
 
-#formulaire label
-{
-    color: #FFFFFFf;
-    float: left;
-    width: 60px;
-    font-size: 12px;
-    text-align: right;
-    padding: 0 10px 0 0;
-    line-height: 22px;
-}
-
-#formulaire label span
-{
-    color: #60a200;
-}
-
-#formulaire input.type1
-{
-    width: 300px;
-}
-
-#formulaire input.checkbox
-{
-    margin: 0 8px 10px 90px;
-}
-
-#formulaire input.saisie_verif
-{
-    width: 70px;
-    float: left;
-}
-
-#formulaire textarea
-{
-    width: 300px;
-    height: 100px;
-}
-
-
-#piedForm
-{
-    margin: 5px 0 0 323px;
-    clear: both;
-}
-
-p.message
-{
-    margin: 0 0 16px 0;
-    color: #0F0;
-    font-size: 12px;
-}
 
 
 /* Button 01
@@ -871,46 +829,6 @@ input[type="button"]:hover
 {
     background: -moz-linear-gradient(center top , #FFFFFF 0%, #EDEDED 100%) repeat scroll 0 0 transparent;
     border: 1px solid #BBBBBB;
-}
-
-
-/* Form */
-
-
-
-input[type="text"], textarea, button, a.button, a, input[type="file"]
-{
-    -moz-transition: -moz-box-shadow 0.5s ease 0s, border 0.5s ease 0s, background 0.5s ease 0s;
-}
-
-input
-{
-    -moz-box-sizing: border-box;
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #CCCCCC;
-    border-radius: 5px 5px 5px 5px;
-    box-shadow: 0 1px 6px #CCCCCC inset;
-    display: inline-block;
-    font-size: 1em;
-    margin: 0;
-    padding: 5px 0;
-    text-indent: 5px;
-    vertical-align: middle;
-    width: auto;
-}
-
-textarea
-{
-    -moz-box-sizing: border-box;
-    border: 1px solid #CCCCCC;
-    border-radius: 5px 5px 5px 5px;
-    box-shadow: 0 1px 6px #CCCCCC inset;
-    font-family: inherit;
-    font-size: 0.9em;
-    height: 200px;
-    margin: 0;
-    padding: 5px;
-    vertical-align: middle;
 }
 
 
