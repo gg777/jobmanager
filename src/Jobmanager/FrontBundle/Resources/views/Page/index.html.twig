@@ -9,16 +9,51 @@
             {{ motivation.text }}
         {% endautoescape %}
     </div>
+    
+    <div class="tech-test">
+        <a href="http://smarterer.com/gerardchic" target="_blank">Evaluations techniques</a>
+    </div>
 
     <div class="bloc-cv">
-        <a href="/docs/cv_paf.pdf">Voir le CV</a>
+        <a href="/docs/cv_paf.pdf" target="_blank">Télécharger CV</a>
+    </div>
+
+    <div class="bloc-cv">
+        <a href="/docs/cv_paf_ssii.pdf" target="_blank">Télécharger CV détaillé</a>
     </div>
 
     <h4 class="title-job-contact-4">Prise de contact</h4>
 
+    {% for flashMessage in app.session.flashbag.get('notice_sent') %}
+        <div class="flash-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
     <form method="post">
 
         {{ form_errors(form) }}
+
+        <div class="columns clearfix">
+            <div class="column-01">
+                {{ form_row(form.recruiter.gender) }}
+                {{ form_row(form.recruiter.firstName) }}
+                {{ form_row(form.recruiter.lastName) }}
+                {{ form_row(form.recruiter.tel) }}
+                {{ form_row(form.recruiter.mobile) }}
+                {{ form_row(form.recruiter.email) }}
+            </div>
+            <div class="column-02">
+                {{ form_row(form.recruiter.company.name) }}
+                {{ form_row(form.recruiter.company.address) }}
+                {{ form_row(form.recruiter.company.zip) }}
+                {{ form_row(form.recruiter.company.city) }}
+                {{ form_row(form.recruiter.company.urlCompany) }}
+            </div>
+        </div>
+
+        {{ form_row(form.description) }}
+
         {{ form_rest(form) }}
         <button class="btn btn-primary" type="submit">Submit</button>
 

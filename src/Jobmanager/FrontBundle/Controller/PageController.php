@@ -49,7 +49,7 @@ class PageController extends Controller
                 $em->persist($recall);
                 $em->flush();
 
-                $this->get('session')->getFlashBag()->add('infos', 'Message envoyé.');
+                $this->get('session')->getFlashBag()->add('notice_sent', 'Message envoyé.');
 
                 $this->redirect($this->generateUrl('JobmanagerFrontBundle_homepage'));
 

@@ -16,9 +16,13 @@ class SuperRecallFrontType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('recruiter', new RecruiterFrontType())
+            ->add('recruiter', new RecruiterFrontType(), array(
+                'label' => false
+            ))
 
-            ->add('description', 'textarea', array('required' => false))
+            ->add('description', 'textarea', array(
+                'label' => 'Description du poste :',
+                'required' => false))
         ;
     }
     

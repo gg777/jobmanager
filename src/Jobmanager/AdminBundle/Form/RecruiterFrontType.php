@@ -17,13 +17,35 @@ class RecruiterFrontType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('gender', 'text', array('required' => false))
-            ->add('firstName', 'text', array('required' => false))
-            ->add('lastName', 'text', array('required' => false))
-            ->add('tel', 'text', array('required' => false))
-            ->add('mobile', 'text', array('required' => false))
-            ->add('email', 'text', array('required' => false))
-            ->add('company', new CompanyFrontType())
+            ->add('gender', 'choice', array(
+                'choices' => array(
+                    'mr' => 'Mr',
+                    'mme' => 'Mme'
+                ),
+                'label' => '* Civilité :'
+            ))
+            ->add('firstName', 'text', array(
+                'label' => '* Prénom :',
+                'required' => true
+            ))
+            ->add('lastName', 'text', array(
+                'label' => '* Nom :',
+                'required' => true
+            ))
+            ->add('tel', 'text', array(
+                'label' => 'Tel. :',
+                'required' => false
+            ))
+            ->add('mobile', 'text', array(
+                'label' => 'Mobile :',
+                'required' => false
+            ))
+            ->add('email', 'text', array(
+                'label' => '* Email :',
+                'required' => false))
+            ->add('company', new CompanyFrontType(), array(
+                'label' => false
+            ))
         ;
     }
     
