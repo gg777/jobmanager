@@ -37,7 +37,7 @@ class CheckRemixjobsCommand extends ContainerAwareCommand
         // call jobImport service
         $jobImportService = $this->getContainer()->get('jobmanager_admin.jobimport');
 
-        $jobsImport = $jobImportService->importRemixjobs($em);
+        $jobsImport = $jobImportService->importRemixjobs($em, true);
 
         // check if no job
         if ($jobsImport == null) {

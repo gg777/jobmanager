@@ -21,9 +21,10 @@ class JobImport
     /**
      * Import jobs filtered by Symfony 2 from Remixjobs Api
      * @param $em
+     * @param bool $writeDb
      * @return array
      */
-    public function importRemixjobs($em)
+    public function importRemixjobs($em, $writeDb = false)
     {
         // retrieve jobs from api
         $jobsImport = $this->getRemixjobsApi();
@@ -56,35 +57,54 @@ class JobImport
                         $companies = $em->getRepository('JobmanagerAdminBundle:Company')
                                         ->findAll();
 
-                        foreach ($companies as $company_test) {
-                            if (strtolower(trim($company_test->getName())) == strtolower(trim($jobImport->company_name)))
+                        foreach ($companies as $companyTest) {
+
+                            print "<pre>"; print_r($companyTest); print "</pre>";
+
+                            if (strtolower(trim($companyTest->getName())) == strtolower(trim($jobImport->company_name)))
                             {
                                 $flagCompany = true;
+                                $companyTestId = $companyTest->getId();
                             }
                         }
 
-                        if (isset($flagCompany) && $flagCompany == false) {
+                        if (isset($flagCompany)) {
+
+                            if ($flagCompany == true) {
+
+//                            print "<pre>"; print_r($companyTestId); print "</pre>";
+//                            die('coucou');
+//                            $companyId = $company_test->getId();
+                                $company = $em->getRepository('JobmanagerAdminBundle:Company')
+                                             ->findById($companyTestId);
+                                $company = $company[0];
+
+                            }
+
+                        } else {
+
+
                             // Company
                             $company = $this->setNewCompany($jobImport);
 
                             // Recruiter
                             // parse postingJob to find recruiter contact
                             $recruiter = $this->setNewRecruiter($jobImport, $company);
-                        } else {
-                            $companyId = $company_test->getId();
-                            $company = $em->getRepository('JobmanagerAdminBundle:Company')
-                                          ->findById($companyId);
-                            $company = $company[0];
                         }
+
 
                         // Job
                         $job = $this->setNewJob($jobImport, $company);
 
                         $outputArr[] = $job;
 
-                        // persist job
-                        $em->persist($job);
-                        $em->flush();
+                        // check if allowed to write in db
+                        if ($writeDb == true) {
+                            // persist job
+                            $em->persist($job);
+                            $em->flush();
+                        }
+
 
                     }
 
@@ -109,7 +129,10 @@ class JobImport
     {
         // retrieve jobs from api
         $json_datas = file_get_contents('https://remixjobs.com/api/jobs');
+        // $json_datas = file_get_contents('http://json.dev/test.json'); // ONLY FOR TEST
         $jobsImport = json_decode($json_datas);
+
+
 
         return $jobsImport;
     }
