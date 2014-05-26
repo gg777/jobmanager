@@ -80,16 +80,18 @@ class AdminController extends Controller
         }
         unset($candidateJob);
 
-//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($candidateJob); print "</pre>";
-//        die('coucou');
+
 
         // retrieve new jobs
         $newJobs = $em->getRepository('JobmanagerAdminBundle:Job')
                       ->getNewJobs();
 
-        // retrive recalls
+        // retrieve recalls
         $recalls = $em->getRepository('JobmanagerAdminBundle:Recall')
-                      ->getNewRecalls();
+                      ->getNewRecallsRecruiterCompany();
+
+//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($recalls[0]->getRecruiter()); print "</pre>";
+//        die('coucou');
 
         // send view
         return $this->render('JobmanagerAdminBundle:Admin:index.html.twig', array(

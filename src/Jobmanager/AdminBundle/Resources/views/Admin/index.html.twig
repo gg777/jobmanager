@@ -52,6 +52,12 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Date de création</th>
+                                    <th>Genre</th>
+                                    <th>Prénom</th>
+                                    <th>Nom</th>
+                                    <th>Tel</th>
+                                    <th>Mobile</th>
+                                    <th>Entreprise</th>
                                     <th>Voir</th>
                                     <th>Modifier</th>
                                     <th>Supprimer</th>
@@ -62,6 +68,16 @@
                                     <tr>
                                         <td>{{ recall.id }}</td>
                                         <td>{{ recall.createdDate|date('d/m/Y') }}</td>
+                                        <td>{{ recall.recruiter.gender }}</td>
+                                        <td>{{ recall.recruiter.firstName }}</td>
+                                        <td>{{ recall.recruiter.lastName }}</td>
+                                        <td>{{ recall.recruiter.tel }}</td>
+                                        <td>{{ recall.recruiter.mobile }}</td>
+                                        <td>
+                                            {% if recall.recruiter.company %}
+                                                {{ recall.recruiter.company.name }}
+                                            {% endif %}
+                                        </td>
                                         <td>
                                             <a href="{{ path('admin_recall_view', {'id': recall.id}) }}">Voir</a>
                                         </td>
