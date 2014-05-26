@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Jobmanager\UserBundle\JobmanagerUserBundle(),
             new Jobmanager\FrontBundle\JobmanagerFrontBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
