@@ -382,6 +382,31 @@ ___________________________*/
 }
 
 
+.bloc_galery_02
+{
+    padding: 20px 0 0 10px;
+}
+
+
+/* Layout bloc pict 02
+________________________*/
+
+
+.bloc_pict_02
+{
+    width: 32px;
+    height: 32px;
+    float: left;
+    padding: 0 16px 16px 0;
+}
+.bloc_pict_02:hover
+{
+    opacity: 0.7;
+    -moz-transition: all 0.25s ease-out;
+    -webkit-transition: all 0.25s ease-out;
+}
+
+
 /* CV link */
 
 
