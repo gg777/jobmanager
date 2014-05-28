@@ -59,7 +59,7 @@ class JobImport
 
                         foreach ($companies as $companyTest) {
 
-                            print "<pre>"; print_r($companyTest); print "</pre>";
+                            //print "<pre>"; print_r($companyTest); print "</pre>";
 
                             if (strtolower(trim($companyTest->getName())) == strtolower(trim($jobImport->company_name)))
                             {
