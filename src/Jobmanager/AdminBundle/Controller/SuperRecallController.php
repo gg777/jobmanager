@@ -116,13 +116,8 @@ class SuperRecallController extends Controller
             // get ajax post data
             $data_form = $request->request->get('data_form');
 
-//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($data_form); print "</pre>";
-//            die;
-
-
             // create new recruiter
             $recruiter = new Recruiter();
-
 
             // bind data
             $recruiter->setGender($data_form['recruiter']['gender']);
@@ -137,8 +132,6 @@ class SuperRecallController extends Controller
 
             $recruiter->setCompany($company[0]);
 
-
-
             // create new recall
             $recall = new Recall();
 
@@ -149,19 +142,15 @@ class SuperRecallController extends Controller
             $recall->setIsRecalled($data_form['recall']['isRecalled']);
             $recall->setRecruiter($recruiter);
 
-//            print "<pre>"; print_r($data_form); print "</pre>";
-//            die;
-
-
             // save db
-
-//            $em->persist($recruiter);
             $em->persist($recall);
             $em->flush();
 
-            die('coucou');
+            // send message
+            $this->get('session')->getFlashBag()->add('notice', 'Rappel enregistrée');
 
-            // redirect create action with parameter company id
+            // redirect
+            return $this->redirect($this->generateUrl('admin_recall_index'));
 
 
         }
@@ -237,8 +226,6 @@ class SuperRecallController extends Controller
             // create new recruiter
             $recruiter = new Recruiter();
 
-
-
             // bind data
             $recruiter->setCompany($company);
             $recruiter->setGender($data_form['recruiter']['gender']);
@@ -251,16 +238,15 @@ class SuperRecallController extends Controller
             // create new recall
             $recall = new Recall();
 
+
             // bind data
             $recall->setCreatedDate(new \DateTime());
-            $recall->setRecallDate(new \DateTime());
             $recall->setRecruiter($recruiter);
             $recall->setDescription($data_form['recall']['description']);
             $recall->setIsFirstContact($data_form['recall']['isFirstContact']);
             $recall->setIsRecalled($data_form['recall']['isRecalled']);
 
-//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($data_form['recall']['isRecalled']); print "</pre>";
-//            die;
+
 
             $recall->setIsMail($data_form['recall']['isMail']);
 
@@ -274,15 +260,18 @@ class SuperRecallController extends Controller
 
             }
 
-
-
             // save db
             $em->persist($recall);
             $em->flush();
 
-            die('coucou');
+//            // send message
+//            $this->get('session')->getFlashBag()->add('notice', 'Rappel enregistrée');
+//
+//            // redirect
+//            return $this->redirect($this->generateUrl('admin_recall_index'));
 
-            // redirect create action with parameter company id
+            // send response
+            return new Response(null);
 
 
         }

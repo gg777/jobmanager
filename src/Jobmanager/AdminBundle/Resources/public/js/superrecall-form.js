@@ -10,15 +10,15 @@ $(document).ready(function(){
         // remove recruiter label, select and add button
         $('label[for=jobmanager_adminbundle_recall_recruiter], #jobmanager_adminbundle_recall_recruiter, #superrecall-create-recruiter, #superrecall-create-recall').remove();
 
-        // call ajax recruiter form
+        // call ajax new recruiter form
         $.ajax({
             url: '/admin/superrecall-create-new-recruiter-form',
             data: {data : data},
             method: 'post',
             dataType: 'json',
             success: function(data){
+                console.log('success create new recruiter form');
                 console.log(data);
-
 
 
                 // append company form
@@ -63,43 +63,43 @@ $(document).ready(function(){
                                 var Recall = new Object();
 
                                 // bind value recall
-                                Recall.createdDateDay = $('#jobmanager_adminbundle_recall_createdDate_date_day').val();
-                                Recall.createdDateMonth = $('#jobmanager_adminbundle_recall_createdDate_date_month').val();
-                                Recall.createdDateYear = $('#jobmanager_adminbundle_recall_createdDate_date_year').val();
-                                Recall.createdDateTimeHour = $('#jobmanager_adminbundle_recall_createdDate_time_hour').val();
-                                Recall.createdDateTimeMinute = $('#jobmanager_adminbundle_recall_createdDate_time_minute').val();
-                                Recall.recallDateDay = $('#jobmanager_adminbundle_recall_recallDate_date_day').val();
-                                Recall.recallDateMonth = $('#jobmanager_adminbundle_recall_recallDate_date_month').val();
-                                Recall.recallDateDay = $('#jobmanager_adminbundle_recall_recallDate_date_year').val();
-                                Recall.recallDateTimeHour = $('#jobmanager_adminbundle_recall_recallDate_time_hour').val();
-                                Recall.recallDateTimeMinute = $('#jobmanager_adminbundle_recall_recallDate_time_minute').val();
+                                Recall.createdDateDay = $('#jobmanager_adminbundle_superrecall_createdDate_date_day').val();
+                                Recall.createdDateMonth = $('#jobmanager_adminbundle_superrecall_createdDate_date_month').val();
+                                Recall.createdDateYear = $('#jobmanager_adminbundle_superrecall_createdDate_date_year').val();
+                                Recall.createdDateTimeHour = $('#jobmanager_adminbundle_superrecall_createdDate_time_hour').val();
+                                Recall.createdDateTimeMinute = $('#jobmanager_adminbundle_superrecall_createdDate_time_minute').val();
+                                Recall.recallDateDay = $('#jobmanager_adminbundle_superrecall_recallDate_date_day').val();
+                                Recall.recallDateMonth = $('#jobmanager_adminbundle_superrecall_recallDate_date_month').val();
+                                Recall.recallDateDay = $('#jobmanager_adminbundle_superrecall_recallDate_date_year').val();
+                                Recall.recallDateTimeHour = $('#jobmanager_adminbundle_superrecall_recallDate_time_hour').val();
+                                Recall.recallDateTimeMinute = $('#jobmanager_adminbundle_superrecall_recallDate_time_minute').val();
 
-                                if ($('#jobmanager_adminbundle_recall_isRecalled').parent().hasClass('checked') == true) {
+                                if ($('#jobmanager_adminbundle_superrecall_isRecalled').parent().hasClass('checked') == true) {
                                     Recall.isFirstContact = 1;
                                 } else {
                                     Recall.isFirstContact = 0;
                                 }
 
-                                if ($('#jobmanager_adminbundle_recall_isFirstContact').parent().hasClass('checked') == true) {
+                                if ($('#jobmanager_adminbundle_superrecall_isFirstContact').parent().hasClass('checked') == true) {
                                     Recall.isFirstContact = 1;
                                 } else {
                                     Recall.isFirstContact = 0;
                                 }
 
-                                if ($('#jobmanager_adminbundle_recall_isRecalled').parent().hasClass('checked') == true) {
+                                if ($('#jobmanager_adminbundle_superrecall_isRecalled').parent().hasClass('checked') == true) {
                                     Recall.isRecalled = 1;
                                 } else {
                                     Recall.isRecalled = 0;
                                 }
 
-                                if ($('#jobmanager_adminbundle_recall_isMail').parent().hasClass('checked') == true) {
+                                if ($('#jobmanager_adminbundle_superrecall_isMail').parent().hasClass('checked') == true) {
                                     Recall.isMail = 1;
                                 } else {
                                     Recall.isMail = 0;
                                 }
 
-                                Recall.description = $('#jobmanager_adminbundle_recall_description').val();
-                                Recall.jobSource = $('#jobmanager_adminbundle_recall_jobSource').val();
+                                Recall.description = $('#jobmanager_adminbundle_superrecall_description').val();
+                                Recall.jobSource = $('#jobmanager_adminbundle_superrecall_jobSource').val();
 
                                 // create new company
                                 var Company = new Object();
@@ -121,20 +121,23 @@ $(document).ready(function(){
                                 Output.company = Company;
                                 Output.recruiter = Recruiter;
 
+                                console.log('YO');
 
                                 // call ajax
                                 $.ajax({
                                     url: '/admin/superrecall-create-new-company',
-                                    data: { data_form: Output},
+                                    data: {data_form : Output},
                                     method: 'post',
                                     dataType: 'json',
-                                    success: function(data){
-                                        console.log(data);
+                                    success: function(data_form){
+                                        window.location = ('/admin/recall');
+                                        console.log('YO');
                                     },
                                     complete: function(){
                                         console.log('complete');
                                     },
                                     error: function(error){
+                                        console.log('error create company');
                                         console.log(error);
                                     }
                                 });
@@ -146,6 +149,7 @@ $(document).ready(function(){
                             console.log('complete')
                         },
                         error: function(error){
+                            console.log('error create company');
                             console.log(error);
                         }
                     });
@@ -223,7 +227,7 @@ $(document).ready(function(){
                     // call ajax
                     $.ajax({
                         url: '/admin/superrecall-create-new-recruiter',
-                        data: { data_form: Output},
+                        data: {data_form: Output},
                         method: 'post',
                         dataType: 'json',
                         success: function(data){
@@ -236,6 +240,7 @@ $(document).ready(function(){
                             console.log('complete');
                         },
                         error: function(error){
+                            console.log('error create recruiter');
                             console.log(error);
                         }
                     });
@@ -246,6 +251,7 @@ $(document).ready(function(){
                 console.log('complete');
             },
             error: function(error){
+                console.log('error create recruiter form');
                 console.log(error)
             }
         });
