@@ -31,7 +31,9 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Date</th>
+                                    <th>Entreprise</th>
                                     <th>Genre</th>
+                                    <th>Prenom</th>
                                     <th>Nom</th>
                                     <th>Tel</th>
                                     <th>Rappel</th>
@@ -45,7 +47,13 @@
                                     <tr>
                                         <td>{{ recall.id }}</td>
                                         <td>{{ recall.createdDate|date('Y-m-d H:i') }}</td>
+                                        <td>
+                                            {% if recall.recruiter.company %}
+                                                {{ recall.recruiter.company.name }}
+                                            {% endif %}
+                                        </td>
                                         <td>{{ recall.recruiter.gender }}</td>
+                                        <td>{{ recall.recruiter.firstName }}</td>
                                         <td>{{ recall.recruiter.lastName }}</td>
                                         <td>{{ recall.recruiter.tel }}</td>
                                         <td>{{ recall.isRecalled }}</td>

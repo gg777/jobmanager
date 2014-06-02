@@ -24,7 +24,7 @@ class RecallController extends Controller
 
         // retrieve recalls
         $recalls = $em->getRepository('JobmanagerAdminBundle:Recall')
-                       ->findAll();
+                      ->getRecallsRecruiterCompany();
 
         // send view
         return $this->render('JobmanagerAdminBundle:Recall:index.html.twig', array(

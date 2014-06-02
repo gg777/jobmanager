@@ -37,6 +37,23 @@ class RecallRepository extends EntityRepository
             ->addSelect('c')
             ->where('r.isRecalled = :isRecalled')
             ->setParameter('isRecalled', 0)
+            ->orderBy('r.createdDate', 'DESC')
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getRecallsRecruiterCompany()
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        $qb
+            ->addSelect('r')
+            ->leftJoin('r.recruiter', 're')
+            ->addSelect('re')
+            ->leftJoin('re.company', 'c')
+            ->addSelect('c')
+            ->orderBy('r.createdDate', 'DESC')
         ;
 
         return $qb->getQuery()->getResult();
