@@ -123,8 +123,6 @@ $(document).ready(function(){
                                 Output.company = Company;
                                 Output.recruiter = Recruiter;
 
-                                console.log('end create objects super form');
-
                                 // call ajax
                                 $.ajax({
                                     url: '/admin/superrecall-create-new-company',
@@ -216,13 +214,8 @@ $(document).ready(function(){
                     Recruiter.email = $('#jobmanager_adminbundle_recruiter_email').val();
                     Recruiter.companyId = $('#jobmanager_adminbundle_recruiter_company').val();
 
-                    console.log(Recruiter.company);
-//                    console.log($('#jobmanager_adminbundle_recruiter_company').val());
-//
-
                     // push recall, company and recruiter in output
                     Output.recall = Recall;
-//                    Output.company = Company;
                     Output.recruiter = Recruiter;
 
 
