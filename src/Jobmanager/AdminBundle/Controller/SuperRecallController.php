@@ -130,7 +130,11 @@ class SuperRecallController extends Controller
             $company = $em->getRepository('JobmanagerAdminBundle:Company')
                           ->findById($companyId);
 
-            $recruiter->setCompany($company[0]);
+//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($company); print "</pre>";
+//            die('coucou');
+
+            if ($company != null)
+                $recruiter->setCompany($company[0]);
 
             // create new recall
             $recall = new Recall();
@@ -146,13 +150,10 @@ class SuperRecallController extends Controller
             $em->persist($recall);
             $em->flush();
 
-            // send message
-            $this->get('session')->getFlashBag()->add('notice', 'Rappel enregistrée');
-
-            // redirect
-            return $this->redirect($this->generateUrl('admin_recall_index'));
-
-
+            // send response
+            $response = new JsonResponse();
+            $response->setData(array('view' => $this->redirect($this->generateUrl('admin_recall_index'))));
+            return $response;
         }
     }
 
@@ -166,7 +167,7 @@ class SuperRecallController extends Controller
 
 
 
-            // get ajax post data
+            // get ajax post data - WTF
             $data = $request->get('data');
 
             // create new company
@@ -206,7 +207,7 @@ class SuperRecallController extends Controller
             // get ajax post data
             $data_form = $request->request->get('data_form');
 
-            // call enity manager
+            // call entity manager
             $em = $this->getDoctrine()->getManager();
 
             // create new company
@@ -264,16 +265,11 @@ class SuperRecallController extends Controller
             $em->persist($recall);
             $em->flush();
 
-//            // send message
-//            $this->get('session')->getFlashBag()->add('notice', 'Rappel enregistrée');
-//
-//            // redirect
-//            return $this->redirect($this->generateUrl('admin_recall_index'));
 
             // send response
-            return new Response(null);
-
-
+            $response = new JsonResponse();
+            $response->setData(array('view' => $this->redirect($this->generateUrl('admin_recall_index'))));
+            return $response;
         }
     }
 } 

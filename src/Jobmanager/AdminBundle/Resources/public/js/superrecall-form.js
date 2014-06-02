@@ -18,12 +18,13 @@ $(document).ready(function(){
             dataType: 'json',
             success: function(data){
                 console.log('success create new recruiter form');
-                console.log(data);
+                //console.log(data);
 
 
                 // append company form
                 $('#recall-form-wrapper').append(data.form_data);
 
+                // listener create new company form
                 $('#superrecall-create-company').on('click', function(){
 
                     // remove recruiter label, select and add button
@@ -36,14 +37,15 @@ $(document).ready(function(){
                         method: 'post',
                         dataType: 'json',
                         success: function(data){
-                            console.log(data);
+                            //console.log(data);
+                            console.log('success create company form');
 
                             // append company form
                             $('#recall-form-wrapper').append(data.form_data);
 
                             // listener submit company
                             $('#submit-company').on('click', function(){
-                                console.log('click');
+                                console.log('click submit company');
 
                                 // create output
                                 var Output = new Object();
@@ -121,7 +123,7 @@ $(document).ready(function(){
                                 Output.company = Company;
                                 Output.recruiter = Recruiter;
 
-                                console.log('YO');
+                                console.log('end create objects super form');
 
                                 // call ajax
                                 $.ajax({
@@ -129,9 +131,9 @@ $(document).ready(function(){
                                     data: {data_form : Output},
                                     method: 'post',
                                     dataType: 'json',
-                                    success: function(data_form){
+                                    success: function(data){
                                         window.location = ('/admin/recall');
-                                        console.log('YO');
+                                        console.log('success create company');
                                     },
                                     complete: function(){
                                         console.log('complete');
@@ -149,7 +151,7 @@ $(document).ready(function(){
                             console.log('complete')
                         },
                         error: function(error){
-                            console.log('error create company');
+                            console.log('error create company form');
                             console.log(error);
                         }
                     });
@@ -232,9 +234,8 @@ $(document).ready(function(){
                         dataType: 'json',
                         success: function(data){
                             console.log(data);
-
-
-
+                            window.location = ('/admin/recall');
+                            console.log('success create recruiter');
                         },
                         complete: function(){
                             console.log('complete');
