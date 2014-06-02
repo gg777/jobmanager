@@ -25,12 +25,10 @@ class RecruiterFrontType extends AbstractType
                 'label' => '* Civilité :'
             ))
             ->add('firstName', 'text', array(
-                'label' => '* Prénom :',
-                'required' => true
+                'label' => '* Prénom :'
             ))
             ->add('lastName', 'text', array(
-                'label' => '* Nom :',
-                'required' => true
+                'label' => '* Nom :'
             ))
             ->add('tel', 'text', array(
                 'label' => 'Tel. :',
@@ -41,8 +39,8 @@ class RecruiterFrontType extends AbstractType
                 'required' => false
             ))
             ->add('email', 'text', array(
-                'label' => '* Email :',
-                'required' => false))
+                'label' => '* Email :'
+            ))
             ->add('company', new CompanyFrontType(), array(
                 'label' => false
             ))

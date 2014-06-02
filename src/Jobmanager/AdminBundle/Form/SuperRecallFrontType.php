@@ -22,7 +22,7 @@ class SuperRecallFrontType extends AbstractType
 
             ->add('description', 'textarea', array(
                 'label' => 'Description du poste :',
-                'required' => false))
+                'required' => true))
             ->add('captcha', 'captcha', array(
                 'width' => '100',
                 'height' => '35',

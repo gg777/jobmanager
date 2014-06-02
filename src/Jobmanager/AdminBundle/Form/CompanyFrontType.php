@@ -17,26 +17,8 @@ class CompanyFrontType extends AbstractType
         $builder
             ->add('name', 'text', array(
 
-                'label' => '* Entreprise :',
-                'required' => true
+                'label' => '* Entreprise :'
             ))
-//            ->add('type', 'choice', array(
-//                'choices' => array(
-//                    'agence' => 'Agence',
-//                    'ssii' => 'SSII',
-//                    'start-up' => 'Start-up'
-//                ),
-//                'label' => 'Type :',
-//                'required' => false
-//            ))
-//            ->add('sector', 'choice', array(
-//                'label' => 'Secteur :',
-//                'choices' => array(
-//                    'communication' => 'Communication',
-//                    'it' => 'IT'
-//                ),
-//                'required' => false
-//            ))
             ->add('address', 'textarea', array(
                 'label' => 'Adresse :',
                 'required' => false
@@ -49,14 +31,6 @@ class CompanyFrontType extends AbstractType
                 'label' => 'Ville :',
                 'required' => false
             ))
-//            ->add('country', 'text', array(
-//                'label' => 'Pays',
-//                'required' => false
-//            ))
-//            ->add('is_head_hunter', 'checkbox', array(
-//                'label' => 'Cabinet de recrutement :',
-//                'required' => false
-//            ))
             ->add('urlCompany', 'text', array(
                 'label' => 'Site web :',
                 'required' => false
