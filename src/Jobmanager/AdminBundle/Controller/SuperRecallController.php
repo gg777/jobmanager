@@ -2,7 +2,6 @@
 
 namespace Jobmanager\AdminBundle\Controller;
 
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -71,15 +70,11 @@ class SuperRecallController extends Controller
         // check if ajax request
         if ($request->isXmlHttpRequest()) {
 
-
-
             // get ajax post data
             $data = $request->get('data');
 
             // create new recruiter
             $recruiter = new Recruiter();
-
-
 
             // create new recruiter formType
             $form = $this->createForm(new RecruiterType(), $recruiter);
@@ -89,15 +84,10 @@ class SuperRecallController extends Controller
                 'form' => $form->createView()
             ));
 
-//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($viewForm); print "</pre>";
-//            die;
-
             // send response
             $response = new JsonResponse();
             $response->setData(array('form_data' => $renderedTmpl));
             return $response;
-
-
 
         }
     }
@@ -129,9 +119,6 @@ class SuperRecallController extends Controller
             $companyId = $data_form['recruiter']['companyId'];
             $company = $em->getRepository('JobmanagerAdminBundle:Company')
                           ->findById($companyId);
-
-//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($company); print "</pre>";
-//            die('coucou');
 
             if ($company != null)
                 $recruiter->setCompany($company[0]);
@@ -165,33 +152,23 @@ class SuperRecallController extends Controller
         // check if ajax request
         if ($request->isXmlHttpRequest()) {
 
-
-
             // get ajax post data - WTF
             $data = $request->get('data');
 
             // create new company
             $company = new Company();
 
-
-
             // create new company formType
             $form = $this->createForm(new CompanyType(), $company);
-
 
             $renderedTmpl = $this->container->get('templating')->render('JobmanagerAdminBundle:Company:create-edit-company-superrecall-ajax.html.twig', array(
                 'form' => $form->createView()
             ));
 
-//            print "<pre>"; \Doctrine\Common\Util\Debug::dump($viewForm); print "</pre>";
-//            die;
-
             // send response
             $response = new JsonResponse();
             $response->setData(array('form_data' => $renderedTmpl));
             return $response;
-
-
 
         }
     }
@@ -239,16 +216,12 @@ class SuperRecallController extends Controller
             // create new recall
             $recall = new Recall();
 
-
             // bind data
             $recall->setCreatedDate(new \DateTime());
             $recall->setRecruiter($recruiter);
             $recall->setDescription($data_form['recall']['description']);
             $recall->setIsFirstContact($data_form['recall']['isFirstContact']);
             $recall->setIsRecalled($data_form['recall']['isRecalled']);
-
-
-
             $recall->setIsMail($data_form['recall']['isMail']);
 
             if (!empty($data_form['recall']['jobsource'])) {
@@ -264,7 +237,6 @@ class SuperRecallController extends Controller
             // save db
             $em->persist($recall);
             $em->flush();
-
 
             // send response
             $response = new JsonResponse();
