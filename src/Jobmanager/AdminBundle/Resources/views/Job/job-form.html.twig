@@ -3,6 +3,7 @@
 {% form_theme form "JobmanagerAdminBundle:Form:fields.html.twig" %}
 
 <div id="job-form-wrapper">
+
     {# error messages #}
     {{ form_errors(form) }}
 
@@ -31,10 +32,6 @@
         {{ form_errors(form.is_soldout) }}
         {{ form_widget(form.is_soldout) }}
     </div>
-
-    {#<ul class="form-company" data-prototype="{{ form_widget(form.company.vars.prototype)|escape }}">#}
-    {#<input id="form-company-btn" type="button" value="Add"/>#}
-    {#</ul>#}
 
     {{ form_rest(form) }}
     <button class="btn btn-primary" type="submit">Submit</button>
