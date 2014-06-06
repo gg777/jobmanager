@@ -3,3 +3,10 @@ JobmanagerFrontBundle_homepage:
     defaults: { _controller: JobmanagerFrontBundle:Page:index }
     requirements:
         _method: GET|POST
+
+
+JobmanagerFrontBundle_submit_job_form:
+    pattern: /submit-job-form
+    defaults: { _controller: JobmanagerFrontBundle:Page:submitJobForm }
+    requirements:
+        _method: POST

@@ -16,7 +16,6 @@ class CompanyFrontType extends AbstractType
     {
         $builder
             ->add('name', 'text', array(
-
                 'label' => '* Entreprise :'
             ))
             ->add('address', 'textarea', array(
@@ -35,6 +34,7 @@ class CompanyFrontType extends AbstractType
                 'label' => 'Site web :',
                 'required' => false
             ))
+
         ;
     }
     

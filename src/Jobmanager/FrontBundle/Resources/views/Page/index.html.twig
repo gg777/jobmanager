@@ -30,33 +30,80 @@
         </div>
     {% endfor %}
 
-    <form method="post">
+    <form method="post" id="super-job-front-form">
 
         {{ form_errors(form) }}
 
         <div class="columns clearfix">
             <div class="column-01">
-                {{ form_row(form.recruiter.gender) }}
-                {{ form_row(form.recruiter.firstName) }}
-                {{ form_row(form.recruiter.lastName) }}
-                {{ form_row(form.recruiter.tel) }}
-                {{ form_row(form.recruiter.mobile) }}
-                {{ form_row(form.recruiter.email) }}
+
+                <div>
+                    <label for="gender"><span>*</span> Civilité :</label>
+                    <select name="gender" id="gender">
+                        <option value="mme">Mme</option>
+                        <option value="mr">Mr</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="firstname"><span>*</span> Prénom :</label>
+                    <input type="text" name="firstname" id="firstname"/>
+                </div>
+                <div>
+                    <label for="lastname"><span>*</span> Nom :</label>
+                    <input type="text" name="lastname" id="lastname"/>
+                </div>
+                <div>
+                    <label for="tel"><span>*</span> Tel :</label>
+                    <input type="text" name="tel" id="tel"/>
+                </div>
+                <div>
+                    <label for="mobile">Mobile :</label>
+                    <input type="text" name="mobile" id="mobile"/>
+                </div>
+                <div>
+                    <label for="email"><span>*</span> Email :</label>
+                    <input type="text" name="email" id="email"/>
+                </div>
+
+
             </div>
             <div class="column-02">
-                {{ form_row(form.recruiter.company.name) }}
-                {{ form_row(form.recruiter.company.address) }}
-                {{ form_row(form.recruiter.company.zip) }}
-                {{ form_row(form.recruiter.company.city) }}
-                {{ form_row(form.recruiter.company.urlCompany) }}
+                {{ form_row(form.company.name) }}
+                {{ form_row(form.company.address) }}
+                {{ form_row(form.company.zip) }}
+                {{ form_row(form.company.city) }}
+                {{ form_row(form.company.urlCompany) }}
             </div>
         </div>
 
-        {{ form_row(form.description) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.contract_type) }}
+        {{ form_row(form.postingJob) }}
 
         {{ form_rest(form) }}
-        <button class="btn btn-primary" type="submit">Submit</button>
+
+        <div class="bloc-captcha">
+            <label for="code_antispam"><span>*</span> Code anti-spam :</label>
+            <input type="text" name="code_antispam" id="code_antispam" />
+            <div class="captcha">
+                <img src="captcha.php" alt="code anti-spam" class="captcha"/>
+            </div>
+        </div>
+
+        <div class="btn btn-primary" id="submit-super-job-front">Envoyer</div>
 
     </form>
+
+{% endblock %}
+
+{% block javascript %}
+
+    <!-- jQuery 2.0.2 -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    {% javascripts output='js/main.js' filter='cssrewrite, ?yui_js'
+    '@JobmanagerFrontBundle/Resources/public/js/superjobfront-form.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+
+    {% endjavascripts %}
 
 {% endblock %}

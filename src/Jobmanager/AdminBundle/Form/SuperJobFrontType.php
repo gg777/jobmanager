@@ -2,12 +2,11 @@
 
 namespace Jobmanager\AdminBundle\Form;
 
-use Jobmanager\AdminBundle\Entity\Recruiter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class SuperRecallFrontType extends AbstractType
+class SuperJobFrontType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -16,18 +15,20 @@ class SuperRecallFrontType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('recruiter', new RecruiterFrontType(), array(
-                'label' => false
+            ->add('name', 'text', array(
+                'label' => 'Titre du poste :',
+                'required' => true
             ))
-
-            ->add('description', 'textarea', array(
+            ->add('contract_type', 'text', array(
+                'label' => 'Type de contrat :',
+                'required' => true
+            ))
+            ->add('postingJob', 'textarea', array(
                 'label' => 'Description du poste :',
-                'required' => true))
-            ->add('captcha', 'captcha', array(
-                'width' => '100',
-                'height' => '35',
-                'background_color' => array(255, 255, 255),
-                'label' => '* Antispam :'
+                'required' => true
+            ))
+            ->add('company', new CompanyFrontType(), array(
+                'label' => false
             ))
         ;
     }
@@ -38,7 +39,7 @@ class SuperRecallFrontType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Jobmanager\AdminBundle\Entity\Recall'
+            'data_class' => 'Jobmanager\AdminBundle\Entity\Job'
         ));
     }
 
@@ -47,6 +48,6 @@ class SuperRecallFrontType extends AbstractType
      */
     public function getName()
     {
-        return 'jobmanager_adminbundle_superrecallfront';
+        return 'jobmanager_frontbundle_jobfront';
     }
 }
