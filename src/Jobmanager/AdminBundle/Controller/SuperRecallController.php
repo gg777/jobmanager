@@ -59,8 +59,6 @@ class SuperRecallController extends Controller
 
     }
 
-
-
     public function createNewRecruiterFormAction()
     {
         // get request
