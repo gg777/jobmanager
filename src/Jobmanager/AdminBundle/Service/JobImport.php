@@ -59,8 +59,6 @@ class JobImport
 
                         foreach ($companies as $companyTest) {
 
-                            //print "<pre>"; print_r($companyTest); print "</pre>";
-
                             if (strtolower(trim($companyTest->getName())) == strtolower(trim($jobImport->company_name)))
                             {
                                 $flagCompany = true;
@@ -72,17 +70,13 @@ class JobImport
 
                             if ($flagCompany == true) {
 
-//                            print "<pre>"; print_r($companyTestId); print "</pre>";
-//                            die('coucou');
-//                            $companyId = $company_test->getId();
                                 $company = $em->getRepository('JobmanagerAdminBundle:Company')
-                                             ->findById($companyTestId);
+                                              ->findById($companyTestId);
                                 $company = $company[0];
 
                             }
 
                         } else {
-
 
                             // Company
                             $company = $this->setNewCompany($jobImport);
@@ -105,7 +99,6 @@ class JobImport
                             $em->flush();
                         }
 
-
                     }
 
                 }
@@ -113,8 +106,6 @@ class JobImport
             }
 
         }
-
-        //print "<pre>"; \Doctrine\Common\Util\Debug::dump($outputArr); print "</pre>"; die;
 
         // return
         return $outputArr;
