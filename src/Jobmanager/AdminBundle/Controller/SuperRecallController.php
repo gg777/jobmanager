@@ -52,7 +52,6 @@ class SuperRecallController extends Controller
 
         }
 
-
         // if no post
         return $this->render('JobmanagerAdminBundle:SuperRecall:create-edit-superrecall.html.twig', array(
             'form' => $form->createView()
@@ -75,14 +74,10 @@ class SuperRecallController extends Controller
 
             // create new recruiter
             $recruiter = new Recruiter();
+            $recruiterType = new RecruiterType();
 
-            // create new recruiter formType
-            $form = $this->createForm(new RecruiterType(), $recruiter);
-
-
-            $renderedTmpl = $this->container->get('templating')->render('JobmanagerAdminBundle:Recruiter:create-edit-recruiter-superrecall-ajax.html.twig', array(
-                'form' => $form->createView()
-            ));
+            // build form
+            $renderedTmpl = $this->buildEntityForm($recruiter, $recruiterType);
 
             // send response
             $response = new JsonResponse();
@@ -90,6 +85,20 @@ class SuperRecallController extends Controller
             return $response;
 
         }
+    }
+
+    private function buildEntityForm($Entity, $EntityType)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $className = $em->getClassMetadata(get_class($Entity))->getName();
+        $className = str_replace('Jobmanager\AdminBundle\Entity\\', '', $className);
+
+        // create new recruiter formType
+        $form = $this->createForm($EntityType, $Entity);
+
+        return $renderedTmpl = $this->container->get('templating')->render('JobmanagerAdminBundle:'.$className.':create-edit-'.strtolower($className).'-superrecall-ajax.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     public function createNewRecruiterAction()
@@ -152,18 +161,12 @@ class SuperRecallController extends Controller
         // check if ajax request
         if ($request->isXmlHttpRequest()) {
 
-            // get ajax post data - WTF
-            $data = $request->get('data');
-
             // create new company
             $company = new Company();
+            $companyForm = new CompanyType();
 
-            // create new company formType
-            $form = $this->createForm(new CompanyType(), $company);
-
-            $renderedTmpl = $this->container->get('templating')->render('JobmanagerAdminBundle:Company:create-edit-company-superrecall-ajax.html.twig', array(
-                'form' => $form->createView()
-            ));
+            // build form
+            $renderedTmpl = $this->buildEntityForm($company, $companyForm);
 
             // send response
             $response = new JsonResponse();
