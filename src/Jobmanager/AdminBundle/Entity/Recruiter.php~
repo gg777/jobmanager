@@ -43,6 +43,13 @@ class Recruiter
     private $tel;
 
     /**
+     * @var
+     *
+     * @ORM\Column(name="mobile", type="string", length=255, nullable=true)
+     */
+    private $mobile;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
@@ -59,10 +66,9 @@ class Recruiter
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="\Jobmanager\AdminBundle\Entity\Company", inversedBy="recruiters", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Company")
      */
     private $company;
-
 
     /**
      * Get id
@@ -189,26 +195,27 @@ class Recruiter
         return $this->gender;
     }
 
+
     /**
-     * Set company
+     * Set mobile
      *
-     * @param \Jobmanager\AdminBundle\Entity\Company $company
+     * @param string $mobile
      * @return Recruiter
      */
-    public function setCompany(\Jobmanager\AdminBundle\Entity\Company $company = null)
+    public function setMobile($mobile)
     {
-        $this->company = $company;
+        $this->mobile = $mobile;
 
         return $this;
     }
 
     /**
-     * Get company
+     * Get mobile
      *
-     * @return \Jobmanager\AdminBundle\Entity\Company 
+     * @return string 
      */
-    public function getCompany()
+    public function getMobile()
     {
-        return $this->company;
+        return $this->mobile;
     }
 }

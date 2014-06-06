@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Company
  *
  * @ORM\Table(name="company")
- * @ORM\Entity(repositoryClass="JobManager\AdminBundle\Entity\CompanyRepository")
+ * @ORM\Entity(repositoryClass="Jobmanager\AdminBundle\Entity\CompanyRepository")
  */
 class Company
 {
@@ -24,9 +24,23 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="sector", type="string", length=255, nullable=true)
+     */
+    private $sector;
 
     /**
      * @var string
@@ -83,13 +97,6 @@ class Company
      * @ORM\Column(name="url_company", type="string", length=255, nullable=true)
      */
     private $urlCompany;
-
-    /**
-     * @var
-     *
-     * @ORM\OneToOne(targetEntity="Jobmanager\AdminBundle\Entity\Recruiter", cascade={"persist"})
-     */
-    private $recruiter;
 
     /**
      * Get id
@@ -317,25 +324,81 @@ class Company
     }
 
     /**
-     * Set recruiter
+     * Set type
      *
-     * @param \Jobmanager\AdminBundle\Entity\Recruiter $recruiter
+     * @param string $type
      * @return Company
      */
-    public function setRecruiter(\Jobmanager\AdminBundle\Entity\Recruiter $recruiter = null)
+    public function setType($type)
     {
-        $this->recruiter = $recruiter;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Get recruiter
+     * Get type
      *
-     * @return \Jobmanager\AdminBundle\Entity\Recruiter 
+     * @return string 
      */
-    public function getRecruiter()
+    public function getType()
     {
-        return $this->recruiter;
+        return $this->type;
+    }
+
+    /**
+     * Set sector
+     *
+     * @param string $sector
+     * @return Company
+     */
+    public function setSector($sector)
+    {
+        $this->sector = $sector;
+
+        return $this;
+    }
+
+    /**
+     * Get sector
+     *
+     * @return string 
+     */
+    public function getSector()
+    {
+        return $this->sector;
+    }
+
+    /**
+     * Add recruiters
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Recruiter $recruiters
+     * @return Company
+     */
+    public function addRecruiter(\Jobmanager\AdminBundle\Entity\Recruiter $recruiters)
+    {
+        $this->recruiters[] = $recruiters;
+
+        return $this;
+    }
+
+    /**
+     * Remove recruiters
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Recruiter $recruiters
+     */
+    public function removeRecruiter(\Jobmanager\AdminBundle\Entity\Recruiter $recruiters)
+    {
+        $this->recruiters->removeElement($recruiters);
+    }
+
+    /**
+     * Get recruiters
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRecruiters()
+    {
+        return $this->recruiters;
     }
 }
