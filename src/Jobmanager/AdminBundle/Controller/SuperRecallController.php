@@ -94,27 +94,6 @@ class SuperRecallController extends Controller
     }
 
     /**
-     * Build Entity's form
-     * @param $Entity
-     * @param $EntityType
-     * @param $superFormName
-     * @return mixed
-     */
-    private function buildEntityForm($Entity, $EntityType, $superFormName)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $className = $em->getClassMetadata(get_class($Entity))->getName();
-        $className = str_replace('Jobmanager\AdminBundle\Entity\\', '', $className);
-
-        // create new recruiter formType
-        $form = $this->createForm($EntityType, $Entity);
-
-        return $renderedTmpl = $this->container->get('templating')->render('JobmanagerAdminBundle:'.$className.':create-edit-'.strtolower($className).'-super'.$superFormName.'-ajax.html.twig', array(
-            'form' => $form->createView()
-        ));
-    }
-
-    /**
      * Create new recruiter
      * @return JsonResponse
      */
@@ -137,11 +116,14 @@ class SuperRecallController extends Controller
             $company = $em->getRepository('JobmanagerAdminBundle:Company')
                           ->findById($companyId);
 
+            // call formToEntity service
+            $fromToEntity = $this->container->get('jobmanager_admin.form_to_entity');
+
             // create new recruiter
-            $recruiter = $this->createRecruiter($dataForm, $company);
+            $recruiter = $fromToEntity->createRecruiter($dataForm, $company);
 
             // create new recall
-            $recall = $this->createRecall($em, $dataForm, $recruiter);
+            $recall = $fromToEntity->createRecall($em, $dataForm, $recruiter);
 
             // save db
             $em->persist($recruiter);
@@ -200,14 +182,17 @@ class SuperRecallController extends Controller
             // get ajax post data
             $dataForm = $request->request->get('data_form');
 
+            // call formToEntity service
+            $fromToEntity = $this->container->get('jobmanager_admin.form_to_entity');
+
             // create new company
-            $company = $this->createCompany($dataForm);
+            $company = $fromToEntity->createCompany($dataForm);
 
             // create new recruiter
-            $recruiter = $this->createRecruiter($dataForm, $company);
+            $recruiter = $fromToEntity->createRecruiter($dataForm, $company);
 
             // create new recall
-            $recall = $this->createRecall($em, $dataForm, $recruiter);
+            $recall = $fromToEntity->createRecall($em, $dataForm, $recruiter);
 
             // save db
             $em->persist($company);
@@ -223,106 +208,24 @@ class SuperRecallController extends Controller
     }
 
     /**
-     * Create and hydrate company object
-     * @param $dataForm
-     * @return Company
+     * Build Entity's form
+     * @param $Entity
+     * @param $EntityType
+     * @param $superFormName
+     * @return mixed
      */
-    private function createCompany($dataForm)
+    private function buildEntityForm($Entity, $EntityType, $superFormName)
     {
-        // create new company and bind data
-        $company = new Company();
-        $company->setName($dataForm['jobmanager_adminbundle_company[name']);
-        $company->setType($dataForm['jobmanager_adminbundle_company[type']);
-        $company->setSector($dataForm['jobmanager_adminbundle_company[sector']);
-        $company->setAddress($dataForm['jobmanager_adminbundle_company[address']);
-        $company->setZip($dataForm['jobmanager_adminbundle_company[zip']);
-        $company->setCity($dataForm['jobmanager_adminbundle_company[city']);
-        $company->setCountry($dataForm['jobmanager_adminbundle_company[country']);
-        $company->setLat($dataForm['jobmanager_adminbundle_company[lat']);
-        $company->setLng($dataForm['jobmanager_adminbundle_company[lng']);
+        $em = $this->getDoctrine()->getManager();
+        $className = $em->getClassMetadata(get_class($Entity))->getName();
+        $className = str_replace('Jobmanager\AdminBundle\Entity\\', '', $className);
 
-        if (isset($dataForm['jobmanager_adminbundle_company[is_head_hunter']))
-            $company->setIsHeadHunter($dataForm['jobmanager_adminbundle_company[is_head_hunter']);
-        else
-            $company->setIsHeadHunter(0);
+        // create new recruiter formType
+        $form = $this->createForm($EntityType, $Entity);
 
-        $company->setUrlCompany($dataForm['jobmanager_adminbundle_company[urlCompany']);
-
-        return $company;
+        return $renderedTmpl = $this->container->get('templating')->render('JobmanagerAdminBundle:'.$className.':create-edit-'.strtolower($className).'-super'.$superFormName.'-ajax.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
-    /**
-     * Create and hydrate recruiter object
-     * @param $dataForm
-     * @param $company
-     * @return Recruiter
-     */
-    private function createRecruiter($dataForm, $company)
-    {
-        // create new recruiter
-        $recruiter = new Recruiter();
-
-        // bind data
-        $recruiter->setGender($dataForm['jobmanager_adminbundle_recruiter[gender']);
-        $recruiter->setFirstName($dataForm['jobmanager_adminbundle_recruiter[firstName']);
-        $recruiter->setLastName($dataForm['jobmanager_adminbundle_recruiter[lastName']);
-        $recruiter->setTel($dataForm['jobmanager_adminbundle_recruiter[tel']);
-        $recruiter->setMobile($dataForm['jobmanager_adminbundle_recruiter[mobile']);
-        $recruiter->setEmail($dataForm['jobmanager_adminbundle_recruiter[email']);
-
-        if (is_array($company))
-            $recruiter->setCompany($company[0]);
-        else
-            $recruiter->setCompany($company);
-
-        return $recruiter;
-    }
-
-    /**
-     * Create and hydrate recall object
-     * @param $em
-     * @param $dataForm
-     * @param Recruiter $recruiter
-     * @return Recall
-     */
-    private function createRecall($em, $dataForm, Recruiter $recruiter)
-    {
-        // create new recall
-        $recall = new Recall();
-
-        // bind data
-        $createdDate = new \DateTime();
-        $createdDate->setDate($dataForm['jobmanager_adminbundle_superrecall[createdDate']['date']['year'], $dataForm['jobmanager_adminbundle_superrecall[createdDate']['date']['month'], $dataForm['jobmanager_adminbundle_superrecall[createdDate']['date']['day']);
-        $createdDate->setTime($dataForm['jobmanager_adminbundle_superrecall[createdDate']['time']['hour'], $dataForm['jobmanager_adminbundle_superrecall[createdDate']['time']['minute'], 0);
-        $recall->setCreatedDate($createdDate);
-
-        $recallDate = new \DateTime();
-        $recallDate->setDate($dataForm['jobmanager_adminbundle_superrecall[recallDate']['date']['year'], $dataForm['jobmanager_adminbundle_superrecall[recallDate']['date']['month'], $dataForm['jobmanager_adminbundle_superrecall[recallDate']['date']['day']);
-        $recall->setRecallDate($recallDate);
-
-        if (isset($dataForm['jobmanager_adminbundle_superrecall[isFirstContact']))
-            $recall->setIsFirstContact($dataForm['jobmanager_adminbundle_superrecall[isFirstContact']);
-        else
-            $recall->setIsFirstContact(0);
-
-        if (isset($dataForm['jobmanager_adminbundle_superrecall[isRecalled']))
-            $recall->setIsRecalled($dataForm['jobmanager_adminbundle_superrecall[isRecalled']);
-        else
-            $recall->setIsRecalled(0);
-
-        if (isset($dataForm['jobmanager_adminbundle_superrecall[isMail']))
-            $recall->setIsMail($dataForm['jobmanager_adminbundle_superrecall[isMail']);
-        else
-            $recall->setIsMail(0);
-
-        $jobSourceId = $dataForm['jobmanager_adminbundle_superrecall[jobSource'];
-        $jobSource = $em->getRepository('JobmanagerAdminBundle:JobSource')
-                        ->findById($jobSourceId);
-        $recall->setJobSource($jobSource[0]);
-
-        $recall->setDescription($dataForm['jobmanager_adminbundle_superrecall[description']);
-        $recall->setRecruiter($recruiter);
-
-        return $recall;
-    }
 } 

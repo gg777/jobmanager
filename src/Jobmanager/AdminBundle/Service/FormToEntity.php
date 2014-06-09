@@ -16,9 +16,11 @@ class FormToEntity
      */
     public function createCompany($dataForm)
     {
+        //print '<pre>'; print_r($dataForm); print '</pre>';
+
         // create new company
         $company = new Company();
-        $company->setName($dataForm['jobmanager_adminbundle_superjob[name']);
+        $company->setName($dataForm['jobmanager_adminbundle_company[name']);
 
         $company->setType($dataForm['jobmanager_adminbundle_company[type']);
         $company->setSector($dataForm['jobmanager_adminbundle_company[sector']);
@@ -28,7 +30,11 @@ class FormToEntity
         $company->setCountry($dataForm['jobmanager_adminbundle_company[country']);
         $company->setLat($dataForm['jobmanager_adminbundle_company[lat']);
         $company->setLng($dataForm['jobmanager_adminbundle_company[lng']);
-        $company->setIsHeadHunter($dataForm['jobmanager_adminbundle_company[is_head_hunter']);
+
+        if (isset($dataForm['jobmanager_adminbundle_company[is_head_hunter']))
+            $company->setIsHeadHunter($dataForm['jobmanager_adminbundle_company[is_head_hunter']);
+        else
+            $company->setIsHeadHunter(0);
 
         return $company;
     }

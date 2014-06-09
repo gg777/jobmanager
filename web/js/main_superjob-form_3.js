@@ -66,6 +66,56 @@ $(document).ready(function(){
                     });
                 });
 
+                // listener new recruiter form
+                $('#superjob-create-recruiter').on('click', function(){
+
+                    // call ajax new recruiter form
+                    $.ajax({
+                        url: '/admin/superjob-create-new-recruiter-form',
+                        method: 'post',
+                        success: function(data){
+
+                            // append recruiter form
+                            $('#superjob-form-wrapper').append(data.form_data);
+
+                            // remove recruiter create and submit button
+                            $('#superjob-create-recruiter, #submit-company').remove();
+
+                            // listener submit recruiter
+                            $('#submit-recruiter').on('click', function(){
+
+                                // retrieve form values
+                                var dataForm = $('#super-job-form').serializeObject();
+
+                                // call ajax send form value
+                                $.ajax({
+                                    url: '/admin/superjob-create-new-recruiter',
+                                    data: {data_form: dataForm},
+                                    method: 'post',
+                                    dataType: 'json',
+                                    success: function(data){
+                                        console.log(data);
+                                        window.location = ('/admin/');
+                                        console.log('success create recruiter');
+                                    },
+                                    complete: function(){
+                                        console.log('complete');
+                                    },
+                                    error: function(error){
+                                        console.log('error create recruiter');
+                                        console.log(error);
+                                    }
+                                });
+
+                            });
+
+                        },
+                        complete: function(){},
+                        error: function(error){}
+                    });
+
+                });
+
 
             },
             complete: function(data){
