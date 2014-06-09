@@ -1,18 +1,11 @@
 <?php
-    /**
-     * Created by PhpStorm.
-     * User: gerard
-     * Date: 09/05/2014
-     * Time: 21:35
-     */
 
 namespace Jobmanager\AdminBundle\Controller;
 
-    use Jobmanager\AdminBundle\Form\RecruiterEditType;
-    use Jobmanager\AdminBundle\Form\RecruiterType;
-    use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-    use Symfony\Component\HttpFoundation\Response;
-    use Jobmanager\AdminBundle\Entity\Recruiter;
+use Jobmanager\AdminBundle\Form\RecruiterEditType;
+use Jobmanager\AdminBundle\Form\RecruiterType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Jobmanager\AdminBundle\Entity\Recruiter;
 
 class RecruiterController extends Controller
 {

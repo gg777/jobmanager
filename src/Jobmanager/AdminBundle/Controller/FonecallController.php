@@ -1,16 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gerard
- * Date: 16/05/2014
- * Time: 16:30
- */
 
 namespace Jobmanager\AdminBundle\Controller;
 
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Jobmanager\AdminBundle\Entity\Fonecall;
 use Jobmanager\AdminBundle\Form\FonecallType;
 use Jobmanager\AdminBundle\Form\FonecallEditType;

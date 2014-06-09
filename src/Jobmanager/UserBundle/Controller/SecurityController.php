@@ -17,8 +17,6 @@ class SecurityController extends Controller
         $request = $this->get('request');
         $session = $request->getSession();
 
-//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($session); print "</pre>";
-
         // check if error authenfication
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);

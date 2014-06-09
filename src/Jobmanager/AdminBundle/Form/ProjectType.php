@@ -15,11 +15,21 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array('required' => false))
-            ->add('description', 'textarea', array('required' => false))
-            ->add('domainIntervention', 'textarea', array('required' => false))
-            ->add('technicalEnvironnement', 'textarea', array('required' => false))
-            ->add('url', 'text', array('required' => false))
+            ->add('name', 'text', array(
+                'required' => false
+            ))
+            ->add('description', 'textarea', array(
+                'required' => false
+            ))
+            ->add('domainIntervention', 'textarea', array(
+                'required' => false
+            ))
+            ->add('technicalEnvironnement', 'textarea', array(
+                'required' => false
+            ))
+            ->add('url', 'text', array(
+                'required' => false
+            ))
             ->add('jobExperience', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:JobExperience',
                 'property' => 'companyName'

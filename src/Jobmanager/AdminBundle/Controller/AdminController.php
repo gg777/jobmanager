@@ -1,18 +1,10 @@
 <?php
 
-
 namespace Jobmanager\AdminBundle\Controller;
 
-use Jobmanager\AdminBundle\Entity\CandidateJob;
-use Jobmanager\AdminBundle\Entity\Company;
 use Jobmanager\AdminBundle\Entity\Contact;
-use Jobmanager\AdminBundle\Entity\Fonecall;
-use Jobmanager\AdminBundle\Entity\Job;
-use Jobmanager\AdminBundle\Entity\Meeting;
-use Jobmanager\AdminBundle\Entity\Recruiter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Jobmanager\AdminBundle\Entity\Jobs;
-use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends Controller
 {
@@ -68,8 +60,7 @@ class AdminController extends Controller
                     } else {
                         $candidateJob->meanNote = null;
                     }
-//                    print "<pre>"; \Doctrine\Common\Util\Debug::dump($meeting); print "</pre>";
-//                    die('coucou');
+
                 }
 
 
@@ -89,9 +80,6 @@ class AdminController extends Controller
         // retrieve recalls
         $recalls = $em->getRepository('JobmanagerAdminBundle:Recall')
                       ->getNewRecallsRecruiterCompany();
-
-//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($recalls[0]->getRecruiter()); print "</pre>";
-//        die('coucou');
 
         // send view
         return $this->render('JobmanagerAdminBundle:Admin:index.html.twig', array(

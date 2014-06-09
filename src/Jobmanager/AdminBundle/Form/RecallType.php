@@ -15,11 +15,21 @@ class RecallType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('createdDate', 'datetime', array('required' => false))
-            ->add('recallDate', 'datetime', array('required' => false))
-            ->add('isFirstContact', 'checkbox', array('required' => false))
-            ->add('isRecalled', 'checkbox', array('required' => false))
-            ->add('isMail', 'checkbox', array('required' => false))
+            ->add('createdDate', 'datetime', array(
+                'required' => false
+            ))
+            ->add('recallDate', 'datetime', array(
+                'required' => false
+            ))
+            ->add('isFirstContact', 'checkbox', array(
+                'required' => false
+            ))
+            ->add('isRecalled', 'checkbox', array(
+                'required' => false
+            ))
+            ->add('isMail', 'checkbox', array(
+                'required' => false
+            ))
             ->add('recruiter', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Recruiter',
                 'property' => 'lastname'
@@ -29,7 +39,9 @@ class RecallType extends AbstractType
                 'property' => 'name',
                 'required' => false
             ))
-            ->add('description', 'textarea', array('required' => false))
+            ->add('description', 'textarea', array(
+                'required' => false
+            ))
         ;
     }
     

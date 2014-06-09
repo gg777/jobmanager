@@ -1,23 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gerard
- * Date: 19/05/2014
- * Time: 23:05
- */
 
 namespace Jobmanager\AdminBundle\Command;
-
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Jobmanager\AdminBundle\Entity\Recruiter;
-use Jobmanager\AdminBundle\Entity\Company;
-use Jobmanager\AdminBundle\Entity\Job;
-
 
 class CheckRemixjobsCommand extends ContainerAwareCommand
 {

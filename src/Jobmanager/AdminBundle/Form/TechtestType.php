@@ -15,9 +15,15 @@ class TechtestType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type', 'text', array('required' => false))
-            ->add('techno', 'text', array('required' => false))
-            ->add('note', 'textarea', array('required' => false))
+            ->add('type', 'text', array(
+                'required' => false
+            ))
+            ->add('techno', 'text', array(
+                'required' => false
+            ))
+            ->add('note', 'textarea', array(
+                'required' => false
+            ))
             ->add('meeting', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Meeting',
                 'property' => 'name'

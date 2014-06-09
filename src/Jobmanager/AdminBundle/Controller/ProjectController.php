@@ -1,16 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gerard
- * Date: 16/05/2014
- * Time: 16:30
- */
 
 namespace Jobmanager\AdminBundle\Controller;
 
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Jobmanager\AdminBundle\Entity\Project;
 use Jobmanager\AdminBundle\Form\ProjectType;
 use Jobmanager\AdminBundle\Form\ProjectEditType;

@@ -1,17 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gerard
- * Date: 09/05/2014
- * Time: 21:35
- */
 
 namespace Jobmanager\AdminBundle\Controller;
 
 use Jobmanager\AdminBundle\Form\MotivationEditType;
 use Jobmanager\AdminBundle\Form\MotivationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Jobmanager\AdminBundle\Entity\Motivation;
 
 class MotivationController extends Controller

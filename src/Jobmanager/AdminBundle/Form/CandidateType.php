@@ -15,16 +15,36 @@ class CandidateType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('gender', 'text', array('required' => false))
-            ->add('firstname', 'text', array('required' => false))
-            ->add('lastname', 'text', array('required' => false))
-            ->add('tel', 'text', array('required' => false))
-            ->add('email', 'text', array('required' => false))
-            ->add('address' , 'textarea', array('required' => false))
-            ->add('zip', 'text', array('required' => false))
-            ->add('city', 'text', array('required' => false))
-            ->add('birthdate', 'date', array('required' => false))
-            ->add('createdDate', 'date', array('required' => false))
+            ->add('gender', 'text', array(
+                'required' => false
+            ))
+            ->add('firstname', 'text', array(
+                'required' => false
+            ))
+            ->add('lastname', 'text', array(
+                'required' => false
+            ))
+            ->add('tel', 'text', array(
+                'required' => false
+            ))
+            ->add('email', 'text', array(
+                'required' => false
+            ))
+            ->add('address' , 'textarea', array(
+                'required' => false
+            ))
+            ->add('zip', 'text', array(
+                'required' => false
+            ))
+            ->add('city', 'text', array(
+                'required' => false
+            ))
+            ->add('birthdate', 'date', array(
+                'required' => false
+            ))
+            ->add('createdDate', 'date', array(
+                'required' => false
+            ))
             ->add('competences', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Competence',
                 'property' => 'name',

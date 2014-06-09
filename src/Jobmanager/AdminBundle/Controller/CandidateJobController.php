@@ -1,19 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gerard
- * Date: 09/05/2014
- * Time: 21:35
- */
 
 namespace Jobmanager\AdminBundle\Controller;
 
-use Jobmanager\AdminBundle\Entity\Candidate;
-use Jobmanager\AdminBundle\Entity\Job;
 use Jobmanager\AdminBundle\Form\CandidateJobEditType;
 use Jobmanager\AdminBundle\Form\CandidateJobType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Jobmanager\AdminBundle\Entity\CandidateJob;
 
 class CandidateJobController extends Controller

@@ -15,9 +15,15 @@ class MeetingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateBegin', 'datetime', array('required' => false))
-            ->add('dateEnd', 'datetime', array('required' => false))
-            ->add('description', 'textarea', array('required' => false))
+            ->add('dateBegin', 'datetime', array(
+                'required' => false
+            ))
+            ->add('dateEnd', 'datetime', array(
+                'required' => false
+            ))
+            ->add('description', 'textarea', array(
+                'required' => false
+            ))
             ->add('candidateJob', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:CandidateJob',
                 'property' => 'name',

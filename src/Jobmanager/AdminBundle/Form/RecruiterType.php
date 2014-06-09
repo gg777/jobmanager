@@ -15,12 +15,24 @@ class RecruiterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('gender', 'text', array('required' => false))
-            ->add('firstName', 'text', array('required' => false))
-            ->add('lastName', 'text', array('required' => false))
-            ->add('tel', 'text', array('required' => false))
-            ->add('mobile', 'text', array('required' => false))
-            ->add('email', 'text', array('required' => false))
+            ->add('gender', 'text', array(
+                'required' => false
+            ))
+            ->add('firstName', 'text', array(
+                'required' => false
+            ))
+            ->add('lastName', 'text', array(
+                'required' => false
+            ))
+            ->add('tel', 'text', array(
+                'required' => false
+            ))
+            ->add('mobile', 'text', array(
+                'required' => false
+            ))
+            ->add('email', 'text', array(
+                'required' => false
+            ))
             ->add('company', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Company',
                 'property' => 'name',

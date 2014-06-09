@@ -2,8 +2,6 @@
 
 namespace Jobmanager\AdminBundle\Form;
 
-use Jobmanager\AdminBundle\Entity\Techtest;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 

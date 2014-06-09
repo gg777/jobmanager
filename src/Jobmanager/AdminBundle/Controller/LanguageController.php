@@ -1,17 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gerard
- * Date: 09/05/2014
- * Time: 21:35
- */
 
 namespace Jobmanager\AdminBundle\Controller;
 
 use Jobmanager\AdminBundle\Form\LanguageEditType;
 use Jobmanager\AdminBundle\Form\LanguageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Jobmanager\AdminBundle\Entity\Language;
 
 class LanguageController extends Controller

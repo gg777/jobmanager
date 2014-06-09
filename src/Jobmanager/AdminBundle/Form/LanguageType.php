@@ -15,8 +15,12 @@ class LanguageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array('required' => false))
-            ->add('level', 'text', array('required' => false))
+            ->add('name', 'text', array(
+                'required' => false
+            ))
+            ->add('level', 'text', array(
+                'required' => false
+            ))
             ->add('candidate', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Candidate',
                 'property' => 'lastname',
