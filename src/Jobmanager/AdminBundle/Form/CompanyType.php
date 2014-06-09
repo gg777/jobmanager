@@ -15,17 +15,39 @@ class CompanyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array('required' => false))
-            ->add('type', 'text', array('required' => false))
-            ->add('sector', 'text', array('required' => false))
-            ->add('address', 'textarea', array('required' => false))
-            ->add('zip', 'text', array('required' => false))
-            ->add('city', 'text', array('required' => false))
-            ->add('country', 'text', array('required' => false))
-            ->add('lat', 'text', array('required' => false))
-            ->add('lng', 'text', array('required' => false))
-            ->add('is_head_hunter', 'checkbox', array('required' => false))
-            ->add('urlCompany', 'text', array('required' => false))
+            ->add('name', 'text', array(
+                'required' => false
+            ))
+            ->add('type', 'text', array(
+                'required' => false
+            ))
+            ->add('sector', 'text', array(
+                'required' => false
+            ))
+            ->add('address', 'textarea', array(
+                'required' => false
+            ))
+            ->add('zip', 'text', array(
+                'required' => false
+            ))
+            ->add('city', 'text', array(
+                'required' => false
+            ))
+            ->add('country', 'text', array(
+                'required' => false
+            ))
+            ->add('lat', 'text', array(
+                'required' => false
+            ))
+            ->add('lng', 'text', array(
+                'required' => false
+            ))
+            ->add('is_head_hunter', 'checkbox', array(
+                'required' => false
+            ))
+            ->add('urlCompany', 'text', array(
+                'required' => false
+            ))
         ;
     }
     
