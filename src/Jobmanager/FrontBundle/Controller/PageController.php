@@ -145,9 +145,6 @@ class PageController extends Controller
                 $msg .= "Indiquez le code anti-spam correct<br />";
             }
 
-
-            //print '<pre>'; print_r($_SESSION["code_antispam"]); print '</pre>';
-
             // check if form is valid
             if ($error == 0) {
 
