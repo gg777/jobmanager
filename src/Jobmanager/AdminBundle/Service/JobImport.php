@@ -261,8 +261,6 @@ class JobImport
                     $recruiter->setTel($tel);
                 }
 
-                //var_dump($recruiter); die;
-
                 return $recruiter;
 
             } else {
