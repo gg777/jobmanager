@@ -11,7 +11,7 @@ namespace Jobmanager\AdminBundle\Controller;
 use Jobmanager\AdminBundle\Entity\Job;
 use Jobmanager\AdminBundle\Form\CompanyType;
 use Jobmanager\AdminBundle\Form\SuperJobType;
-use Proxies\__CG__\Jobmanager\AdminBundle\Entity\Company;
+use Jobmanager\AdminBundle\Entity\Company;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
