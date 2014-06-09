@@ -5,3 +5,7 @@ services:
     jobmanager_admin.jobimport:
         class: Jobmanager\AdminBundle\Service\JobImport
         arguments: [ @doctrine.orm.entity_manager ]
+
+    jobmanager_admin.form_to_entity:
+            class: Jobmanager\AdminBundle\Service\FormToEntity
+            arguments: [ @doctrine.orm.entity_manager ]

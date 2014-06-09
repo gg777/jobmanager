@@ -59,26 +59,7 @@ class SuperJobController extends Controller
         ));
     }
 
-    /**
-     * Build Entity's form
-     * @param $Entity
-     * @param $EntityType
-     * @param $superFormName
-     * @return mixed
-     */
-    private function buildEntityForm($Entity, $EntityType, $superFormName)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $className = $em->getClassMetadata(get_class($Entity))->getName();
-        $className = str_replace('Jobmanager\AdminBundle\Entity\\', '', $className);
 
-        // create new recruiter formType
-        $form = $this->createForm($EntityType, $Entity);
-
-        return $renderedTmpl = $this->container->get('templating')->render('JobmanagerAdminBundle:'.$className.':create-edit-'.strtolower($className).'-super'.$superFormName.'-ajax.html.twig', array(
-            'form' => $form->createView()
-        ));
-    }
 
     /**
      * Create new company form
@@ -123,11 +104,14 @@ class SuperJobController extends Controller
             // get form data
             $dataForm = $request->request->get('data_form');
 
+            // call service formToEntity
+            $formToEntity = $this->container->get('jobmanager_admin.form_to_entity');
+
             // create new company
-            $company = $this->createCompany($dataForm);
+            $company = $formToEntity->createCompany($dataForm);
 
             // create new job
-            $job = $this->createJob($dataForm, $company);
+            $job = $formToEntity->createJob($dataForm, $company);
 
             // call entity manager
             $em = $this->getDoctrine()->getManager();
@@ -187,14 +171,17 @@ class SuperJobController extends Controller
             // get form data
             $dataForm = $request->request->get('data_form');
 
+            // call service formToEntity
+            $formToEntity = $this->container->get('jobmanager_admin.form_to_entity');
+
             // create new company
-            $company = $this->createCompany($dataForm);
+            $company = $formToEntity->createCompany($dataForm);
 
             // create new recruiter
-            $recruiter = $this->createRecruiter($dataForm, $company);
+            $recruiter = $formToEntity->createRecruiter($dataForm, $company);
 
             // create new job
-            $job = $this->createJob($dataForm, $company);
+            $job = $formToEntity->createJob($dataForm, $company);
 
             // call entity manager
             $em = $this->getDoctrine()->getManager();
@@ -213,70 +200,23 @@ class SuperJobController extends Controller
     }
 
     /**
-     * Create and hydrate company object
-     * @param $dataForm
-     * @return Company
+     * Build Entity's form
+     * @param $Entity
+     * @param $EntityType
+     * @param $superFormName
+     * @return mixed
      */
-    private function createCompany($dataForm)
+    private function buildEntityForm($Entity, $EntityType, $superFormName)
     {
-        // create new company
-        $company = new Company();
-        $company->setName($dataForm['jobmanager_adminbundle_superjob[name']);
+        $em = $this->getDoctrine()->getManager();
+        $className = $em->getClassMetadata(get_class($Entity))->getName();
+        $className = str_replace('Jobmanager\AdminBundle\Entity\\', '', $className);
 
-        $company->setType($dataForm['jobmanager_adminbundle_company[type']);
-        $company->setSector($dataForm['jobmanager_adminbundle_company[sector']);
-        $company->setAddress($dataForm['jobmanager_adminbundle_company[address']);
-        $company->setZip($dataForm['jobmanager_adminbundle_company[zip']);
-        $company->setCity($dataForm['jobmanager_adminbundle_company[city']);
-        $company->setCountry($dataForm['jobmanager_adminbundle_company[country']);
-        $company->setLat($dataForm['jobmanager_adminbundle_company[lat']);
-        $company->setLng($dataForm['jobmanager_adminbundle_company[lng']);
-        $company->setIsHeadHunter($dataForm['jobmanager_adminbundle_company[is_head_hunter']);
+        // create new recruiter formType
+        $form = $this->createForm($EntityType, $Entity);
 
-        return $company;
-    }
-
-    /**
-     * Create and hydrate job object
-     * @param $dataForm
-     * @param Company $company
-     * @return Job
-     */
-    private function createJob($dataForm, Company $company)
-    {
-        // create new job
-        $job = new Job();
-        $job->setCreatedDate(new \DateTime());
-        $job->setCompany($company);
-        $job->setName($dataForm['jobmanager_adminbundle_superjob[name']);
-        $job->setUrlJob($dataForm['jobmanager_adminbundle_superjob[urlJob']);
-        $job->setRemixjobsId($dataForm['jobmanager_adminbundle_superjob[remixjobs_id']);
-        $job->setContractType($dataForm['jobmanager_adminbundle_superjob[contract_type']);
-        $job->setPostingJob($dataForm['jobmanager_adminbundle_superjob[posting_job']);
-        $job->setIsApplied(0);
-        $job->setIsSoldout(0);
-
-        return $job;
-    }
-
-    /**
-     * Create and hydrate recruiter object
-     * @param $dataForm
-     * @param Company $company
-     * @return Recruiter
-     */
-    private function createRecruiter($dataForm, Company $company)
-    {
-        // create new recruiter
-        $recruiter = new Recruiter();
-        $recruiter->setCompany($company);
-        $recruiter->setGender($dataForm['jobmanager_adminbundle_recruiter[gender']);
-        $recruiter->setFirstName($dataForm['jobmanager_adminbundle_recruiter[firstName']);
-        $recruiter->setLastName($dataForm['jobmanager_adminbundle_recruiter[lastName']);
-        $recruiter->setTel($dataForm['jobmanager_adminbundle_recruiter[tel']);
-        $recruiter->setMobile($dataForm['jobmanager_adminbundle_recruiter[mobile']);
-        $recruiter->setEmail($dataForm['jobmanager_adminbundle_recruiter[email']);
-
-        return $recruiter;
+        return $renderedTmpl = $this->container->get('templating')->render('JobmanagerAdminBundle:'.$className.':create-edit-'.strtolower($className).'-super'.$superFormName.'-ajax.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 } 
