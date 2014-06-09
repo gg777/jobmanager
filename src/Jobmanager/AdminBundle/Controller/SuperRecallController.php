@@ -16,6 +16,10 @@ use Jobmanager\AdminBundle\Form\CompanyType;
 
 class SuperRecallController extends Controller
 {
+    /**
+     * Create new recall
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
     public function createAction()
     {
 
@@ -85,6 +89,12 @@ class SuperRecallController extends Controller
         }
     }
 
+    /**
+     * Build Entity's form
+     * @param $Entity
+     * @param $EntityType
+     * @return mixed
+     */
     private function buildEntityForm($Entity, $EntityType)
     {
         $em = $this->getDoctrine()->getManager();
