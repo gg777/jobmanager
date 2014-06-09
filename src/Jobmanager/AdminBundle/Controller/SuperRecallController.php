@@ -225,6 +225,7 @@ class SuperRecallController extends Controller
             $recall->setIsRecalled($data_form['recall']['isRecalled']);
             $recall->setIsMail($data_form['recall']['isMail']);
 
+            // check if job source exists
             if (!empty($data_form['recall']['jobsource'])) {
 
                 $jobSourceId = $data_form['recall']['jobSource'];
