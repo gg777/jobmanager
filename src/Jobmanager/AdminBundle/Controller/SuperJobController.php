@@ -1,19 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gerard
- * Date: 11/05/2014
- * Time: 17:37
- */
 
 namespace Jobmanager\AdminBundle\Controller;
 
 use Jobmanager\AdminBundle\Entity\Job;
+use Jobmanager\AdminBundle\Entity\Company;
 use Jobmanager\AdminBundle\Entity\Recruiter;
 use Jobmanager\AdminBundle\Form\CompanyType;
 use Jobmanager\AdminBundle\Form\RecruiterSuperJobType;
 use Jobmanager\AdminBundle\Form\SuperJobType;
-use Jobmanager\AdminBundle\Entity\Company;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -56,7 +50,6 @@ class SuperJobController extends Controller
                 // redirect
                 return $this->redirect($this->generateUrl('admin_job_index'));
             }
-
 
         }
 
@@ -128,33 +121,13 @@ class SuperJobController extends Controller
         if ($request->isXmlHttpRequest()) {
 
             // get form data
-            $data_form = $request->request->get('data_form');
+            $dataForm = $request->request->get('data_form');
 
             // create new company
-            $company = new Company();
-            $company->setName($data_form['jobmanager_adminbundle_superjob[name']);
-
-            $company->setType($data_form['jobmanager_adminbundle_company[type']);
-            $company->setSector($data_form['jobmanager_adminbundle_company[sector']);
-            $company->setAddress($data_form['jobmanager_adminbundle_company[address']);
-            $company->setZip($data_form['jobmanager_adminbundle_company[zip']);
-            $company->setCity($data_form['jobmanager_adminbundle_company[city']);
-            $company->setCountry($data_form['jobmanager_adminbundle_company[country']);
-            $company->setLat($data_form['jobmanager_adminbundle_company[lat']);
-            $company->setLng($data_form['jobmanager_adminbundle_company[lng']);
-            $company->setIsHeadHunter($data_form['jobmanager_adminbundle_company[is_head_hunter']);
+            $company = $this->createCompany($dataForm);
 
             // create new job
-            $job = new Job();
-            $job->setCreatedDate(new \DateTime());
-            $job->setCompany($company);
-            $job->setName($data_form['jobmanager_adminbundle_superjob[name']);
-            $job->setUrlJob($data_form['jobmanager_adminbundle_superjob[urlJob']);
-            $job->setRemixjobsId($data_form['jobmanager_adminbundle_superjob[remixjobs_id']);
-            $job->setContractType($data_form['jobmanager_adminbundle_superjob[contract_type']);
-            $job->setPostingJob($data_form['jobmanager_adminbundle_superjob[posting_job']);
-            $job->setIsApplied(0);
-            $job->setIsSoldout(0);
+            $job = $this->createJob($dataForm, $company);
 
             // call entity manager
             $em = $this->getDoctrine()->getManager();
@@ -212,43 +185,16 @@ class SuperJobController extends Controller
         if ($request->isXmlHttpRequest()) {
 
             // get form data
-            $data_form = $request->request->get('data_form');
+            $dataForm = $request->request->get('data_form');
 
             // create new company
-            $company = new Company();
-            $company->setName($data_form['jobmanager_adminbundle_superjob[name']);
-
-            $company->setType($data_form['jobmanager_adminbundle_company[type']);
-            $company->setSector($data_form['jobmanager_adminbundle_company[sector']);
-            $company->setAddress($data_form['jobmanager_adminbundle_company[address']);
-            $company->setZip($data_form['jobmanager_adminbundle_company[zip']);
-            $company->setCity($data_form['jobmanager_adminbundle_company[city']);
-            $company->setCountry($data_form['jobmanager_adminbundle_company[country']);
-            $company->setLat($data_form['jobmanager_adminbundle_company[lat']);
-            $company->setLng($data_form['jobmanager_adminbundle_company[lng']);
-            $company->setIsHeadHunter($data_form['jobmanager_adminbundle_company[is_head_hunter']);
+            $company = $this->createCompany($dataForm);
 
             // create new recruiter
-            $recruiter = new Recruiter();
-            $recruiter->setCompany($company);
-            $recruiter->setGender($data_form['jobmanager_adminbundle_recruiter[gender']);
-            $recruiter->setFirstName($data_form['jobmanager_adminbundle_recruiter[firstName']);
-            $recruiter->setLastName($data_form['jobmanager_adminbundle_recruiter[lastName']);
-            $recruiter->setTel($data_form['jobmanager_adminbundle_recruiter[tel']);
-            $recruiter->setMobile($data_form['jobmanager_adminbundle_recruiter[mobile']);
-            $recruiter->setEmail($data_form['jobmanager_adminbundle_recruiter[email']);
+            $recruiter = $this->createRecruiter($dataForm, $company);
 
             // create new job
-            $job = new Job();
-            $job->setCreatedDate(new \DateTime());
-            $job->setCompany($company);
-            $job->setName($data_form['jobmanager_adminbundle_superjob[name']);
-            $job->setUrlJob($data_form['jobmanager_adminbundle_superjob[urlJob']);
-            $job->setRemixjobsId($data_form['jobmanager_adminbundle_superjob[remixjobs_id']);
-            $job->setContractType($data_form['jobmanager_adminbundle_superjob[contract_type']);
-            $job->setPostingJob($data_form['jobmanager_adminbundle_superjob[posting_job']);
-            $job->setIsApplied(0);
-            $job->setIsSoldout(0);
+            $job = $this->createJob($dataForm, $company);
 
             // call entity manager
             $em = $this->getDoctrine()->getManager();
@@ -264,5 +210,73 @@ class SuperJobController extends Controller
             $response->setData(array('view' => $this->redirect($this->generateUrl('JobmanagerAdminBundle_homepage'))));
             return $response;
         }
+    }
+
+    /**
+     * Create and hydrate company object
+     * @param $dataForm
+     * @return Company
+     */
+    private function createCompany($dataForm)
+    {
+        // create new company
+        $company = new Company();
+        $company->setName($dataForm['jobmanager_adminbundle_superjob[name']);
+
+        $company->setType($dataForm['jobmanager_adminbundle_company[type']);
+        $company->setSector($dataForm['jobmanager_adminbundle_company[sector']);
+        $company->setAddress($dataForm['jobmanager_adminbundle_company[address']);
+        $company->setZip($dataForm['jobmanager_adminbundle_company[zip']);
+        $company->setCity($dataForm['jobmanager_adminbundle_company[city']);
+        $company->setCountry($dataForm['jobmanager_adminbundle_company[country']);
+        $company->setLat($dataForm['jobmanager_adminbundle_company[lat']);
+        $company->setLng($dataForm['jobmanager_adminbundle_company[lng']);
+        $company->setIsHeadHunter($dataForm['jobmanager_adminbundle_company[is_head_hunter']);
+
+        return $company;
+    }
+
+    /**
+     * Create and hydrate job object
+     * @param $dataForm
+     * @param Company $company
+     * @return Job
+     */
+    private function createJob($dataForm, Company $company)
+    {
+        // create new job
+        $job = new Job();
+        $job->setCreatedDate(new \DateTime());
+        $job->setCompany($company);
+        $job->setName($dataForm['jobmanager_adminbundle_superjob[name']);
+        $job->setUrlJob($dataForm['jobmanager_adminbundle_superjob[urlJob']);
+        $job->setRemixjobsId($dataForm['jobmanager_adminbundle_superjob[remixjobs_id']);
+        $job->setContractType($dataForm['jobmanager_adminbundle_superjob[contract_type']);
+        $job->setPostingJob($dataForm['jobmanager_adminbundle_superjob[posting_job']);
+        $job->setIsApplied(0);
+        $job->setIsSoldout(0);
+
+        return $job;
+    }
+
+    /**
+     * Create and hydrate recruiter object
+     * @param $dataForm
+     * @param Company $company
+     * @return Recruiter
+     */
+    private function createRecruiter($dataForm, Company $company)
+    {
+        // create new recruiter
+        $recruiter = new Recruiter();
+        $recruiter->setCompany($company);
+        $recruiter->setGender($dataForm['jobmanager_adminbundle_recruiter[gender']);
+        $recruiter->setFirstName($dataForm['jobmanager_adminbundle_recruiter[firstName']);
+        $recruiter->setLastName($dataForm['jobmanager_adminbundle_recruiter[lastName']);
+        $recruiter->setTel($dataForm['jobmanager_adminbundle_recruiter[tel']);
+        $recruiter->setMobile($dataForm['jobmanager_adminbundle_recruiter[mobile']);
+        $recruiter->setEmail($dataForm['jobmanager_adminbundle_recruiter[email']);
+
+        return $recruiter;
     }
 } 
