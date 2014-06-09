@@ -35,7 +35,7 @@ Supprimer un test technique - {{ parent() }}
 
                         <h2>Supprimer un test technique</h2>
 
-                        <p>Etes vous certain de vouloir supprimer le test technique "{{ techtest.name }}" ?</p>
+                        <p>Etes vous certain de vouloir supprimer le test technique "{{ techtest.id }}" ?</p>
 
                         <form action="{{ path('admin_techtest_delete', {'id': techtest.id}) }}" method="post">
                             <a href="{{ path('admin_techtest_view', {'id': techtest.id}) }}" class="btn">
