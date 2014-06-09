@@ -33,8 +33,9 @@
                             <span>Test effectué et validé</span>
                             <span style="display: inline-block; height: 10px; width: 10px; margin: 0 10px; background-color: orange;"></span>
                             <span>Test effectué et insuffisant</span>
-                            <a href="{{ path('jobmanager_getremixjobs') }}" class="btn btn-primary" style="display: block; width: 150px; margin-left: 10px; margin-top: 20px;">Get Remix Job SF2</a>
+                            <a href="{{ path('admin_superjob_create') }}" class="btn btn-primary" style="display: block; width: 200px; margin-left: 10px; margin-top: 20px;">Nouvelle annonce</a>
                             <a href="{{ path('admin_superrecall_create') }}" class="btn btn-primary" style="display: block; width: 200px; margin-left: 10px; margin-top: 20px;">Nouveau rappel téléphonique</a>
+                            <a href="{{ path('jobmanager_getremixjobs') }}" class="btn btn-primary" style="display: block; width: 150px; margin-left: 10px; margin-top: 20px;">Get Remix Job SF2</a>
                         </div>
 
                     </div>
@@ -154,8 +155,6 @@
                                     <th>Date de création</th>
                                     <th>Date de modification</th>
                                     <th>Name</th>
-                                    {#<th>Has Fonecall</th>#}
-                                    {#<th>Has Meeting</th>#}
                                     <th>Note</th>
                                     <th>Voir</th>
                                     <th>Modifier</th>
@@ -189,8 +188,6 @@
                                             {% endif %}
                                         </td>
                                         <td>{{ candidatejob.name }}</td>
-                                        {#<td>{{ candidatejob.hasFonecall }}</td>#}
-                                        {#<td>{{ candidatejob.hasMeeting }}</td>#}
                                         <td>{{ candidatejob.meanNote }}</td>
                                         <td>
                                             <a href="{{ path('admin_candidatejob_view', {'id': candidatejob.id}) }}">Voir</a>
