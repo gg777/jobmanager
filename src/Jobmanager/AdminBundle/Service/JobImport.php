@@ -123,8 +123,6 @@ class JobImport
         // $json_datas = file_get_contents('http://json.dev/test.json'); // ONLY FOR TEST
         $jobsImport = json_decode($json_datas);
 
-
-
         return $jobsImport;
     }
 
@@ -159,7 +157,7 @@ class JobImport
 
         }
 
-        // check if lfag exists
+        // check if flag exists
         if (isset($flagSfJob)) {
             return $flagSfJob;
         } else {
