@@ -117,6 +117,7 @@ class SuperJobController extends Controller
 
     /**
      * Create new company
+     * @return JsonResponse
      */
     public function createNewCompanyAction()
     {
@@ -200,6 +201,7 @@ class SuperJobController extends Controller
 
     /**
      * Create new recruiter
+     * @return JsonResponse
      */
     public function createNewRecruiterAction()
     {
