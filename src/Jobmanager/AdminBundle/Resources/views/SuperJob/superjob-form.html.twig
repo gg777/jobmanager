@@ -1,8 +1,8 @@
-{# src/Jobmanager/AdminBundle/Resources/views/Job/job-form.html.twig #}
+{# src/Jobmanager/AdminBundle/Resources/views/SuperJob/superjob-form.html.twig #}
 
 {% form_theme form "JobmanagerAdminBundle:Form:fields.html.twig" %}
 
-<div id="job-form-wrapper">
+<div id="superjob-form-wrapper">
 
     {{ form_errors(form) }}
 
@@ -26,14 +26,9 @@
         {{ form_errors(form.contract_type) }}
         {{ form_widget(form.contract_type) }}
     </div>
-    <div>
-        {{ form_label(form.is_soldout, "Pourvu") }}
-        {{ form_errors(form.is_soldout) }}
-        {{ form_widget(form.is_soldout) }}
-    </div>
 
     {{ form_rest(form) }}
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-primary" type="submit" id="submit-job">Submit</button>
     <div class="btn btn-primary" id="superjob-create-company">New Company</div>
 
 </div>

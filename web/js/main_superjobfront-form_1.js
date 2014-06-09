@@ -29,9 +29,9 @@ $(document).ready(function(){
         // retrieve form values
         var dataForm = $('#super-job-front-form').serializeObject();
 
-        console.log(dataForm);
+        //console.log(dataForm);
 
-        // call ajax push form value
+        // call ajax send form value
         $.ajax({
             url: '/submit-job-form',
             data: {data : dataForm},

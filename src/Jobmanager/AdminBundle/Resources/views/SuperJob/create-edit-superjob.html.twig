@@ -3,7 +3,7 @@
 {% extends "JobmanagerAdminBundle::layout.html.twig" %}
 
 {% block title %}
-    Ajouter un poste - {{ parent() }}
+    Ajouter une annonce - {{ parent() }}
 {% endblock %}
 
 {% block content %}
@@ -25,15 +25,15 @@
         <!-- Main content -->
         <section class="content">
             <div class="row">
-                <form method="POST" {{ form_enctype(form) }}>
+                <form method="POST" {{ form_enctype(form) }} id="super-job-form">
                     <div class="col-md-6">
                         <div class="box box-warning">
                             <div class="box-header">
-                                <h3 class="box-title">Description du poste</h3>
+                                <h3 class="box-title">Description de l'annonce</h3>
                             </div><!-- /.box-header -->
                             <div class="box-body">
 
-                                {% include "JobmanagerAdminBundle:Job:superjob-form.html.twig" %}
+                                {% include "JobmanagerAdminBundle:SuperJob:superjob-form.html.twig" %}
 
                             </div><!-- /.box-body -->
                         </div><!-- /.box -->
@@ -43,5 +43,19 @@
         </section><!-- /.content -->
     </aside><!-- /.right-side -->
 
+
+{% endblock %}
+
+{% block javascript %}
+
+    <!-- jQuery 2.0.2 -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    {% javascripts output='js/main.js' filter='cssrewrite, ?yui_js'
+    '@JobmanagerAdminBundle/Resources/public/js/jquery-ui-1.10.3.min.js'
+    '@JobmanagerAdminBundle/Resources/public/js/bootstrap.min.js'
+    '@JobmanagerAdminBundle/Resources/public/js/superjob-form.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+
+    {% endjavascripts %}
 
 {% endblock %}

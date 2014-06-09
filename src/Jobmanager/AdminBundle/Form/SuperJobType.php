@@ -15,12 +15,28 @@ class SuperJobType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('createdDate', 'date', array('required' => false))
-            ->add('name', 'text', array('required' => false))
-            ->add('urlJob', 'text', array('required' => false))
-            ->add('remixjobs_id', 'text', array('required' => false))
-            ->add('contract_type', 'text', array('required' => false))
-            ->add('is_soldout', 'checkbox', array('required' => false))
+            ->add('name', 'text', array(
+                'required' => false
+            ))
+            ->add('urlJob', 'text', array(
+                'required' => false
+            ))
+            ->add('remixjobs_id', 'text', array(
+                'required' => false
+            ))
+            ->add('contract_type', 'text', array(
+                'required' => false
+            ))
+            ->add('job_source', 'entity', array(
+                'class' => 'JobmanagerAdminBundle:JobSource',
+                'property' => 'name',
+                'empty_value' => 'Choose job source',
+                'required' => false,
+                'empty_data' => null
+            ))
+            ->add('posting_job', 'textarea', array(
+                'required' => false
+            ))
             ->add('company', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Company',
                 'property' => 'name',
