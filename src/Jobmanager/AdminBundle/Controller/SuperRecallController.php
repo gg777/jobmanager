@@ -110,6 +110,10 @@ class SuperRecallController extends Controller
         ));
     }
 
+    /**
+     * Create new recruiter
+     * @return JsonResponse
+     */
     public function createNewRecruiterAction()
     {
         // get request
@@ -128,13 +132,14 @@ class SuperRecallController extends Controller
             $recruiter = new Recruiter();
 
             // bind data
-            $recruiter->setGender($data_form['recruiter']['gender']);
-            $recruiter->setFirstName($data_form['recruiter']['firstName']);
-            $recruiter->setLastName($data_form['recruiter']['lastName']);
-            $recruiter->setTel($data_form['recruiter']['tel']);
-            $recruiter->setEmail($data_form['recruiter']['email']);
+            $recruiter->setGender($data_form['jobmanager_adminbundle_recruiter[gender']);
+            $recruiter->setFirstName($data_form['jobmanager_adminbundle_recruiter[firstName']);
+            $recruiter->setLastName($data_form['jobmanager_adminbundle_recruiter[lastName']);
+            $recruiter->setTel($data_form['jobmanager_adminbundle_recruiter[tel']);
+            $recruiter->setMobile($data_form['jobmanager_adminbundle_recruiter[mobile']);
+            $recruiter->setEmail($data_form['jobmanager_adminbundle_recruiter[email']);
 
-            $companyId = $data_form['recruiter']['companyId'];
+            $companyId = $data_form['jobmanager_adminbundle_recruiter[company'];
             $company = $em->getRepository('JobmanagerAdminBundle:Company')
                           ->findById($companyId);
 
@@ -145,19 +150,49 @@ class SuperRecallController extends Controller
             $recall = new Recall();
 
             // bind data
-            $recall->setCreatedDate(new \DateTime());
-            $recall->setRecallDate(new \DateTime());
-            $recall->setIsFirstContact($data_form['recall']['isFirstContact']);
-            $recall->setIsRecalled($data_form['recall']['isRecalled']);
+            $createdDate = new \DateTime();
+            $createdDate->setDate($data_form['jobmanager_adminbundle_superrecall[createdDate']['date']['year'], $data_form['jobmanager_adminbundle_superrecall[createdDate']['date']['month'], $data_form['jobmanager_adminbundle_superrecall[createdDate']['date']['day']);
+            $createdDate->setTime($data_form['jobmanager_adminbundle_superrecall[createdDate']['time']['hour'], $data_form['jobmanager_adminbundle_superrecall[createdDate']['time']['minute'], 0);
+            $recall->setCreatedDate($createdDate);
+
+            $recallDate = new \DateTime();
+            $recallDate->setDate($data_form['jobmanager_adminbundle_superrecall[recallDate']['date']['year'], $data_form['jobmanager_adminbundle_superrecall[recallDate']['date']['month'], $data_form['jobmanager_adminbundle_superrecall[recallDate']['date']['day']);
+            $recall->setRecallDate($recallDate);
+
+            if (isset($data_form['jobmanager_adminbundle_superrecall[isFirstContact']))
+                $recall->setIsFirstContact($data_form['jobmanager_adminbundle_superrecall[isFirstContact']);
+            else
+                $recall->setIsFirstContact(0);
+
+//            print '<pre>'; print_r($data_form); print '</pre>';
+//            die('coucou');
+
+            if (isset($data_form['jobmanager_adminbundle_superrecall[isRecalled']))
+                $recall->setIsRecalled($data_form['jobmanager_adminbundle_superrecall[isRecalled']);
+            else
+                $recall->setIsRecalled(0);
+
+            if (isset($data_form['jobmanager_adminbundle_superrecall[isMail']))
+                $recall->setIsMail($data_form['jobmanager_adminbundle_superrecall[isMail']);
+            else
+                $recall->setIsMail(0);
+
+            $jobSourceId = $data_form['jobmanager_adminbundle_superrecall[jobSource'];
+            $jobSource = $em->getRepository('JobmanagerAdminBundle:JobSource')
+                            ->findById($jobSourceId);
+            $recall->setJobSource($jobSource[0]);
+
+            $recall->setDescription($data_form['jobmanager_adminbundle_superrecall[description']);
             $recall->setRecruiter($recruiter);
 
             // save db
+            $em->persist($recruiter);
             $em->persist($recall);
             $em->flush();
 
             // send response
             $response = new JsonResponse();
-            $response->setData(array('view' => $this->redirect($this->generateUrl('admin_recall_index'))));
+            $response->setData(array('view' => $this->redirect($this->generateUrl('JobmanagerAdminBundle_homepage'))));
             return $response;
         }
     }
@@ -193,67 +228,93 @@ class SuperRecallController extends Controller
         // check if ajax request
         if ($request->isXmlHttpRequest()) {
 
-            // get ajax post data
-            $data_form = $request->request->get('data_form');
-
             // call entity manager
             $em = $this->getDoctrine()->getManager();
 
+            // get ajax post data
+            $data_form = $request->request->get('data_form');
+
+//            print '<pre>'; print_r($data_form); print '</pre>';
+//            die('coucou');
+
             // create new company
             $company = new Company();
+            $company->setName($data_form['jobmanager_adminbundle_company[name']);
+            $company->setType($data_form['jobmanager_adminbundle_company[type']);
+            $company->setSector($data_form['jobmanager_adminbundle_company[sector']);
+            $company->setAddress($data_form['jobmanager_adminbundle_company[address']);
+            $company->setZip($data_form['jobmanager_adminbundle_company[zip']);
+            $company->setCity($data_form['jobmanager_adminbundle_company[city']);
+            $company->setCountry($data_form['jobmanager_adminbundle_company[country']);
+            $company->setLat($data_form['jobmanager_adminbundle_company[lat']);
+            $company->setLng($data_form['jobmanager_adminbundle_company[lng']);
 
-            // bind data
-            $company->setName($data_form['company']['name']);
-            $company->setAddress($data_form['company']['address']);
-            $company->setZip($data_form['company']['zip']);
-            $company->setCity($data_form['company']['city']);
-            $company->setCountry($data_form['company']['country']);
-            $company->setLat($data_form['company']['lat']);
-            $company->setLng($data_form['company']['lng']);
-            $company->setIsHeadHunter($data_form['company']['isHeadHunter']);
-            $company->setUrlCompany($data_form['company']['urlCompany']);
+            if (isset($data_form['jobmanager_adminbundle_company[is_head_hunter']))
+                $company->setIsHeadHunter($data_form['jobmanager_adminbundle_company[is_head_hunter']);
+            else
+                $company->setIsHeadHunter(0);
+
+            $company->setUrlCompany($data_form['jobmanager_adminbundle_company[urlCompany']);
 
             // create new recruiter
             $recruiter = new Recruiter();
 
             // bind data
+            $recruiter->setGender($data_form['jobmanager_adminbundle_recruiter[gender']);
+            $recruiter->setFirstName($data_form['jobmanager_adminbundle_recruiter[firstName']);
+            $recruiter->setLastName($data_form['jobmanager_adminbundle_recruiter[lastName']);
+            $recruiter->setTel($data_form['jobmanager_adminbundle_recruiter[tel']);
+            $recruiter->setMobile($data_form['jobmanager_adminbundle_recruiter[mobile']);
+            $recruiter->setEmail($data_form['jobmanager_adminbundle_recruiter[email']);
             $recruiter->setCompany($company);
-            $recruiter->setGender($data_form['recruiter']['gender']);
-            $recruiter->setFirstName($data_form['recruiter']['firstName']);
-            $recruiter->setLastName($data_form['recruiter']['lastName']);
-            $recruiter->setMobile($data_form['recruiter']['mobile']);
-            $recruiter->setTel($data_form['recruiter']['tel']);
-            $recruiter->setEmail($data_form['recruiter']['email']);
 
             // create new recall
             $recall = new Recall();
 
             // bind data
-            $recall->setCreatedDate(new \DateTime());
+            $createdDate = new \DateTime();
+            $createdDate->setDate($data_form['jobmanager_adminbundle_superrecall[createdDate']['date']['year'], $data_form['jobmanager_adminbundle_superrecall[createdDate']['date']['month'], $data_form['jobmanager_adminbundle_superrecall[createdDate']['date']['day']);
+            $createdDate->setTime($data_form['jobmanager_adminbundle_superrecall[createdDate']['time']['hour'], $data_form['jobmanager_adminbundle_superrecall[createdDate']['time']['minute'], 0);
+            $recall->setCreatedDate($createdDate);
+
+            $recallDate = new \DateTime();
+            $recallDate->setDate($data_form['jobmanager_adminbundle_superrecall[recallDate']['date']['year'], $data_form['jobmanager_adminbundle_superrecall[recallDate']['date']['month'], $data_form['jobmanager_adminbundle_superrecall[recallDate']['date']['day']);
+            $recall->setRecallDate($recallDate);
+
+            if (isset($data_form['jobmanager_adminbundle_superrecall[isFirstContact']))
+                $recall->setIsFirstContact($data_form['jobmanager_adminbundle_superrecall[isFirstContact']);
+            else
+                $recall->setIsFirstContact(0);
+
+
+
+            if (isset($data_form['jobmanager_adminbundle_superrecall[isRecalled']))
+                $recall->setIsRecalled($data_form['jobmanager_adminbundle_superrecall[isRecalled']);
+            else
+                $recall->setIsRecalled(0);
+
+            if (isset($data_form['jobmanager_adminbundle_superrecall[isMail']))
+                $recall->setIsMail($data_form['jobmanager_adminbundle_superrecall[isMail']);
+            else
+                $recall->setIsMail(0);
+
+            $jobSourceId = $data_form['jobmanager_adminbundle_superrecall[jobSource'];
+            $jobSource = $em->getRepository('JobmanagerAdminBundle:JobSource')
+                ->findById($jobSourceId);
+            $recall->setJobSource($jobSource[0]);
+
+            $recall->setDescription($data_form['jobmanager_adminbundle_superrecall[description']);
             $recall->setRecruiter($recruiter);
-            $recall->setDescription($data_form['recall']['description']);
-            $recall->setIsFirstContact($data_form['recall']['isFirstContact']);
-            $recall->setIsRecalled($data_form['recall']['isRecalled']);
-            $recall->setIsMail($data_form['recall']['isMail']);
-
-            // check if job source exists
-            if (!empty($data_form['recall']['jobsource'])) {
-
-                $jobSourceId = $data_form['recall']['jobSource'];
-                $jobSource = $em->getRepository('JobmanagerAdminBundle:JobSource')
-                                ->findById($jobSourceId);
-
-                $recall->setJobSource($jobSource);
-
-            }
 
             // save db
+            $em->persist($company);
+            $em->persist($recruiter);
             $em->persist($recall);
             $em->flush();
 
             // send response
             $response = new JsonResponse();
-            $response->setData(array('view' => $this->redirect($this->generateUrl('admin_recall_index'))));
+            $response->setData(array('view' => $this->redirect($this->generateUrl('JobmanagerAdminBundle_homepage'))));
             return $response;
         }
     }
