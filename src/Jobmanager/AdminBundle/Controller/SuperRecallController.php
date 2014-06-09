@@ -63,6 +63,10 @@ class SuperRecallController extends Controller
 
     }
 
+    /**
+     * Create recruiter form
+     * @return JsonResponse
+     */
     public function createNewRecruiterFormAction()
     {
         // get request
@@ -151,6 +155,10 @@ class SuperRecallController extends Controller
         }
     }
 
+    /**
+     * Create company form
+     * @return JsonResponse
+     */
     public function createNewCompanyFormAction()
     {
         // get request
@@ -174,6 +182,10 @@ class SuperRecallController extends Controller
         }
     }
 
+    /**
+     * Create new company
+     * @return JsonResponse
+     */
     public function createNewCompanyAction()
     {
         // get request
@@ -210,6 +222,11 @@ class SuperRecallController extends Controller
         }
     }
 
+    /**
+     * Create and hydrate company object
+     * @param $dataForm
+     * @return Company
+     */
     private function createCompany($dataForm)
     {
         // create new company and bind data
@@ -234,6 +251,12 @@ class SuperRecallController extends Controller
         return $company;
     }
 
+    /**
+     * Create and hydrate recruiter object
+     * @param $dataForm
+     * @param $company
+     * @return Recruiter
+     */
     private function createRecruiter($dataForm, $company)
     {
         // create new recruiter
@@ -255,6 +278,13 @@ class SuperRecallController extends Controller
         return $recruiter;
     }
 
+    /**
+     * Create and hydrate recall object
+     * @param $em
+     * @param $dataForm
+     * @param Recruiter $recruiter
+     * @return Recall
+     */
     private function createRecall($em, $dataForm, Recruiter $recruiter)
     {
         // create new recall
