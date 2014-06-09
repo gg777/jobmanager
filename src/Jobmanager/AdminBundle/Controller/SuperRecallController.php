@@ -79,7 +79,7 @@ class SuperRecallController extends Controller
             $recruiterType = new RecruiterType();
 
             // build form
-            $renderedTmpl = $this->buildEntityForm($recruiter, $recruiterType);
+            $renderedTmpl = $this->buildEntityForm($recruiter, $recruiterType, 'recall');
 
             // send response
             $response = new JsonResponse();
@@ -93,9 +93,10 @@ class SuperRecallController extends Controller
      * Build Entity's form
      * @param $Entity
      * @param $EntityType
+     * @param $superFormName
      * @return mixed
      */
-    private function buildEntityForm($Entity, $EntityType)
+    private function buildEntityForm($Entity, $EntityType, $superFormName)
     {
         $em = $this->getDoctrine()->getManager();
         $className = $em->getClassMetadata(get_class($Entity))->getName();
@@ -104,7 +105,7 @@ class SuperRecallController extends Controller
         // create new recruiter formType
         $form = $this->createForm($EntityType, $Entity);
 
-        return $renderedTmpl = $this->container->get('templating')->render('JobmanagerAdminBundle:'.$className.':create-edit-'.strtolower($className).'-superrecall-ajax.html.twig', array(
+        return $renderedTmpl = $this->container->get('templating')->render('JobmanagerAdminBundle:'.$className.':create-edit-'.strtolower($className).'-super'.$superFormName.'-ajax.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -174,7 +175,7 @@ class SuperRecallController extends Controller
             $companyForm = new CompanyType();
 
             // build form
-            $renderedTmpl = $this->buildEntityForm($company, $companyForm);
+            $renderedTmpl = $this->buildEntityForm($company, $companyForm, 'recall');
 
             // send response
             $response = new JsonResponse();
