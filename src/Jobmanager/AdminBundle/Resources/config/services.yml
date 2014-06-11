@@ -7,5 +7,9 @@ services:
         arguments: [ @doctrine.orm.entity_manager ]
 
     jobmanager_admin.form_to_entity:
-            class: Jobmanager\AdminBundle\Service\FormToEntity
-            arguments: [ @doctrine.orm.entity_manager ]
+        class: Jobmanager\AdminBundle\Service\FormToEntity
+        arguments: [ @doctrine.orm.entity_manager ]
+
+    jobmanager_admin.candidate_job_mailer:
+        class: Jobmanager\AdminBundle\Service\CandidateJobMailer
+        arguments : [ @mailer, @doctrine.orm.entity_manager, candidateJob ]

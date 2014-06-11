@@ -50,6 +50,13 @@ class JobType extends AbstractType
                 'required' => false,
                 'empty_data' => null
             ))
+            ->add('jobSource', 'entity', array(
+                'class' => 'JobmanagerAdminBundle:JobSource',
+                'property' => 'name',
+                'empty_value' => 'Choose job source',
+                'required' => false,
+                'empty_data' => null
+            ))
             ->add('postingJob', 'textarea', array(
                 'required' => false
             ))
