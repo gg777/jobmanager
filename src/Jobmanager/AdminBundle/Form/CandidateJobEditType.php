@@ -2,20 +2,44 @@
 
 namespace Jobmanager\AdminBundle\Form;
 
+use Doctrine\ORM\EntityManager;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CandidateJobEditType extends CandidateJobType
+class CandidateJobEditType extends AbstractType
 {
-        /**
+    private $entityManager;
+
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        parent::buildForm($builder, $options);
+        $builder
+            ->add('createdDate', 'date')
+            ->add('interest', 'textarea', array(
+                'required' => false
+            ))
+            ->add('isRejected', 'checkbox', array(
+                'required' => false
+            ))
+            ->add('isOutdated', 'checkbox', array(
+                'required' => false
+            ))
+            ->add('candidate', 'entity', array(
+                'class' => 'JobmanagerAdminBundle:Candidate',
+                'property' => 'lastname'
+            ))
+        ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
@@ -31,6 +55,6 @@ class CandidateJobEditType extends CandidateJobType
      */
     public function getName()
     {
-        return 'jobmanager_adminbundle_candidatejob';
+        return 'jobmanager_adminbundle_candidatejob_edit';
     }
 }

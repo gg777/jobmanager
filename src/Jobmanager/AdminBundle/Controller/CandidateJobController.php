@@ -116,8 +116,14 @@ class CandidateJobController extends Controller
         // call entity manager
         $em = $this->getDoctrine()->getManager();
 
+
+
+
         // generate form
         $form = $this->createForm(new CandidateJobEditType($em), $candidatejob);
+
+//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($candidatejob); print "</pre>";
+//        die('coucou');
 
         // get request
         $request = $this->get('request');
