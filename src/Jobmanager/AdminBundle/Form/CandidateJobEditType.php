@@ -37,6 +37,10 @@ class CandidateJobEditType extends AbstractType
                 'class' => 'JobmanagerAdminBundle:Candidate',
                 'property' => 'lastname'
             ))
+            ->add('job', 'entity', array(
+                'class' => 'JobmanagerAdminBundle:Job',
+                'property' => 'name'
+            ))
         ;
     }
 
