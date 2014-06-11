@@ -6,6 +6,7 @@ use Jobmanager\AdminBundle\Form\CandidateJobEditType;
 use Jobmanager\AdminBundle\Form\CandidateJobType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Jobmanager\AdminBundle\Entity\CandidateJob;
+use Symfony\Component\HttpFoundation\Request;
 
 class CandidateJobController extends Controller
 {
@@ -25,7 +26,7 @@ class CandidateJobController extends Controller
     }
 
 
-    public function createAction()
+    public function createAction(Request $request)
     {
         // call entity manager
         $em = $this->getDoctrine()->getManager();
@@ -36,33 +37,60 @@ class CandidateJobController extends Controller
         // generate form
         $form = $this->createForm(new CandidateJobType($em), $candidatejob);
 
-        // get request
-        $request = $this->get('request');
-
         // check if post sent
         if ($request->getMethod() == 'POST') {
 
+            // get post data
+            $postData = $request->request->all();
+
             // bind data form
-            $form->handleRequest($request);
 
-            // valid form
-            if ($form->isValid()) {
+            // get job id
+            $jobId = $postData['jobmanager_adminbundle_candidatejob']['job'];
 
-                // save in db
-                $em = $this->getDoctrine()->getManager();
-                $candidatejob->setName($candidatejob->getJob()->getName().' - '.$candidatejob->getJob()->getCompany()->getName());
-                $em->persist($candidatejob);
+            // retrieve job by id
+            $job = $em->getRepository('JobmanagerAdminBundle:Job')
+                      ->findById($jobId);
 
-                $em->flush();
+            // set object job in post
+            $postData['jobmanager_adminbundle_candidatejob']['job'] = $job[0];
+            $request->request->set('jobmanager_adminbundle_candidatejob', $postData);
 
-                // send message
-                $this->get('session')->getFlashBag()->add('notice', 'Candidature enregistrée');
+            // get candidate id
+            $candidateId = $postData['jobmanager_adminbundle_candidatejob']['candidate'];
 
-                // redirect
-                return $this->redirect($this->generateUrl('admin_candidatejob_index'));
+            // retrieve candidate by id
+            $candidate = $em->getRepository('JobmanagerAdminBundle:Candidate')
+                            ->findById($candidateId);
 
-            }
+            // set object candidate in post
+            $postData['jobmanager_adminbundle_candidatejob']['candidate'] = $candidate[0];
 
+            // save in db
+            $createdDate = new \DateTime();
+            $createdDate->setDate($postData['jobmanager_adminbundle_candidatejob']['createdDate']['year'], $postData['jobmanager_adminbundle_candidatejob']['createdDate']['month'], $postData['jobmanager_adminbundle_candidatejob']['createdDate']['day']);
+            $candidatejob->setCreatedDate($createdDate);
+            $candidatejob->setName($postData['jobmanager_adminbundle_candidatejob']['job']->getName().' - '.$postData['jobmanager_adminbundle_candidatejob']['job']->getCompany()->getName());
+            $candidatejob->setJob($postData['jobmanager_adminbundle_candidatejob']['job']);
+            $candidatejob->setInterest($postData['jobmanager_adminbundle_candidatejob']['interest']);
+            $candidatejob->setCandidate($postData['jobmanager_adminbundle_candidatejob']['candidate']);
+
+
+            if (isset($postData['jobmanager_adminbundle_candidatejob']['isRejected']))
+                $candidatejob->setIsRejected($postData['jobmanager_adminbundle_candidatejob']['isRejected']);
+
+
+            if (isset($postData['jobmanager_adminbundle_candidatejob']['isOutdated']))
+                $candidatejob->setIsOutdated($postData['jobmanager_adminbundle_candidatejob']['isOutdated']);
+
+            $em->persist($candidatejob);
+            $em->flush();
+
+            // send message
+            $this->get('session')->getFlashBag()->add('notice', 'Candidature enregistrée');
+
+            // redirect
+            return $this->redirect($this->generateUrl('admin_candidatejob_index'));
         }
 
         // send view
