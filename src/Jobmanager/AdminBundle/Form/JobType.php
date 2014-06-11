@@ -40,6 +40,9 @@ class JobType extends AbstractType
             ->add('is_soldout', 'checkbox', array(
                 'required' => false
             ))
+            ->add('isNoInterest', 'checkbox', array(
+                'required' => false
+            ))
             ->add('company', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Company',
                 'property' => 'name',

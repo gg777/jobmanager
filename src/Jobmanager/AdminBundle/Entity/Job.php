@@ -64,6 +64,13 @@ class Job
     private $is_soldout;
 
     /**
+     * @var bool
+     * 
+     * @ORM\Column(name="is_no_interest", type="boolean", nullable=true)
+     */
+    private $isNoInterest;
+
+    /**
      * @var
      *
      * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Company", cascade="persist")
@@ -339,5 +346,28 @@ class Job
     public function getIsApplied()
     {
         return $this->isApplied;
+    }
+
+    /**
+     * Set isNoInterest
+     *
+     * @param boolean $isNoInterest
+     * @return Job
+     */
+    public function setIsNoInterest($isNoInterest)
+    {
+        $this->isNoInterest = $isNoInterest;
+
+        return $this;
+    }
+
+    /**
+     * Get isNoInterest
+     *
+     * @return boolean 
+     */
+    public function getIsNoInterest()
+    {
+        return $this->isNoInterest;
     }
 }
