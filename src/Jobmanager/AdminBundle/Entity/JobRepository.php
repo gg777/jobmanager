@@ -49,6 +49,8 @@ class JobRepository extends EntityRepository
             ->addSelect('j')
             ->where('j.isApplied = :isApplied')
             ->setParameter('isApplied', 0)
+            ->andWhere('j.isNoInterest = :isNoInterest')
+            ->setParameter('isNoInterest', 0)
             ->orderBy('j.createdDate', 'DESC')
         ;
 
