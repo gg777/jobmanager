@@ -32,12 +32,15 @@ class SuperRecallType extends AbstractType
             ))
             ->add('recruiter', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:Recruiter',
-                'property' => 'lastname'
+                'property' => 'lastname',
+                'required' => false,
+                'empty_value' => ''
             ))
             ->add('jobSource', 'entity', array(
                 'class' => 'JobmanagerAdminBundle:JobSource',
                 'property' => 'name',
-                'required' => false
+                'required' => false,
+                'empty_value' => ''
             ))
             ->add('description', 'textarea', array('required' => false))
         ;

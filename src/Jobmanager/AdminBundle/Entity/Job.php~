@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Job
  *
  * @ORM\Table(name="job")
- * @ORM\Entity(repositoryClass="JobManager\AdminBundle\Entity\JobRepository")
+ * @ORM\Entity(repositoryClass="Jobmanager\AdminBundle\Entity\JobRepository")
  */
 class Job
 {
@@ -64,11 +64,41 @@ class Job
     private $is_soldout;
 
     /**
+     * @var bool
+     * 
+     * @ORM\Column(name="is_no_interest", type="boolean", nullable=true)
+     */
+    private $isNoInterest;
+
+    /**
      * @var
-     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Company")
-     * @ORM\JoinColumn(nullable=false)
+     *
+     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\Company", cascade="persist")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $company;
+
+    /**
+     * @var
+     * 
+     * @ORM\ManyToOne(targetEntity="Jobmanager\AdminBundle\Entity\JobSource", cascade="persist")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $jobSource;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="posting_job", type="text", nullable=true)
+     */
+    private $postingJob;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="is_applied", type="boolean", nullable=true)
+     */
+    private $isApplied;
 
     /**
      * Constructor
@@ -224,5 +254,97 @@ class Job
     public function getIsSoldout()
     {
         return $this->is_soldout;
+    }
+
+    /**
+     * Set company
+     *
+     * @param \Jobmanager\AdminBundle\Entity\Company $company
+     * @return Job
+     */
+    public function setCompany(\Jobmanager\AdminBundle\Entity\Company $company)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \Jobmanager\AdminBundle\Entity\Company 
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Set jobSource
+     *
+     * @param \Jobmanager\AdminBundle\Entity\JobSource $jobSource
+     * @return Job
+     */
+    public function setJobSource(\Jobmanager\AdminBundle\Entity\JobSource $jobSource = null)
+    {
+        $this->jobSource = $jobSource;
+
+        return $this;
+    }
+
+    /**
+     * Get jobSource
+     *
+     * @return \Jobmanager\AdminBundle\Entity\JobSource 
+     */
+    public function getJobSource()
+    {
+        return $this->jobSource;
+    }
+
+    /**
+     * Set postingJob
+     *
+     * @param string $postingJob
+     * @return Job
+     */
+    public function setPostingJob($postingJob)
+    {
+        $this->postingJob = $postingJob;
+
+        return $this;
+    }
+
+    /**
+     * Get postingJob
+     *
+     * @return string 
+     */
+    public function getPostingJob()
+    {
+        return $this->postingJob;
+    }
+
+    /**
+     * Set isApplied
+     *
+     * @param boolean $isApplied
+     * @return Job
+     */
+    public function setIsApplied($isApplied)
+    {
+        $this->isApplied = $isApplied;
+
+        return $this;
+    }
+
+    /**
+     * Get isApplied
+     *
+     * @return boolean 
+     */
+    public function getIsApplied()
+    {
+        return $this->isApplied;
     }
 }

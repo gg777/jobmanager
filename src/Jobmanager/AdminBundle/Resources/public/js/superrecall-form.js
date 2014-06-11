@@ -27,7 +27,7 @@ $(document).ready(function(){
     $('#superrecall-create-recruiter').on('click', function(){
 
         // remove recruiter label, select and add button
-        $('label[for=jobmanager_adminbundle_recall_recruiter], #jobmanager_adminbundle_recall_recruiter, #superrecall-create-recruiter, #superrecall-create-recall').remove();
+        $('label[for=jobmanager_adminbundle_superrecall_recruiter], #jobmanager_adminbundle_superrecall_recruiter, #superrecall-create-recruiter, #superrecall-create-recall').remove();
 
         // call ajax new recruiter form
         $.ajax({
