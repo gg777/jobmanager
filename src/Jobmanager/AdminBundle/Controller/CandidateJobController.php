@@ -27,12 +27,14 @@ class CandidateJobController extends Controller
 
     public function createAction()
     {
+        // call entity manager
+        $em = $this->getDoctrine()->getManager();
 
         // new candidatejob
         $candidatejob = new CandidateJob();
 
         // generate form
-        $form = $this->createForm(new CandidateJobType, $candidatejob);
+        $form = $this->createForm(new CandidateJobType($em), $candidatejob);
 
         // get request
         $request = $this->get('request');
@@ -48,8 +50,6 @@ class CandidateJobController extends Controller
 
                 // save in db
                 $em = $this->getDoctrine()->getManager();
-//                print "<pre>"; \Doctrine\Common\Util\Debug::dump($candidatejob->getJob()->getCompany()->getName()); print "</pre>";
-//                die;
                 $candidatejob->setName($candidatejob->getJob()->getName().' - '.$candidatejob->getJob()->getCompany()->getName());
                 $em->persist($candidatejob);
 
@@ -85,8 +85,11 @@ class CandidateJobController extends Controller
 
     public function editAction(CandidateJob $candidatejob)
     {
+        // call entity manager
+        $em = $this->getDoctrine()->getManager();
+
         // generate form
-        $form = $this->createForm(new CandidateJobEditType, $candidatejob);
+        $form = $this->createForm(new CandidateJobEditType($em), $candidatejob);
 
         // get request
         $request = $this->get('request');
