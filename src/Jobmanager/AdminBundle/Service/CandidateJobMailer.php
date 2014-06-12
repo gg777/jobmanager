@@ -14,9 +14,6 @@ class CandidateJobMailer
     {
         $this->mailer = $mailer;
         $this->entityManager = $entityManager;
-
-//        print "<pre>"; \Doctrine\Common\Util\Debug::dump($templating); print "</pre>";
-//        die('coucou');
     }
 
     public function sendCandidateJobMail(CandidateJob $candidateJob)
