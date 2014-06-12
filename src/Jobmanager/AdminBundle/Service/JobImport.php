@@ -42,61 +42,77 @@ class JobImport
             if ($em->getRepository('JobmanagerAdminBundle:Job')->getJobByRemixjobsId($jobImport->id) == null) {
 
                 // check if title contain sf2 occurences
-                $flagSfJob = $this->filterRemixjobs($jobImport);
+                $flagSfJob = $this->filterRemixjobsByTitle($jobImport);
 
                 if (isset($flagSfJob)) {
 
                     if ($flagSfJob === true) {
 
-                        $jobCount++;
-
                         // unset flag
                         $flagSfJob = false;
 
-                        // Check if company already exists
-                        $companies = $em->getRepository('JobmanagerAdminBundle:Company')
-                                        ->findAll();
+                        // check if contract type is cdi, cdd or freelance
+                        $flagContractType = $this->filterRemixjobsByContractType($jobImport);
 
-                        foreach ($companies as $companyTest) {
 
-                            if (strtolower(trim($companyTest->getName())) == strtolower(trim($jobImport->company_name)))
-                            {
-                                $flagCompany = true;
-                                $companyTestId = $companyTest->getId();
+
+                        if (isset($flagContractType)) {
+                            if ($flagContractType === true) {
+
+                                // unset flag
+                                $flagContractType = false;
+
+                                // increment job count
+                                $jobCount++;
+
+                                // Check if company already exists
+                                $companies = $em->getRepository('JobmanagerAdminBundle:Company')
+                                    ->findAll();
+
+                                foreach ($companies as $companyTest) {
+
+                                    if (strtolower(trim($companyTest->getName())) == strtolower(trim($jobImport->company_name)))
+                                    {
+                                        $flagCompany = true;
+                                        $companyTestId = $companyTest->getId();
+                                    }
+                                }
+
+                                if (isset($flagCompany)) {
+
+                                    if ($flagCompany == true) {
+
+                                        $company = $em->getRepository('JobmanagerAdminBundle:Company')
+                                            ->findById($companyTestId);
+                                        $company = $company[0];
+
+                                    }
+
+                                } else {
+
+                                    // Company
+                                    $company = $this->setNewCompany($jobImport);
+
+                                    // Recruiter
+                                    // parse postingJob to find recruiter contact
+                                    $recruiter = $this->setNewRecruiter($jobImport, $company);
+                                }
+
+
+                                // Job
+                                $job = $this->setNewJob($jobImport, $company);
+
+                                $outputArr[] = $job;
+
+                                // check if allowed to write in db
+                                if ($writeDb == true) {
+                                    // persist job
+                                    $em->persist($job);
+                                    $em->flush();
+                                }
+
                             }
-                        }
 
-                        if (isset($flagCompany)) {
-
-                            if ($flagCompany == true) {
-
-                                $company = $em->getRepository('JobmanagerAdminBundle:Company')
-                                              ->findById($companyTestId);
-                                $company = $company[0];
-
-                            }
-
-                        } else {
-
-                            // Company
-                            $company = $this->setNewCompany($jobImport);
-
-                            // Recruiter
-                            // parse postingJob to find recruiter contact
-                            $recruiter = $this->setNewRecruiter($jobImport, $company);
-                        }
-
-
-                        // Job
-                        $job = $this->setNewJob($jobImport, $company);
-
-                        $outputArr[] = $job;
-
-                        // check if allowed to write in db
-                        if ($writeDb == true) {
-                            // persist job
-                            $em->persist($job);
-                            $em->flush();
                         }
 
                     }
@@ -127,13 +143,13 @@ class JobImport
     }
 
     /**
-     * Filter job by Symfony 2 dictionary
+     * Filter job by title
      * @param $jobImport
      * @return bool
      */
-    private function filterRemixjobs($jobImport)
+    private function filterRemixjobsByTitle($jobImport)
     {
-        // set filter sf2 jobs
+        // set filter array sf2 jobs
         $sf2_occurences = array(
             'Symfony',
             'symfony',
@@ -151,18 +167,49 @@ class JobImport
         foreach ($sf2_occurences as $sf2_occurence) {
 
             // filter sf2 jobs
-            if (strpos($jobImport->title, $sf2_occurence) > 0) {
+            if (strpos($jobImport->title, $sf2_occurence) > 0)
                 $flagSfJob = true;
+
+        }
+
+        // check if flag exists
+        if (isset($flagSfJob))
+            return $flagSfJob;
+        else
+            return false;
+    }
+
+    /**
+     * Filter job by contract type
+     * @param $jobImport
+     * @return bool
+     */
+    public function filterRemixjobsByContractType($jobImport)
+    {
+        // set filter array contract type
+        $contractTypeOccurences = array(
+            'CDI',
+            'CDD',
+            'FREELANCE'
+        );
+
+        // check if contract type contains wanted occurences
+        foreach ($contractTypeOccurences as $contractTypeOccurence) {
+
+            // filter jobs
+            if ($jobImport->contract_type == $contractTypeOccurence) {
+                $flagContractType = true;
+
+
             }
 
         }
 
         // check if flag exists
-        if (isset($flagSfJob)) {
-            return $flagSfJob;
-        } else {
+        if (isset($flagContractType))
+            return $flagContractType;
+        else
             return false;
-        }
     }
 
     /**
