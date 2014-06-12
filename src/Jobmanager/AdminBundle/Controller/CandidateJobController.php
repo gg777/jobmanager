@@ -147,7 +147,7 @@ class CandidateJobController extends Controller
                 $em->persist($candidatejob);
                 $em->flush();
 
-                // send flas message
+                // send flash message
                 $this->get('session')->getFlashBag()->add('info', 'Langage modifié.');
 
                 // redirect
