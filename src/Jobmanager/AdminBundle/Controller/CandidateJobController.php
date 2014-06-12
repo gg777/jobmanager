@@ -86,11 +86,16 @@ class CandidateJobController extends Controller
             $em->persist($candidatejob);
             $em->flush();
 
-            // call candidateJobMailer
-            $candidatejobMailer = $this->container->get('jobmanager_admin.candidate_job_mailer');
+            // check if send candidate auto is checked
+            if (isset($postData['jobmanager_adminbundle_candidatejob']['sendCandidateJobAuto'])) {
 
-            // send mail to recruiter
-            $candidatejobMailer->sendCandidateJobMail($candidatejob);
+                // call candidateJobMailer
+                $candidatejobMailer = $this->container->get('jobmanager_admin.candidate_job_mailer');
+
+                // send mail to recruiter
+                $candidatejobMailer->sendCandidateJobMail($candidatejob);
+
+            }
 
             // send message
             $this->get('session')->getFlashBag()->add('notice', 'Candidature enregistrée et envoyée');
