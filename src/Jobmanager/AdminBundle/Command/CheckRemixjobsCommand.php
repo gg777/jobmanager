@@ -46,13 +46,18 @@ class CheckRemixjobsCommand extends ContainerAwareCommand
             foreach ($jobsImport as $job) {
                 // send email new job
                 $message = \Swift_Message::newInstance()
-                    ->setSubject('Nouveau poste Symfony 2 - Remixjobs')
+                    ->setSubject('Nouveau poste - Remixjobs - '.$job->getName())
                     ->setFrom('pa@foulquier.info')
                     ->setTo('pa@foulquier.info')
                     ->setBody($this->getContainer()->get('templating')->render('JobmanagerAdminBundle:Admin:remixjobsEmail.txt.twig', array(
                         'postingJob' => $job->getPostingJob()
                     )));
                 $this->getContainer()->get('mailer')->send($message);
+
+
+
+                // send sms
+                file_get_contents('https://smsapi.free-mobile.fr/sendmsg?user=11014182&pass=Jrc1R3XoyQDPJV&msg='.urlencode('Nouveau poste : '.str_replace('&', 'et', $job->getName()).' - '.$job->getUrlJob()));
 
                 // send output cmd
                 $output->writeln($job->getName());
