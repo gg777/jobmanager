@@ -58,7 +58,7 @@ class CheckRemixjobsCommand extends ContainerAwareCommand
                     )));
                 $this->getContainer()->get('mailer')->send($message);
 
-                // send sms
+                // send sms new job
                 file_get_contents('https://smsapi.free-mobile.fr/sendmsg?user=11014182&pass=Jrc1R3XoyQDPJV&msg='.urlencode('Nouveau poste : '.str_replace('&', 'et', $job->getName()).' - '.$job->getUrlJob()));
 
                 // send output cmd
